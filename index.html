@@ -877,9 +877,11 @@ async function initFirebase(){
     };
     onValue(shotRef, (snap) => {
       const v = snap.val() || {};
+      const mine = document.activeElement;
+      const typing = mine && mine.closest && mine.closest('#shots');
       shots = Object.keys(v).map(k => Object.assign({ _k: k }, v[k]))
                    .sort((a, b) => (a.ord || 0) - (b.ord || 0));
-      if (!editing) renderShots();
+      if (!typing) renderShots(); else updateTotal();
     });
 
     remoteNotes = {
@@ -1477,11 +1479,55 @@ shotsEl.addEventListener('focusout', () => { editing = false; });
 shotsEl.addEventListener('input', (e) => {
   const f = e.target.dataset.f;
   if (!f) return;
-  const k = e.target.closest('.shot').dataset.k;
+  const sh = e.target.closest('.shot');
+  const k = sh.dataset.k;
   shotSave(k, { [f]: e.target.value });
-  if (f === 'ts' || f === 'te') { clearTimeout(window._tcT); window._tcT = setTimeout(renderShots, 700); }
-  if (f === 'ref' || f === 'at'){ clearTimeout(window._rfT); window._rfT = setTimeout(renderShots, 700); }
+  const x = shots.find(v => v._k === k);
+  if (!x) return;
+
+  if (f === 'ts' || f === 'te'){ updateDur(sh, x); updateTotal(); }
+  if (f === 'ref' || f === 'at'){
+    clearTimeout(sh._rt);
+    sh._rt = setTimeout(() => updatePreview(sh, x), 600);
+  }
 });
+
+/* 입력 칸은 건드리지 않고 주변 표시만 갱신 */
+function updateDur(sh, x){
+  const a = tcSec(x.ts), b = tcSec(x.te);
+  const txt = (a != null && b != null && b > a) ? secTc(b - a) : '';
+  let el = sh.querySelector('.dur');
+  if (txt){
+    if (!el){
+      el = document.createElement('span');
+      el.className = 'dur';
+      sh.querySelector('.sc-tc').appendChild(el);
+    }
+    el.textContent = txt;
+  } else if (el) el.remove();
+}
+function updateTotal(){
+  let total = 0;
+  shots.filter(v => (v.kind || 'cf') === kind).forEach(v => {
+    const a = tcSec(v.ts), b = tcSec(v.te);
+    if (a != null && b != null && b > a) total += b - a;
+  });
+  document.getElementById('plotTotal').textContent = total ? '총 ' + secTc(total) : '—';
+}
+function updatePreview(sh, x){
+  const box = sh.querySelector('.sc-ref');
+  const old = box.querySelector('.play, .none');
+  const vid = ytId(x.ref);
+  const html = vid
+    ? `<button class="play" type="button" data-v="${vid}" data-at="${tcSec(x.at) || 0}">
+         <img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="참고 영상 썸네일" loading="lazy">
+       </button>`
+    : '<div class="none">주소를 넣으면 미리보기가 나옵니다</div>';
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  if (old) old.replaceWith(tmp.firstElementChild);
+  else box.appendChild(tmp.firstElementChild);
+}
 shotsEl.addEventListener('click', (e) => {
   const shot = e.target.closest('.shot');
   if (!shot) return;
@@ -1609,7 +1655,12 @@ document.getElementById('shotAdd').addEventListener('click', () => {
   const start = last ? (tcSec(last.te) != null ? secTc(tcSec(last.te)) : '') : '00:00';
   const item = { kind, ts: start, te: '', title: '', desc: '', ref: '', at: '', img: '', ord: shots.length };
   if (remoteShots){
-    remoteShots.add(item).catch(() => alert('저장에 실패했습니다.'));
+    remoteShots.add(item).then(() => {
+      setTimeout(() => {
+        const last = shotsEl.querySelector('.shot:last-child .sc-tc input');
+        if (last){ last.focus(); last.select(); }
+      }, 120);
+    }).catch(() => alert('저장에 실패했습니다.'));
   } else {
     shots.push(Object.assign({ _k: 'local' + Date.now() }, item));
     renderShots();
