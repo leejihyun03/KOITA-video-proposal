@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>프로젝트 석·박사 양성사업 홍보영상 기획안</title>
+<title>프로젝트 석·박사 양성사업 홍보영상 추진계획(안)</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
@@ -28,264 +28,262 @@ body{
   font-size:16px;line-height:1.75;letter-spacing:-0.01em;word-break:keep-all;
 }
 .shell{max-width:1000px;margin:0 auto;padding:0 28px;}
+.shell.wide{max-width:1480px;}
 
 /* ─────────── 도입부 ─────────── */
-.hero{
-  background:var(--navy);color:#fff;
-  padding:96px 0 88px;position:relative;overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;right:-140px;top:-140px;
-  width:460px;height:460px;border-radius:50%;
-  border:1px solid rgba(171,210,250,.16);
-}
-.hero::after{
-  content:"";position:absolute;right:-40px;top:60px;
-  width:260px;height:260px;border-radius:50%;
-  border:1px solid rgba(171,210,250,.13);
-}
+.hero{background:var(--navy);color:#fff;padding:96px 0 0;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;border:1px solid rgba(171,210,250,.16);}
+.hero::after{content:"";position:absolute;right:-40px;top:60px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(171,210,250,.13);}
 .hero .shell{position:relative;z-index:1;}
-.hero h1{
-  margin:0;font-size:clamp(32px,5.6vw,60px);
-  font-weight:800;line-height:1.16;letter-spacing:-0.04em;
-}
-.hero .tag{
-  margin:20px 0 0;font-size:clamp(17px,2.2vw,21px);
-  font-weight:600;color:var(--sky);letter-spacing:-0.025em;
-}
-.hero .meta{
-  margin:44px 0 0;display:flex;flex-wrap:wrap;gap:8px 30px;
-  font-size:13.5px;color:rgba(255,255,255,.6);
-}
+.hero h1{margin:0;font-size:clamp(30px,5.2vw,56px);font-weight:800;line-height:1.16;letter-spacing:-0.04em;}
+.hero .tag{margin:20px 0 0;font-size:clamp(17px,2.2vw,21px);font-weight:600;color:var(--sky);letter-spacing:-0.025em;}
+.hero .period{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:32px 0 0;padding:10px 18px;border:1px solid rgba(171,210,250,.4);border-radius:8px;}
+.hero .period span{font-size:12.5px;font-weight:700;color:var(--sky);}
+.hero .period b{font-size:17px;font-weight:700;color:#fff;font-feature-settings:"tnum";}
+.hero .meta{margin:32px 0 0;display:flex;flex-wrap:wrap;gap:8px 30px;font-size:13.5px;color:rgba(255,255,255,.6);}
 .hero .meta b{color:#fff;font-weight:600;}
 
-/* ─────────── 세로 축 ─────────── */
+/* ─────────── 탭 ─────────── */
+.tabs{margin:44px 0 0;display:flex;gap:4px;}
+.tabs button{
+  appearance:none;border:0;cursor:pointer;font:inherit;
+  padding:14px 26px;border-radius:10px 10px 0 0;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
+  font-size:15px;font-weight:700;letter-spacing:-0.02em;
+  display:flex;align-items:center;gap:9px;transition:background .2s ease,color .2s ease;
+}
+.tabs button .n{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.tabs button:hover{background:rgba(255,255,255,.18);color:#fff;}
+.tabs button[aria-selected="true"]{background:var(--paper);color:var(--navy);}
+.tabs button[aria-selected="true"] .n{background:var(--blue);}
+
+/* ─────────── 추진계획안 ─────────── */
 .flow{position:relative;padding:0 0 40px;}
 .flow .shell{position:relative;}
-
-/* ─────────── 각 단락 ─────────── */
 .step{position:relative;padding:66px 0 10px;margin-left:var(--rail);}
-
-.node{
-  position:absolute;left:calc(-1 * var(--rail));top:68px;
-  width:34px;height:34px;border-radius:50%;
-  background:var(--card);border:1.5px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:800;color:var(--soft);
-  font-feature-settings:"tnum";
-  transition:background .3s ease,border-color .3s ease,color .3s ease;
-}
+.node{position:absolute;left:calc(-1 * var(--rail));top:68px;width:34px;height:34px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--soft);font-feature-settings:"tnum";transition:background .3s ease,border-color .3s ease,color .3s ease;}
 .step.on .node{background:var(--blue);border-color:var(--blue);color:#fff;}
-.step > h2{
-  margin:0 0 6px;font-size:clamp(23px,3vw,31px);
-  font-weight:800;line-height:1.3;letter-spacing:-0.035em;color:var(--navy);
-}
+.step > h2{margin:0 0 6px;font-size:clamp(23px,3vw,31px);font-weight:800;line-height:1.3;letter-spacing:-0.035em;color:var(--navy);}
 .step > .kicker{margin:0 0 26px;font-size:14.5px;font-weight:500;color:var(--soft);}
 p{margin:0 0 16px;}
 .lead{font-size:17.5px;font-weight:500;}
 .mark{background:linear-gradient(transparent 58%, var(--sky) 58%);font-weight:600;}
 strong{font-weight:700;color:var(--blue);}
 
-/* 지표 */
-.stat{
-  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
-  background:var(--card);border-left:5px solid var(--blue);
-  padding:24px 28px;border-radius:0 6px 6px 0;margin:28px 0;
-}
-.stat .fig{font-size:52px;font-weight:800;color:var(--blue);line-height:1;letter-spacing:-0.045em;}
-.stat .txt{font-size:15px;color:var(--soft);line-height:1.6;}
-.stat .txt b{display:block;color:var(--navy);font-size:16.5px;font-weight:700;letter-spacing:-0.02em;}
+.formats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 10px;}
+.fmt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;}
+.fmt .tag{align-self:flex-start;background:var(--blue);color:#fff;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:4px;}
+.fmt .len{margin:16px 0 2px;font-size:28px;font-weight:800;letter-spacing:-0.045em;color:var(--navy);}
+.fmt .role{margin:0 0 18px;font-size:14.5px;color:var(--soft);line-height:1.6;}
+.fmt .ttl{margin:auto 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:16.5px;font-weight:700;color:var(--blue);letter-spacing:-0.025em;line-height:1.5;}
+.fmt .ttl small{display:block;margin-top:5px;font-size:13.5px;font-weight:500;color:var(--soft);}
 
-/* 세 주체 */
-.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 30px;}
-.trio div{
-  background:var(--card);border:1px solid var(--line);border-radius:10px;
-  padding:24px 22px;display:flex;flex-direction:column;
-}
-.trio h3{margin:0 0 4px;font-size:12.5px;font-weight:700;color:var(--peri);}
-.trio h4{margin:0 0 12px;font-size:19px;font-weight:800;letter-spacing:-0.035em;color:var(--navy);}
-.trio p{margin:auto 0 0;font-size:14.5px;color:var(--soft);line-height:1.65;}
-
-/* 선순환 다이어그램 */
-.loop{
-  background:var(--tint);border:1px solid var(--line);
-  border-radius:14px;padding:24px 26px 20px;color:var(--navy);
-}
-.loop h3{margin:0 0 3px;font-size:12.5px;font-weight:700;color:var(--peri);}
-.loop .ttl{margin:0 0 8px;font-size:19px;font-weight:800;letter-spacing:-0.035em;color:var(--navy);}
-.loop svg{width:100%;height:auto;display:block;max-width:380px;margin:0 auto;}
-.loop .cap{margin:6px 0 0;font-size:13.5px;font-weight:600;color:var(--blue);text-align:center;}
-
-/* 세 관점 */
 .views{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 30px;}
-.views div{
-  padding:20px;background:var(--tint);border-radius:10px;
-  border-top:3px solid var(--peri);display:flex;flex-direction:column;
-}
+.views div{padding:20px;background:var(--tint);border-radius:10px;border-top:3px solid var(--peri);display:flex;flex-direction:column;}
 .views b{font-size:12.5px;font-weight:700;color:var(--soft);margin-bottom:8px;}
 .views p{margin:auto 0 0;font-size:16px;font-weight:700;color:var(--blue);letter-spacing:-0.025em;line-height:1.5;}
 
-/* 콘셉트 */
-.concept{
-  position:relative;margin:0 0 30px;padding:44px 32px;
-  background:var(--card);border-radius:14px;text-align:center;
-  border:1px solid var(--line);
-}
+.concept{position:relative;margin:0 0 30px;padding:44px 32px;background:var(--card);border-radius:14px;text-align:center;border:1px solid var(--line);}
 .concept .cap{font-size:12.5px;font-weight:700;color:var(--peri);}
-.concept .line{
-  margin:12px 0 0;font-size:clamp(26px,4.4vw,42px);
-  font-weight:800;letter-spacing:-0.05em;color:var(--navy);line-height:1.28;
-}
+.concept .line{margin:12px 0 0;font-size:clamp(26px,4.4vw,42px);font-weight:800;letter-spacing:-0.05em;color:var(--navy);line-height:1.28;}
 .concept .rule{width:52px;height:3px;background:var(--blue);margin:22px auto 0;border-radius:2px;}
 
-/* 영상 2종 */
-.formats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 38px;}
-.fmt{
-  background:var(--card);border:1px solid var(--line);border-radius:12px;
-  padding:26px 24px;display:flex;flex-direction:column;
-}
-.fmt .tag{
-  align-self:flex-start;background:var(--blue);color:#fff;
-  font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:4px;
-}
-.fmt .len{margin:16px 0 2px;font-size:28px;font-weight:800;letter-spacing:-0.045em;color:var(--navy);}
-.fmt .role{margin:0 0 18px;font-size:14.5px;color:var(--soft);line-height:1.6;}
-.fmt .ttl{
-  margin:auto 0 0;padding-top:16px;border-top:1px solid var(--line);
-  font-size:16.5px;font-weight:700;color:var(--blue);letter-spacing:-0.025em;line-height:1.5;
-}
-.fmt .ttl small{display:block;margin-top:5px;font-size:13.5px;font-weight:500;color:var(--soft);}
+.tblwrap{overflow-x:auto;margin:0 0 10px;-webkit-overflow-scrolling:touch;}
+table.grid{width:100%;min-width:600px;border-collapse:collapse;background:var(--card);font-size:14.5px;}
+table.grid th{background:var(--navy);color:#fff;font-weight:600;font-size:13.5px;text-align:left;padding:12px 14px;white-space:nowrap;}
+table.grid td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6;}
+table.grid tbody tr:last-child td{border-bottom:none;}
+table.grid td.term{white-space:nowrap;font-weight:700;color:var(--blue);font-feature-settings:"tnum";}
+table.grid td.stage{font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+table.grid ul{margin:0;padding-left:16px;}
+table.grid li{margin-bottom:4px;}
+table.grid li:last-child{margin-bottom:0;}
 
-/* 스토리보드 — 시간 축 */
-.sub-h{font-size:16.5px;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-0.03em;}
-.route{font-size:14.5px;color:var(--soft);margin:0 0 24px;line-height:1.9;}
+.stat{display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:var(--card);border-left:5px solid var(--blue);padding:26px 30px;border-radius:0 6px 6px 0;margin:0 0 14px;}
+.stat .fig{font-size:clamp(34px,5vw,50px);font-weight:800;color:var(--blue);line-height:1;letter-spacing:-0.045em;font-feature-settings:"tnum";}
+.stat .txt{font-size:15px;color:var(--soft);line-height:1.6;}
+.stat .txt b{display:block;color:var(--navy);font-size:16.5px;font-weight:700;letter-spacing:-0.02em;}
 
-.board{position:relative;margin:0;padding:0 0 0 92px;list-style:none;}
-.board::before{
-  content:"";position:absolute;left:76px;top:8px;bottom:8px;width:2px;
-  background:linear-gradient(180deg,var(--sky),var(--peri),var(--blue));
-}
-.board li{position:relative;padding:0 0 22px;}
-.board .time{
-  position:absolute;left:-92px;top:2px;width:66px;text-align:right;
-  font-size:13px;font-weight:700;color:var(--blue);
-  font-feature-settings:"tnum";letter-spacing:-0.02em;
-}
-.board li::after{
-  content:"";position:absolute;left:-20px;top:9px;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--card);border:2px solid var(--peri);
-}
-.board .scene{margin:0 0 3px;font-size:16px;font-weight:700;color:var(--navy);letter-spacing:-0.025em;line-height:1.45;}
-.board .what{margin:0 0 3px;font-size:14.5px;color:var(--ink);line-height:1.6;}
-.board .how{margin:0;font-size:13.5px;color:var(--soft);}
-.board .what b{color:var(--blue);font-weight:700;}
-
-/* 레퍼런스 */
 .refs{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
 .ref{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
-.thumb{
-  position:relative;display:block;width:100%;padding:0;border:0;
-  aspect-ratio:16/9;background:var(--sky);cursor:pointer;font:inherit;
-}
+.thumb{position:relative;display:block;width:100%;padding:0;border:0;aspect-ratio:16/9;background:var(--sky);cursor:pointer;font:inherit;}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
 .thumb::after{content:"";position:absolute;inset:0;background:rgba(9,21,64,.18);transition:background .18s ease;}
 .thumb:hover::after,.thumb:focus-visible::after{background:rgba(9,21,64,.04);}
-.thumb .cat{
-  position:absolute;top:0;left:0;z-index:3;
-  display:flex;flex-direction:column;align-items:flex-start;
-  padding:9px 16px 8px;border-radius:0 0 10px 0;
-  background:var(--blue);color:#fff;line-height:1.15;
-  box-shadow:0 2px 10px rgba(9,21,64,.3);
-}
-.thumb .cat strong{font-size:19px;font-weight:800;color:#fff;letter-spacing:0.02em;}
-.thumb .cat.own{background:var(--navy);}
-.thumb .cat.own strong{font-size:15px;}
+.thumb .cat{position:absolute;top:0;left:0;z-index:3;display:flex;flex-direction:column;align-items:flex-start;padding:9px 16px 8px;border-radius:0 0 10px 0;background:var(--blue);color:#fff;line-height:1.15;box-shadow:0 2px 10px rgba(9,21,64,.3);}
+.thumb .cat strong{font-size:17px;font-weight:800;color:#fff;}
 .thumb .cat em{font-style:normal;font-size:11px;font-weight:600;opacity:.85;margin-top:2px;}
-.thumb .play{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;
-  width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:19px;padding-left:4px;
-  box-shadow:0 3px 14px rgba(9,21,64,.4);
-  transition:transform .18s ease,background .18s ease;
-}
+.thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;padding-left:4px;box-shadow:0 3px 14px rgba(9,21,64,.4);transition:transform .18s ease,background .18s ease;}
 .thumb:hover .play,.thumb:focus-visible .play{background:var(--navy);transform:translate(-50%,-50%) scale(1.09);}
 .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4;}
 .thumb.playing::after,.thumb.playing .play{display:none;}
+.thumb.empty{cursor:default;background:var(--tint);display:flex;align-items:center;justify-content:center;}
+.thumb.empty::after{display:none;}
+.thumb.empty .hint{font-size:13.5px;font-weight:600;color:var(--soft);}
 .ref .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1;}
 .ref h3{margin:0 0 8px;font-size:17px;font-weight:800;letter-spacing:-0.03em;color:var(--navy);line-height:1.4;}
-.ref .feat{margin:0 0 16px;font-size:14px;color:var(--soft);line-height:1.6;}
-.ref .apply{
-  margin:auto 0 0;padding:14px 16px;background:var(--tint);
-  border-left:3px solid var(--peri);border-radius:0 6px 6px 0;
-  font-size:13.5px;line-height:1.6;color:var(--navy);
+.ref .feat{margin:0;font-size:14px;color:var(--soft);line-height:1.6;}
+
+/* ═════════ 진행상황 탭 ═════════ */
+.board{padding:48px 0 20px;}
+.blk{margin:0 0 52px;}
+.blk > .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding-bottom:12px;border-bottom:2px solid var(--navy);}
+.blk > .hd h2{margin:0;font-size:clamp(21px,2.6vw,27px);font-weight:800;letter-spacing:-0.035em;color:var(--navy);}
+.blk > .hd .kicker{margin:0;font-size:13.5px;color:var(--soft);}
+.blk > .hd .right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+
+/* 동기화 상태 */
+.sync{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--soft);}
+.sync i{width:8px;height:8px;border-radius:50%;background:#C8CEDD;display:block;}
+.sync.on i{background:#1B7F5A;}
+.sync.off i{background:#B4650F;}
+.sync.err i{background:#C0392B;}
+.banner{
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
+  background:#FBF0E1;border:1px solid #EBD5B0;border-radius:9px;
+  padding:12px 16px;margin:0 0 22px;font-size:13.5px;color:#7A4708;
 }
-.ref .apply b{display:block;font-size:11.5px;font-weight:800;color:var(--blue);margin-bottom:3px;}
+.banner b{color:#5A340A;}
+
+/* 단계 편집 */
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 32px;}
+.ph{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 16px 14px;display:flex;flex-direction:column;border-top:4px solid var(--c);}
+.ph .no{font-size:11.5px;font-weight:800;color:var(--c);letter-spacing:0.03em;}
+.ph .nm{width:100%;border:0;background:transparent;font:inherit;font-size:15.5px;font-weight:800;color:var(--navy);letter-spacing:-0.03em;line-height:1.4;padding:6px 0 8px;outline:none;}
+.ph .nm:focus{background:var(--tint);border-radius:5px;padding-left:6px;}
+.ph .dates{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line);}
+.ph .dates input{
+  flex:1;min-width:0;border:1px solid var(--line);border-radius:6px;
+  font:inherit;font-size:12.5px;font-weight:700;color:var(--soft);
+  padding:6px 7px;background:var(--card);font-feature-settings:"tnum";
+}
+.ph .dates input:focus{outline:none;border-color:var(--peri);color:var(--blue);}
+.ph .dates span{font-size:12px;color:var(--soft);}
+.ph .days{font-size:11.5px;color:var(--soft);font-weight:600;margin-top:8px;}
+
+/* 달력 */
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 18px;font-size:13px;}
+.legend span{display:inline-flex;align-items:center;gap:7px;color:var(--soft);font-weight:600;}
+.legend i{width:22px;height:6px;border-radius:3px;display:block;}
+.legend em{font-style:normal;width:9px;height:9px;border-radius:50%;background:var(--soft);display:block;}
+.cals{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 16px 14px;}
+.cal h3{margin:0 0 14px;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-0.02em;}
+.cal table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.cal th{font-size:11.5px;font-weight:700;color:var(--soft);padding:0 0 8px;text-align:center;}
+.cal th.sun{color:#C0392B;}
+.cal td{padding:1px;vertical-align:top;}
+.day{min-height:46px;border-radius:6px;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.day .d{font-size:12.5px;font-weight:600;color:var(--ink);font-feature-settings:"tnum";line-height:1;}
+.day.sun .d,.day.hol .d{color:#C0392B;}
+.day.out .d{color:#C8CEDD;}
+.day.hol{background:#FDF0EE;}
+.day .bars{display:flex;flex-direction:column;gap:2px;width:100%;padding:0 4px;}
+.day .bars i{height:4px;border-radius:2px;display:block;}
+.day .dots{display:flex;flex-wrap:wrap;justify-content:center;gap:2px;padding:0 2px;}
+.day .dots b{width:7px;height:7px;border-radius:50%;display:block;cursor:default;}
+.day .dots b.done{opacity:.35;}
+.day.today{outline:2px solid var(--blue);outline-offset:-2px;}
+.holname{font-size:9.5px;color:#C0392B;line-height:1;font-weight:600;}
+
+/* 진행 상황 표 */
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0 14px;}
+.btn{appearance:none;font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--navy);padding:8px 16px;border-radius:7px;font-size:13.5px;font-weight:700;transition:border-color .18s ease,background .18s ease,color .18s ease;}
+.btn:hover{border-color:var(--peri);color:var(--blue);}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff;}
+.btn.pri:hover{background:var(--navy);border-color:var(--navy);}
+
+.tasks{width:100%;border-collapse:collapse;background:var(--card);font-size:14px;min-width:820px;}
+.tasks th{background:var(--navy);color:#fff;font-size:12.5px;font-weight:700;padding:11px 12px;text-align:left;white-space:nowrap;}
+.tasks td{border-bottom:1px solid var(--line);padding:0;vertical-align:middle;}
+.tasks tbody tr:last-child td{border-bottom:none;}
+.tasks tbody tr:hover{background:#FAFCFF;}
+.tasks tr.dragging{opacity:.4;}
+.tasks tr.over td{box-shadow:inset 0 2px 0 var(--blue);}
+.tasks .cell{width:100%;border:0;background:transparent;font:inherit;font-size:14px;color:var(--ink);padding:12px;outline:none;font-family:inherit;line-height:1.5;}
+.tasks .cell:focus{background:var(--tint);}
+.tasks select.cell{cursor:pointer;font-weight:700;-webkit-appearance:none;appearance:none;}
+.tasks input[type=date].cell{font-feature-settings:"tnum";font-size:13px;}
+.tasks td.grip{width:38px;text-align:center;}
+.tasks td.pri{width:126px;}
+.tasks td.who{width:118px;}
+.tasks td.due{width:150px;}
+.tasks td.st{width:112px;}
+.tasks td.del{width:44px;text-align:center;}
+.grip .handle{cursor:grab;color:#C8CEDD;font-size:15px;line-height:1;padding:8px;user-select:none;}
+.grip .handle:active{cursor:grabbing;}
+.tasks tbody tr:hover .handle{color:var(--peri);}
+
+/* 중요도 색 */
+.swatches{display:flex;gap:4px;padding:8px 10px;}
+.swatches button{
+  appearance:none;border:2px solid transparent;cursor:pointer;padding:0;
+  width:18px;height:18px;border-radius:50%;transition:transform .12s ease;
+}
+.swatches button:hover{transform:scale(1.18);}
+.swatches button[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px #fff inset;}
+.tasks td.mk{width:5px;padding:0;}
+.tasks td.mk i{display:block;width:5px;height:100%;min-height:44px;}
+
+tr.s-todo select{color:var(--soft);}
+tr.s-doing select{color:var(--blue);}
+tr.s-done select{color:#1B7F5A;}
+tr.s-done .cell{color:var(--soft);}
+tr.s-done input[data-f="task"]{text-decoration:line-through;}
+tr.s-hold select{color:#B4650F;}
+.empty-row td{padding:34px 12px;text-align:center;color:var(--soft);font-size:14px;}
+.hint-line{font-size:12.5px;color:var(--soft);margin:12px 0 0;}
 
 /* 마무리 */
 .end{background:var(--navy);color:#fff;margin-top:70px;padding:60px 0;}
-.end .line{
-  font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-0.04em;
-  color:#fff;margin:0 0 34px;line-height:1.35;
-}
 .end .bar{width:52px;height:3px;background:var(--peri);border-radius:2px;margin:0 0 30px;}
+.end .line{font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-0.04em;color:#fff;margin:0 0 34px;line-height:1.35;}
 .end .info{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px;align-items:baseline;}
 .end .who{font-size:16px;font-weight:700;}
 .end .who a{margin-left:8px;color:var(--sky);text-decoration:none;font-weight:800;font-feature-settings:"tnum";}
-.end .who a:hover{text-decoration:underline;}
 .end .who span{display:block;margin-top:6px;font-size:13.5px;font-weight:400;color:rgba(255,255,255,.55);}
 .end .date{font-size:13px;color:rgba(255,255,255,.55);}
 
 /* 우측 네비 */
 .sidenav{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:4px;}
 .sidenav a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;padding:5px 0;}
-.sidenav .label{
-  font-size:12.5px;font-weight:700;white-space:nowrap;color:var(--soft);
-  opacity:0;transform:translateX(6px);pointer-events:none;
-  transition:opacity .2s ease,transform .2s ease,color .2s ease;
-}
-.sidenav .dot{
-  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:12.5px;font-weight:800;font-feature-settings:"tnum";
-  background:#fff;border:1.5px solid var(--line);color:var(--soft);
-  transition:background .2s ease,border-color .2s ease,color .2s ease;
-}
+.sidenav .label{font-size:12.5px;font-weight:700;white-space:nowrap;color:var(--soft);opacity:0;transform:translateX(6px);pointer-events:none;transition:opacity .2s ease,transform .2s ease,color .2s ease;}
+.sidenav .dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;font-feature-settings:"tnum";background:#fff;border:1.5px solid var(--line);color:var(--soft);transition:background .2s ease,border-color .2s ease,color .2s ease;}
 .sidenav a:hover .label,.sidenav a:focus-visible .label{opacity:1;transform:none;color:var(--blue);}
 .sidenav a:hover .dot{border-color:var(--peri);color:var(--blue);}
 .sidenav a.on .dot{background:var(--blue);border-color:var(--blue);color:#fff;}
 .sidenav a.on .label{opacity:1;transform:none;color:var(--navy);}
 
 .progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--blue);z-index:60;}
-
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.in{opacity:1;transform:none;}
-
 a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+[hidden]{display:none !important;}
 
+@media (max-width:1400px){ .cals{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:1080px){ .sidenav{display:none;} }
-@media (max-width:860px){
+@media (max-width:900px){
   :root{--rail:38px;}
   .shell{padding:0 18px;}
-  .hero{padding:64px 0 56px;}
+  .hero{padding-top:64px;}
   .node{left:calc(-1 * var(--rail));width:30px;height:30px;font-size:13px;top:66px;}
-  .trio,.views,.formats,.refs{grid-template-columns:1fr;}
-  .board{padding-left:0;}
-  .board::before{left:5px;}
-  .board li{padding-left:26px;}
-  .board li::after{left:1px;}
-  .board .time{position:static;width:auto;text-align:left;display:block;margin-bottom:2px;}
+  .views,.formats,.refs{grid-template-columns:1fr;}
+  .phases{grid-template-columns:1fr 1fr;}
+  .cals{grid-template-columns:1fr;}
+  .tabs button{flex:1;justify-content:center;padding:13px 10px;font-size:14px;}
 }
+@media (max-width:560px){ .phases{grid-template-columns:1fr;} }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .reveal{opacity:1;transform:none;transition:none;}
 }
 @media print{
-  body{background:#fff;}
-  .sidenav,.progress{display:none;}
-  .reveal{opacity:1;transform:none;}
-  .step,.ref{break-inside:avoid;}
-  .hero,.end{background:#fff !important;color:var(--navy) !important;}
-  .hero .tag,.end .who span,.end .date{color:var(--soft) !important;}
+  @page{size:A4;margin:12mm 10mm;}
+  html,body{background:#fff;font-size:11pt;}
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  .sidenav,.progress,.thumb .play,.tabs,.tools,.tasks td.del,.tasks td.grip,.banner{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .step,.ref,.fmt,.stat,.concept,.cal,.blk{break-inside:avoid;}
 }
 </style>
 </head>
@@ -293,270 +291,208 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 
 <div class="progress" id="progress"></div>
 
-<nav class="sidenav" aria-label="문서 목차">
-  <a href="#s1" data-t="s1"><span class="label">사업의 필요성</span><span class="dot">1</span></a>
-  <a href="#s2" data-t="s2"><span class="label">핵심 가치</span><span class="dot">2</span></a>
-  <a href="#s3" data-t="s3"><span class="label">영상 콘셉트</span><span class="dot">3</span></a>
-  <a href="#s4" data-t="s4"><span class="label">영상 구성</span><span class="dot">4</span></a>
-  <a href="#s5" data-t="s5"><span class="label">제작 레퍼런스</span><span class="dot">5</span></a>
-  <a href="#s6" data-t="s6"><span class="label">협력사 레퍼런스</span><span class="dot">6</span></a>
+<nav class="sidenav" id="sidenav" aria-label="문서 목차">
+  <a href="#s1" data-t="s1"><span class="label">사업의 이해</span><span class="dot">1</span></a>
+  <a href="#s2" data-t="s2"><span class="label">영상 구성</span><span class="dot">2</span></a>
+  <a href="#s3" data-t="s3"><span class="label">커뮤니케이션 콘셉트</span><span class="dot">3</span></a>
+  <a href="#s4" data-t="s4"><span class="label">제작 일정</span><span class="dot">4</span></a>
+  <a href="#s5" data-t="s5"><span class="label">소요 예산</span><span class="dot">5</span></a>
+  <a href="#s6" data-t="s6"><span class="label">제작 레퍼런스</span><span class="dot">6</span></a>
 </nav>
 
 <header class="hero">
-  <div class="shell">
-    <h1>프로젝트 석·박사 양성사업<br>홍보영상 기획안</h1>
+  <div class="shell" id="heroShell">
+    <h1>프로젝트 석·박사 양성사업<br>홍보영상 추진계획(안)</h1>
     <p class="tag">현장의 연구자를 미래의 고급 연구인력으로</p>
+    <div class="period"><span>제작 기간</span><b>2026. 09. 23. ~ 12. 24.</b></div>
     <div class="meta">
-      <div>문서 성격 <b>사전 미팅용 기획(안)</b></div>
-      <div>제안 <b>갑우문화사 콘텐츠사업부</b></div>
-      <div>작성일 <b>2026. 09. 01.</b></div>
+      <div>문서 성격 <b>추진계획(안)</b></div>
+      <div>제출처 <b>(사) 한국산업기술진흥협회</b></div>
+      <div>제안 <b>(주) 갑우문화사 콘텐츠사업부</b></div>
+      <div>작성일 <b>2026. 09. 22.</b></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="문서 탭">
+      <button role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true"><span class="n">1</span>추진계획안</button>
+      <button role="tab" id="tab-prog" aria-controls="panel-prog" aria-selected="false"><span class="n">2</span>진행상황</button>
     </div>
   </div>
 </header>
 
-<main class="flow">
+<!-- ═══════════ 탭 1 ═══════════ -->
+<main class="flow" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
   <div class="shell">
-    <!-- 1 -->
+
     <section class="step" id="s1">
       <div class="node">1</div>
       <h2>왜 이 사업이 필요한가</h2>
       <p class="kicker">사업에 대한 이해</p>
-
       <p class="lead">국내 산업계는 고급 이공계 연구인력 부족이라는 구조적 문제에 직면해 있습니다. 학령인구 감소와 이공계 인력 부족이 동시에 진행되면서, 특히 중소·중견기업은 <span class="mark">신규 채용만으로 필요한 연구역량을 확보하기 어려운 상황</span>입니다.</p>
-
-      <div class="stat">
-        <div class="fig">98.7%</div>
-        <div class="txt"><b>기업부설연구소 보유 중소·중견기업이 고급 연구인력의 필요성을 체감</b>사업 추진배경 자료 기준</div>
-      </div>
-
-      <p>산업계가 원하는 인재상도 달라졌습니다. 학위 보유 여부보다 <strong>산업 현장을 알고 실제 R&amp;D를 수행할 수 있는 실무형 연구인력</strong>에 대한 수요가 커지고 있습니다.</p>
-      <p>따라서 이 사업은 외부에서 연구자를 새로 채용하는 정책이 아니라, <strong>이미 산업현장에 있는 연구인력을 석·박사급 고급 연구인력으로 성장시키는 새로운 인재양성 방식</strong>으로 해석해야 합니다. 영상의 출발점 역시 여기에 있습니다.</p>
+      <p>산업계가 원하는 인재상도 달라져 학위 보유 여부보다 <strong>산업 현장을 알고 실제 R&amp;D를 수행할 수 있는 실무형 연구인력</strong>에 대한 수요가 커지고 있습니다. 따라서 이 사업은 외부에서 연구자를 새로 채용하는 정책이 아니라, <strong>이미 산업현장에 있는 연구인력을 석·박사급 고급 연구인력으로 성장시키는 새로운 인재양성 방식</strong>이며, 영상 제작의 출발점 역시 여기에 있습니다.</p>
     </section>
 
-    <!-- 2 -->
     <section class="step" id="s2">
       <div class="node">2</div>
-      <h2>세 주체를 동시에 연결하는 사업</h2>
-      <p class="kicker">사업의 핵심 가치</p>
-
-      <div class="trio">
-        <div><h3>연구자</h3><h4>성장의 기회</h4><p>지금 하고 있는 연구를 더 전문적인 연구로 발전시키고, 석·박사 학위과정까지 이어갑니다.</p></div>
-        <div><h3>기업</h3><h4>R&amp;D 역량 고도화</h4><p>필요한 연구과제를 대학·출연연과 공동으로 수행하며 내부 연구인력을 함께 키웁니다.</p></div>
-        <div><h3>산업계</h3><h4>고급 연구인력 확대</h4><p>현장 경험을 갖춘 이공계 연구자를 산업계가 필요로 하는 고급인력으로 성장시킵니다.</p></div>
-      </div>
-
-      <div class="loop">
-        <h3>선순환 구조</h3>
-        <p class="ttl">한 사람의 성장이 산업의 경쟁력이 됩니다</p>
-        <svg viewBox="0 0 520 250" role="img" aria-label="연구자 성장에서 기업 R&D 성장을 거쳐 산업 기술경쟁력 강화로 이어지는 순환 구조">
-          <defs>
-            <marker id="ar" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="#7692FF"/>
-            </marker>
-          </defs>
-          <line x1="172" y1="84" x2="342" y2="84" stroke="#7692FF" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ar)"/>
-          <line x1="374" y1="126" x2="300" y2="176" stroke="#7692FF" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ar)"/>
-          <line x1="216" y1="176" x2="142" y2="126" stroke="#7692FF" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#ar)"/>
-          <g>
-            <circle cx="128" cy="84" r="42" fill="#1B2CC1"/>
-            <text x="128" y="80" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">연구자</text>
-            <text x="128" y="98" text-anchor="middle" fill="#ABD2FA" font-size="11.5">성장</text>
-          </g>
-          <g>
-            <circle cx="392" cy="84" r="42" fill="#1B2CC1"/>
-            <text x="392" y="80" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">기업 R&amp;D</text>
-            <text x="392" y="98" text-anchor="middle" fill="#ABD2FA" font-size="11.5">고도화</text>
-          </g>
-          <g>
-            <circle cx="260" cy="196" r="42" fill="#1B2CC1"/>
-            <text x="260" y="192" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">산업</text>
-            <text x="260" y="210" text-anchor="middle" fill="#ABD2FA" font-size="11.5">기술경쟁력</text>
-          </g>
-        </svg>
-        <p class="cap">연구자 성장 → 기업 R&amp;D 성장 → 산업 기술경쟁력 강화</p>
-      </div>
-    </section>
-
-    <!-- 3 -->
-    <section class="step" id="s3">
-      <div class="node">3</div>
-      <h2>영상 커뮤니케이션 콘셉트</h2>
-      <p class="kicker">무엇을 어떻게 전달할 것인가</p>
-
-      <p>‘회사에 다니면서 대학원에 갈 수 있습니다’라는 제도 안내에 머물지 않습니다. <strong>연구자를 키우는 일이 곧 기술경쟁력을 키우는 일</strong>이라는 메시지를 세 개의 시선으로 전달합니다.</p>
-
-      <div class="views">
-        <div><b>개인의 관점</b><p>일을 멈추지 않고 연구를 더 깊게</p></div>
-        <div><b>기업의 관점</b><p>사람의 성장이 기업의 연구역량으로</p></div>
-        <div><b>산업의 관점</b><p>산업현장에서 국가전략기술 인재를 키우다</p></div>
-      </div>
-
-      <div class="concept">
-        <div class="cap">전체 콘셉트</div>
-        <p class="line">연구자의 성장이<br>기술의 성장이 되다</p>
-        <div class="rule"></div>
-      </div>
-
-      <p>한 명의 기업 연구자가 성장하는 과정을 따라가되, 개인의 자기계발 성공담으로 끝내지 않습니다. 기업에서 수행하던 연구가 <strong>기업 R&amp;D → 대학·출연연 공동연구 → 석·박사 과정 → 고급 연구인력 → 다시 기업 R&amp;D</strong>로 순환하며 확장되는 구조를 보여줍니다.</p>
-    </section>
-
-    <!-- 4 -->
-    <section class="step" id="s4">
-      <div class="node">4</div>
       <h2>영상 구성 제안</h2>
-      <p class="kicker">CF 1편 + VLOG &amp; INFO 1편</p>
-
+      <p class="kicker">사업 홍보 영상 30초 + 인터뷰 &amp; INFO 5분</p>
       <div class="formats">
         <div class="fmt">
-          <span class="tag">① CF 홍보영상</span>
+          <span class="tag">① 사업 홍보영상</span>
           <p class="len">약 30초</p>
           <p class="role">사업에 대한 첫 관심을 만드는 영상</p>
           <p class="ttl">“연구자의 성장이 기술의 성장이 되다”</p>
         </div>
         <div class="fmt">
-          <span class="tag">② VLOG &amp; INFO</span>
-          <p class="len">약 5~7분</p>
-          <p class="role">기업 연구자와 기업 대표의 실제 목소리를 브이로그 형식으로 전달하고, 후기를 통해 참여를 독려하는 영상</p>
+          <span class="tag">② 인터뷰 &amp; INFO</span>
+          <p class="len">약 5분</p>
+          <p class="role">기업 연구자와 기업 대표의 실제 목소리를 인터뷰 형식으로 전달하고, 후기를 통해 참여를 독려하는 영상</p>
           <p class="ttl">“연구자로 한 단계 더 성장하는 법”<small>기업 연구자의 프로젝트 석·박사 도전기</small></p>
         </div>
       </div>
-
-      <p class="sub-h">VLOG 스토리보드(안)</p>
-      <p class="route">연구자의 하루 → 연구자의 고민 → 대학·출연연 공동연구 → 연구자의 성장 → 기업 R&amp;D로 환류 → Q&amp;A 사업정보 → 참여 유도</p>
-
-      <ol class="board">
-        <li><span class="time">0:00–0:30</span>
-          <p class="scene">출근, 연구실 입장, 실험 준비, 데이터 확인</p>
-          <p class="what">‘기업 연구자의 하루’에서 시작</p>
-          <p class="how">브이로그 톤, 현장음 + 짧은 내레이션</p></li>
-        <li><span class="time">0:30–1:10</span>
-          <p class="scene">실험·분석·회의, 동료와 토론</p>
-          <p class="what">현장에서 연구하다 보면 더 깊게 파고들고 싶은 문제가 생김</p>
-          <p class="how">연구자 실제 발화 중심</p></li>
-        <li><span class="time">1:10–1:40</span>
-          <p class="scene">대학·출연연 방문, 교수·연구진 미팅</p>
-          <p class="what">기업의 연구과제가 대학·출연연의 전문 연구와 연결됨</p>
-          <p class="how">자연스러운 이동·미팅 장면</p></li>
-        <li><span class="time">1:40–2:20</span>
-          <p class="scene">공동실험, 장비 활용, 연구노트 작성</p>
-          <p class="what"><b>사업 소개</b> — 공동 R&amp;D와 학위과정을 함께 수행</p>
-          <p class="how">실사 + 간단 모션그래픽</p></li>
-        <li><span class="time">2:20–3:00</span>
-          <p class="scene">기업 복귀, 결과 공유, 사내 회의</p>
-          <p class="what">연구자의 성장이 다시 기업의 R&amp;D 역량으로 연결됨</p>
-          <p class="how">‘연구자 성장 → 기업 성장’ 시각화</p></li>
-        <li><span class="time">3:00–3:40</span>
-          <p class="scene">연구자 또는 기업 담당자의 짧은 인터뷰</p>
-          <p class="what">왜 시작했는지, 무엇이 달라졌는지</p>
-          <p class="how">인터뷰보다 브이로그 중간 대화처럼</p></li>
-        <li><span class="time">3:40–4:30</span>
-          <p class="scene">질문 카드와 관련 장면 교차</p>
-          <p class="what"><b>Q&amp;A 사업소개</b> — 지원대상, 지원내용, 기간</p>
-          <p class="how">자막 최소, 질문형 그래픽</p></li>
-        <li><span class="time">4:30–4:50</span>
-          <p class="scene">신청 화면, 기업–대학 협력 이미지</p>
-          <p class="what">참여 절차 — 협력기관 발굴 → 공동 R&amp;D 계획 → 신청·선정 → 사업 수행</p>
-          <p class="how">3~4단계 모션그래픽</p></li>
-        <li><span class="time">4:50–5:00</span>
-          <p class="scene">다시 연구하는 모습, 동료와 협업</p>
-          <p class="what">‘현장의 연구자를 미래의 고급 연구인력으로’</p>
-          <p class="how">감성적 엔딩 + 사업명·QR·문의처</p></li>
-      </ol>
     </section>
 
-    <!-- 5 -->
+    <section class="step" id="s3">
+      <div class="node">3</div>
+      <h2>영상 커뮤니케이션 콘셉트</h2>
+      <p class="kicker">무엇을 어떻게 전달할 것인가</p>
+      <p>‘회사에 다니면서 대학원에 갈 수 있습니다’라는 제도 안내에 머물지 않고, <strong>연구자를 키우는 일이 곧 기술경쟁력을 키우는 일</strong>이라는 메시지를 세 개의 시선으로 전달합니다.</p>
+      <div class="views">
+        <div><b>개인의 관점</b><p>일을 멈추지 않고 연구를 더 깊게</p></div>
+        <div><b>기업의 관점</b><p>사람의 성장이 기업의 연구역량으로</p></div>
+        <div><b>산업의 관점</b><p>산업현장에서 국가전략기술 인재를 키우다</p></div>
+      </div>
+      <div class="concept">
+        <div class="cap">전체 콘셉트</div>
+        <p class="line">연구자의 성장이<br>기술의 성장이 되다</p>
+        <div class="rule"></div>
+      </div>
+      <p>기업에서 수행하던 연구가 <strong>기업 R&amp;D → 대학·출연연 공동연구 → 석·박사 과정 → 고급 연구인력 → 다시 기업 R&amp;D</strong>로 순환하며 확장되는 구조를 보여줍니다.</p>
+    </section>
+
+    <section class="step" id="s4">
+      <div class="node">4</div>
+      <h2>제작 일정</h2>
+      <p class="kicker">2026. 09. 23. ~ 12. 24.</p>
+      <div class="tblwrap">
+      <table class="grid">
+        <thead><tr><th>기간</th><th>단계</th><th>수행 내용</th><th>협의 및 확인사항</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="term">09.28–10.16</td>
+            <td class="stage">사전 기획 및 답사,<br>구성안 및 스토리보드 작성</td>
+            <td><ul>
+              <li>사업 자료 분석 및 메시지 방향 확정, 출연 대상 기업·연구자 후보 검토, 촬영 장소 확보, 출연자 사전 인터뷰(3인)</li>
+              <li>최종 구성안 및 촬영 콘티, 인터뷰 질문지 확정</li>
+            </ul></td>
+            <td>산기협 협의 및 기획 방향 확정<br>기업 연구실 및 대학 방문 일정 조율</td>
+          </tr>
+          <tr>
+            <td class="term">10.19–10.30</td>
+            <td class="stage">인터뷰 및 현장 촬영</td>
+            <td><ul><li>기업 연구자 일상, 공동연구 및 수업 현장, 인터뷰 취재 및 촬영</li></ul></td>
+            <td>촬영 장소·출연자 최종 확인<br>조명·소품 등 촬영 세팅</td>
+          </tr>
+          <tr>
+            <td class="term">11.02–11.27</td>
+            <td class="stage">1차 편집 및 시사본 제작</td>
+            <td><ul><li>1차 편집본 제작, 자막·모션그래픽·음원 적용</li></ul></td>
+            <td>산기협 1차 검토 후 수정 의견 취합</td>
+          </tr>
+          <tr>
+            <td class="term">11.23–12.24</td>
+            <td class="stage">수정 반영 및 최종본 납품</td>
+            <td><ul><li>수정사항 반영, 색보정·사운드 마스터링, 최종 검수</li></ul></td>
+            <td>최종본 확인 및 납품<br>완료보고서 제출</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
     <section class="step" id="s5">
       <div class="node">5</div>
+      <h2>소요 예산</h2>
+      <p class="kicker">부가가치세 포함</p>
+      <div class="stat">
+        <div class="fig">18,920,000원</div>
+        <div class="txt"><b>총 소요 예산 (VAT 포함)</b>세부 견적 별도 제출</div>
+      </div>
+    </section>
+
+    <section class="step" id="s6">
+      <div class="node">6</div>
       <h2>제작 레퍼런스</h2>
-      <p class="kicker">연출 방향 협의를 위한 참고 사례 · 썸네일을 클릭하면 문서 안에서 재생됩니다</p>
-
+      <p class="kicker">공공·기관 사업 홍보 영상 레퍼런스 · 썸네일을 클릭하면 문서 안에서 재생됩니다</p>
       <div class="refs">
-
         <article class="ref">
           <button class="thumb" type="button" data-id="StvM0UXSEUU" aria-label="상생형 지역일자리 사업 홍보영상 재생">
             <img src="https://img.youtube.com/vi/StvM0UXSEUU/hqdefault.jpg" alt="상생형 지역일자리 사업 홍보영상 썸네일" loading="lazy">
-            <span class="cat"><strong>CF</strong><em>30초</em></span><span class="play">&#9654;</span>
+            <span class="cat"><strong>30초</strong><em>홍보영상</em></span><span class="play">&#9654;</span>
           </button>
           <div class="body">
-            <h3>상생형 지역일자리 사업 홍보영상</h3>
-            <p class="feat">각 주체의 고민을 차례로 제시한 뒤 ‘사업’을 해답으로 연결하는 구성.</p>
-            <p class="apply"><b>적용 포인트</b>연구자·기업·대학(출연연)의 고민을 제시하고, 세 주체를 잇는 해답으로 사업을 제시합니다.</p>
+            <h3>상생형 지역일자리 사업</h3>
+            <p class="feat">참여자의 고민과 현실적인 목소리에서 출발해 사업의 필요성과 지원내용으로 자연스럽게 연결한 홍보영상.</p>
           </div>
         </article>
-
-
-
         <article class="ref">
-          <button class="thumb" type="button" data-id="k30L6RzKZcY" aria-label="일상돌봄서비스사업 홍보영상 재생">
-            <img src="https://img.youtube.com/vi/k30L6RzKZcY/hqdefault.jpg" alt="일상돌봄서비스사업 홍보영상 썸네일" loading="lazy">
-            <span class="cat"><strong>CF</strong><em>30초</em></span><span class="play">&#9654;</span>
-          </button>
+          <div class="thumb empty">
+            <span class="cat"><strong>5분</strong><em>인터뷰</em></span>
+            <span class="hint">영상 링크 준비 중</span>
+          </div>
           <div class="body">
-            <h3>일상돌봄서비스사업 홍보영상</h3>
-            <p class="feat">영화 예고편 같은 연출과 강한 카피로 정책홍보물의 틀을 벗어난 사례.</p>
-            <p class="apply"><b>적용 포인트</b>사업명부터 설명하기보다 인상적인 질문·카피로 시작해 시청자의 관심을 유도합니다.</p>
+            <h3>국민은행 사내벤처 붐업</h3>
+            <p class="feat">사업 참여자의 실제 경험과 목소리를 중심으로 구성한 인터뷰 영상으로, 이번 인터뷰 영상의 방향과 유사한 사례.</p>
           </div>
         </article>
-
-
-        <article class="ref">
-          <button class="thumb" type="button" data-id="oAYIuOQSCUk" aria-label="브이로그 레퍼런스 재생">
-            <img src="https://img.youtube.com/vi/oAYIuOQSCUk/hqdefault.jpg" alt="브이로그 레퍼런스 썸네일" loading="lazy">
-            <span class="cat"><strong>VLOG</strong><em>5분</em></span><span class="play">&#9654;</span>
-          </button>
-          <div class="body">
-            <h3>가출한 엄마 잡으러 가는 브이로그</h3>
-            <p class="feat">흥미를 끄는 제목·썸네일, 최소 자막, 내레이션 중심의 자연스러운 전개.</p>
-            <p class="apply"><b>적용 포인트</b>“회사에서 시작한 연구, 어디까지 갈 수 있을까?”처럼 궁금증을 유발해 홍보영상 느낌을 최소화합니다.</p>
-          </div>
-        </article>
-
-        <article class="ref">
-          <button class="thumb" type="button" data-id="JnFV1bJP4jE" aria-label="Q&A 콘텐츠 레퍼런스 재생">
-            <img src="https://img.youtube.com/vi/JnFV1bJP4jE/hqdefault.jpg" alt="Q&A 콘텐츠 레퍼런스 썸네일" loading="lazy">
-            <span class="cat"><strong>VLOG</strong><em>5분</em></span><span class="play">&#9654;</span>
-          </button>
-          <div class="body">
-            <h3>5만 기념 Q&amp;A</h3>
-            <p class="feat">질문 중심 구성으로 시청자의 궁금증을 빠르게 해결하는 포맷.</p>
-            <p class="apply"><b>적용 포인트</b>후반부에 지원대상·혜택·기간·신청방법 등을 Q&amp;A 형식으로 전달합니다.</p>
-          </div>
-        </article>
-
       </div>
     </section>
 
-    <!-- 6 -->
-    <section class="step" id="s6">
-      <div class="node">6</div>
-      <h2>협력사 레퍼런스</h2>
-      <p class="kicker">협력 제작사의 실제 제작 사례</p>
+  </div>
+</main>
 
-      <div class="refs">
+<!-- ═══════════ 탭 2 ═══════════ -->
+<main class="board" id="panel-prog" role="tabpanel" aria-labelledby="tab-prog" hidden>
+  <div class="shell wide">
 
-        <article class="ref">
-          <button class="thumb" type="button" data-id="vf3heNXHBC4" aria-label="2025년 KOITA 활용백서 재생">
-            <img src="https://img.youtube.com/vi/vf3heNXHBC4/hqdefault.jpg" alt="2025년 KOITA 활용백서 썸네일" loading="lazy">
-            <span class="cat own"><strong>협력사</strong><em>홍보영상</em></span><span class="play">&#9654;</span>
-          </button>
-          <div class="body">
-            <h3>2025년 KOITA 활용백서</h3>
-            <p class="feat">한국산업기술진흥협회 사업을 소개하는 홍보영상. 제도와 지원내용을 짧은 분량에 정리한 사례입니다.</p>
-          </div>
-        </article>
+    <div class="banner" id="banner" hidden>
+      <b>임시 저장 모드</b>
+      <span id="bannerMsg">파이어베이스 설정이 없어 이 브라우저에만 저장됩니다. 다른 사람에게는 보이지 않습니다.</span>
+    </div>
 
-        <article class="ref">
-          <button class="thumb" type="button" data-id="XnMWJ9PF60k" aria-label="멀티잇 KDT 취업성공기 재생">
-            <img src="https://img.youtube.com/vi/XnMWJ9PF60k/hqdefault.jpg" alt="멀티잇 KDT 취업성공기 썸네일" loading="lazy">
-            <span class="cat own"><strong>협력사</strong><em>인터뷰</em></span><span class="play">&#9654;</span>
-          </button>
-          <div class="body">
-            <h3>멀티잇 KDT 취업성공기</h3>
-            <p class="feat">참여자의 실제 목소리를 인터뷰로 담아낸 영상. 이번 VLOG의 인터뷰 구간과 직접 맞닿아 있는 사례입니다.</p>
-          </div>
-        </article>
-
+    <section class="blk">
+      <div class="hd">
+        <h2>제작 일정</h2>
+        <p class="kicker">단계 이름과 기간을 직접 수정하면 달력에 바로 반영됩니다</p>
+        <div class="right"><span class="sync" id="sync1"><i></i><span>연결 중…</span></span></div>
       </div>
+
+      <div class="phases" id="phases"></div>
+      <div class="legend" id="legend"></div>
+      <div class="cals" id="cals"></div>
+    </section>
+
+    <section class="blk">
+      <div class="hd">
+        <h2>진행 상황</h2>
+        <p class="kicker">중요도 색을 고르고, 손잡이를 끌어 순서를 바꿀 수 있습니다</p>
+        <div class="right"><span class="sync" id="sync2"><i></i><span>연결 중…</span></span></div>
+      </div>
+
+      <div class="tools">
+        <button class="btn pri" id="add">+ 업무 추가</button>
+        <button class="btn" id="reset">초기화</button>
+      </div>
+
+      <div class="tblwrap">
+        <table class="tasks">
+          <thead>
+            <tr>
+              <th></th><th></th><th>업무 내용</th><th>중요도</th><th>담당</th><th>기한</th><th>상태</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="hint-line">기한을 입력하면 위 달력에 같은 색 점으로 표시됩니다. 완료된 업무는 점이 흐려집니다.</p>
     </section>
 
   </div>
@@ -567,68 +503,452 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <div class="bar"></div>
     <p class="line">현장의 연구자를<br>미래의 고급 연구인력으로</p>
     <div class="info">
-      <div class="who">(주)갑우문화사 콘텐츠사업부 <a href="tel:0222758111">02-2275-8111</a>
-        <span>본 기획안은 사전 미팅 협의를 위한 제안(안)입니다.</span></div>
-      <div class="date">2026. 09. 01.</div>
+      <div class="who">(주)갑우문화사 콘텐츠사업부 이지현 PM <a href="tel:0222758111">02-2275-8111</a>
+        <span>본 문서는 (사)한국산업기술진흥협회 제출용 추진계획(안)입니다.</span></div>
+      <div class="date">2026. 09. 22.</div>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
-  var links = {};
-  document.querySelectorAll('.sidenav a').forEach(function(a){ links[a.dataset.t] = a; });
+<script type="module">
+/* ════════════════════════════════════════════════
+   ① 파이어베이스 설정 (Gabwoo-Contents · Realtime Database)
+   ════════════════════════════════════════════════ */
+const FIREBASE_CONFIG = {
+  apiKey:      "AIzaSyDAvC3MkJDZq23kNdt2PmLDrp9uLKLs84U",
+  authDomain:  "gabwoo-contents.firebaseapp.com",
+  databaseURL: "https://gabwoo-contents-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:   "gabwoo-contents"
+};
+const DB_PATH = "gabwoo-k7m9x2/koita2026";   // 저장 위치
+/* ════════════════════════════════════════════════ */
 
-  function mark(id){
-    for (var k in links) links[k].classList.toggle('on', k === id);
-    steps.forEach(function(el){ el.classList.toggle('on', el.id === id); });
-  }
-  var spy = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if (e.isIntersecting) mark(e.target.id); });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  steps.forEach(function(s){ spy.observe(s); });
-  mark('s1');
+const PRIORITIES = [
+  { v:'none',  c:'#C8CEDD', t:'없음'  },
+  { v:'high',  c:'#C0392B', t:'긴급'  },
+  { v:'mid',   c:'#B4650F', t:'중요'  },
+  { v:'norm',  c:'#1B2CC1', t:'보통'  },
+  { v:'low',   c:'#1B7F5A', t:'낮음'  }
+];
+const STATUS = [
+  { v:'todo',  t:'예정'   },
+  { v:'doing', t:'진행중' },
+  { v:'done',  t:'완료'   },
+  { v:'hold',  t:'보류'   }
+];
+const HOL = { '2026-10-03':'개천절', '2026-10-09':'한글날', '2026-12-25':'성탄절' };
+const PH_COLORS = ['#ABD2FA', '#7692FF', '#1B2CC1', '#091540'];
 
-  // 상단 진행 막대
-  var bar = document.getElementById('progress');
-  function tick(){
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? window.scrollY / h : 0;
-    bar.style.width = (p * 100) + '%';
-  }
-  window.addEventListener('scroll', tick, { passive: true });
-  window.addEventListener('resize', tick);
-  tick();
+const DEFAULT_STATE = {
+  phases: [
+    { nm:'사전 기획 및 답사, 구성안·스토리보드', s:'2026-09-28', e:'2026-10-16' },
+    { nm:'인터뷰 및 현장 촬영',                  s:'2026-10-19', e:'2026-10-30' },
+    { nm:'1차 편집 및 시사본 제작',              s:'2026-11-02', e:'2026-11-27' },
+    { nm:'수정 반영 및 최종본 납품',             s:'2026-11-23', e:'2026-12-24' }
+  ],
+  tasks: [
+    { task:'산기협 킥오프 회의 · 기획 방향 확정', who:'이지현', due:'2026-10-02', st:'doing', pri:'high' },
+    { task:'출연 기업·연구자 후보 리스트 확보',   who:'',       due:'2026-10-02', st:'todo',  pri:'high' },
+    { task:'외주 제작사 계약 및 조건 확정',       who:'',       due:'2026-10-07', st:'todo',  pri:'mid'  },
+    { task:'출연자 사전 인터뷰 (3인)',            who:'',       due:'2026-10-14', st:'todo',  pri:'norm' },
+    { task:'구성안·콘티·인터뷰 질문지 확정',      who:'',       due:'2026-10-16', st:'todo',  pri:'high' },
+    { task:'촬영 일정 조율 및 장소 확보',         who:'',       due:'2026-10-16', st:'todo',  pri:'mid'  },
+    { task:'현장 촬영 (초상권 동의서 확보)',      who:'',       due:'2026-10-30', st:'todo',  pri:'high' },
+    { task:'1차 편집본 시사 및 의견 취합',        who:'',       due:'2026-11-27', st:'todo',  pri:'norm' },
+    { task:'최종본 납품 및 완료보고서 제출',      who:'이지현', due:'2026-12-24', st:'todo',  pri:'high' }
+  ]
+};
 
-  // 등장 효과
-  if (!reduce) {
-    steps.forEach(function(el){ el.classList.add('reveal'); });
-    var show = new IntersectionObserver(function(es, obs){
-      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -12% 0px' });
-    steps.forEach(function(el){ show.observe(el); });
-  }
+let state = clone(DEFAULT_STATE);
+let remoteSave = null;          // 파이어베이스 저장 함수 (없으면 로컬)
+let editing = false;
 
-  // 영상 재생
-  document.querySelectorAll('.thumb').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if (btn.classList.contains('playing')) return;
-      if (location.protocol === 'file:') {
-        window.open('https://www.youtube.com/watch?v=' + btn.dataset.id, '_blank', 'noopener');
-        return;
-      }
-      var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.id + '?autoplay=1&rel=0&playsinline=1';
-      f.title = btn.getAttribute('aria-label') || 'YouTube';
-      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      f.allowFullscreen = true;
-      btn.classList.add('playing');
-      btn.appendChild(f);
-    });
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+}
+function priColor(v){ return (PRIORITIES.find(p => p.v === v) || PRIORITIES[0]).c; }
+
+/* ───────── 저장 ───────── */
+const LKEY = 'koita-video-board-v2';
+let saveTimer;
+function persist(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try { localStorage.setItem(LKEY, JSON.stringify(state)); } catch(e){}
+    if (remoteSave){
+      try { await remoteSave(state); setSync('on', '저장됨'); }
+      catch(e){ setSync('err', '저장 실패'); }
+    }
+  }, 500);
+}
+function setSync(cls, text){
+  document.querySelectorAll('.sync').forEach(el => {
+    el.className = 'sync ' + cls;
+    el.lastElementChild.textContent = text;
   });
-})();
+}
+
+/* ───────── 파이어베이스 ───────── */
+async function initFirebase(){
+  if (!FIREBASE_CONFIG.apiKey){
+    document.getElementById('banner').hidden = false;
+    setSync('off', '로컬 저장');
+    try {
+      const raw = localStorage.getItem(LKEY);
+      if (raw) state = JSON.parse(raw);
+    } catch(e){}
+    return;
+  }
+  try {
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+    const { getAuth, signInAnonymously } =
+      await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
+    const { getDatabase, ref, onValue, set } =
+      await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js');
+
+    const app = initializeApp(FIREBASE_CONFIG);
+
+    // 규칙이 auth != null 이므로 익명 로그인 후 접속
+    setSync('off', '로그인 중…');
+    try {
+      await signInAnonymously(getAuth(app));
+    } catch(err){
+      setSync('err', '로그인 실패');
+      document.getElementById('banner').hidden = false;
+      document.getElementById('bannerMsg').textContent =
+        err && err.code === 'auth/operation-not-allowed'
+          ? '파이어베이스 콘솔 → Authentication → Sign-in method 에서 ‘익명’을 사용 설정해 주세요. 지금은 이 브라우저에만 저장됩니다.'
+          : '파이어베이스 로그인에 실패했습니다. 지금은 이 브라우저에만 저장됩니다.';
+      try {
+        const raw = localStorage.getItem(LKEY);
+        if (raw) state = JSON.parse(raw);
+      } catch(e){}
+      return;
+    }
+
+    const db = getDatabase(app);
+    const node = ref(db, DB_PATH);
+
+    remoteSave = (s) => set(node, { phases: s.phases, tasks: s.tasks, at: Date.now() });
+
+    await new Promise((resolve) => {
+      let first = true;
+      onValue(node, (snap) => {
+        const d = snap.val();
+        if (d && Array.isArray(d.phases) && Array.isArray(d.tasks)){
+          state = { phases: d.phases, tasks: d.tasks };
+          if (!first && !editing) renderAll();
+        } else if (first){
+          remoteSave(state).catch(() => {});
+        }
+        setSync('on', '실시간 연결됨');
+        if (first){ first = false; resolve(); }
+      }, () => {
+        setSync('err', '연결 실패');
+        document.getElementById('banner').hidden = false;
+        document.getElementById('bannerMsg').textContent =
+          '파이어베이스에 연결하지 못했습니다. 설정값과 보안 규칙을 확인해 주세요. 지금은 이 브라우저에만 저장됩니다.';
+        if (first){ first = false; resolve(); }
+      });
+    });
+  } catch(e){
+    setSync('err', '연결 실패');
+    document.getElementById('banner').hidden = false;
+  }
+}
+
+/* ───────── 단계 카드 ───────── */
+function renderPhases(){
+  const host = document.getElementById('phases');
+  host.innerHTML = state.phases.map((p, i) => {
+    const days = dayCount(p.s, p.e);
+    return `<div class="ph" style="--c:${PH_COLORS[i]}" data-i="${i}">
+      <div class="no">STEP ${i + 1}</div>
+      <input class="nm" data-f="nm" value="${esc(p.nm)}" placeholder="단계 이름">
+      <div class="dates">
+        <input type="date" data-f="s" value="${esc(p.s)}">
+        <span>–</span>
+        <input type="date" data-f="e" value="${esc(p.e)}">
+      </div>
+      <div class="days">${days > 0 ? days + '일' : '기간 확인 필요'}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('legend').innerHTML =
+    state.phases.map((p, i) => `<span><i style="background:${PH_COLORS[i]}"></i>${esc(p.nm)}</span>`).join('')
+    + '<span><em></em>업무 기한</span>';
+}
+function dayCount(s, e){
+  if (!s || !e) return 0;
+  return Math.round((new Date(e) - new Date(s)) / 86400000) + 1;
+}
+
+document.getElementById('phases').addEventListener('focusin', () => { editing = true; });
+document.getElementById('phases').addEventListener('focusout', () => { editing = false; });
+document.getElementById('phases').addEventListener('input', (e) => {
+  const f = e.target.dataset.f;
+  if (!f) return;
+  const i = +e.target.closest('.ph').dataset.i;
+  state.phases[i][f] = e.target.value;
+  const box = e.target.closest('.ph');
+  const n = dayCount(state.phases[i].s, state.phases[i].e);
+  box.querySelector('.days').textContent = n > 0 ? n + '일' : '기간 확인 필요';
+  document.getElementById('legend').innerHTML =
+    state.phases.map((p, k) => `<span><i style="background:${PH_COLORS[k]}"></i>${esc(p.nm)}</span>`).join('')
+    + '<span><em></em>업무 기한</span>';
+  renderCalendar();
+  persist();
+});
+
+/* ───────── 달력 ───────── */
+const DOW = ['일','월','화','수','목','금','토'];
+function ymd(d){
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function monthsInRange(){
+  const all = state.phases.flatMap(p => [p.s, p.e]).filter(Boolean).sort();
+  if (!all.length) return [[2026, 8]];
+  const a = new Date(all[0]), b = new Date(all[all.length - 1]);
+  const out = [];
+  let y = a.getFullYear(), m = a.getMonth();
+  for (let guard = 0; guard < 24; guard++){
+    out.push([y, m]);
+    if (y === b.getFullYear() && m === b.getMonth()) break;
+    m++; if (m > 11){ m = 0; y++; }
+  }
+  return out;
+}
+function renderCalendar(){
+  const today = ymd(new Date());
+  document.getElementById('cals').innerHTML = monthsInRange().map(([y, m]) => {
+    const first = new Date(y, m, 1);
+    const cur = new Date(y, m, 1 - first.getDay());
+    let html = `<div class="cal"><h3>${y}. ${String(m + 1).padStart(2, '0')}</h3><table><thead><tr>`
+      + DOW.map((d, i) => `<th class="${i === 0 ? 'sun' : ''}">${d}</th>`).join('') + '</tr></thead><tbody>';
+    for (let w = 0; w < 6; w++){
+      if (w > 0 && cur.getMonth() !== m && cur > first) break;
+      html += '<tr>';
+      for (let i = 0; i < 7; i++){
+        const key = ymd(cur);
+        const out = cur.getMonth() !== m;
+        const cls = ['day'];
+        if (i === 0) cls.push('sun');
+        if (out) cls.push('out');
+        if (HOL[key] && !out) cls.push('hol');
+        if (key === today) cls.push('today');
+        let bars = '', dots = '';
+        if (!out){
+          state.phases.forEach((p, k) => {
+            if (p.s && p.e && key >= p.s && key <= p.e) bars += `<i style="background:${PH_COLORS[k]}"></i>`;
+          });
+          state.tasks.forEach(t => {
+            if (t.due === key) dots += `<b class="${t.st === 'done' ? 'done' : ''}" style="background:${priColor(t.pri)}" title="${esc(t.task)}"></b>`;
+          });
+        }
+        html += `<td><div class="${cls.join(' ')}"><span class="d">${cur.getDate()}</span>`
+          + (bars ? `<span class="bars">${bars}</span>` : '')
+          + (dots ? `<span class="dots">${dots}</span>` : '')
+          + (!out && HOL[key] ? `<span class="holname">${HOL[key]}</span>` : '')
+          + '</div></td>';
+        cur.setDate(cur.getDate() + 1);
+      }
+      html += '</tr>';
+    }
+    return html + '</tbody></table></div>';
+  }).join('');
+}
+
+/* ───────── 진행 상황 표 ───────── */
+const rowsEl = document.getElementById('rows');
+function renderTasks(){
+  if (!state.tasks.length){
+    rowsEl.innerHTML = '<tr class="empty-row"><td colspan="8">등록된 업무가 없습니다. ‘업무 추가’를 눌러 시작하세요.</td></tr>';
+    return;
+  }
+  rowsEl.innerHTML = state.tasks.map((r, i) => `
+    <tr class="s-${esc(r.st)}" data-i="${i}" draggable="true">
+      <td class="grip"><span class="handle" title="끌어서 순서 변경">⠿</span></td>
+      <td class="mk"><i style="background:${priColor(r.pri)}"></i></td>
+      <td><input class="cell" data-f="task" value="${esc(r.task)}" placeholder="업무 내용"></td>
+      <td class="pri"><div class="swatches">${
+        PRIORITIES.map(p => `<button type="button" data-p="${p.v}" title="${p.t}"
+          style="background:${p.c}" aria-pressed="${r.pri === p.v}"></button>`).join('')
+      }</div></td>
+      <td class="who"><input class="cell" data-f="who" value="${esc(r.who)}" placeholder="담당자"></td>
+      <td class="due"><input class="cell" type="date" data-f="due" value="${esc(r.due)}"></td>
+      <td class="st"><select class="cell" data-f="st">${
+        STATUS.map(s => `<option value="${s.v}"${s.v === r.st ? ' selected' : ''}>${s.t}</option>`).join('')
+      }</select></td>
+      <td class="del"><button class="x" title="삭제" type="button">×</button></td>
+    </tr>`).join('');
+}
+
+rowsEl.addEventListener('focusin', () => { editing = true; });
+rowsEl.addEventListener('focusout', () => { editing = false; });
+
+rowsEl.addEventListener('input', (e) => {
+  const cell = e.target.closest('.cell');
+  if (!cell) return;
+  const i = +cell.closest('tr').dataset.i;
+  state.tasks[i][cell.dataset.f] = cell.value;
+  if (cell.dataset.f === 'due') renderCalendar();
+  persist();
+});
+rowsEl.addEventListener('change', (e) => {
+  const sel = e.target.closest('select.cell');
+  if (!sel) return;
+  const tr = sel.closest('tr');
+  tr.className = 's-' + sel.value;
+  state.tasks[+tr.dataset.i].st = sel.value;
+  renderCalendar();
+  persist();
+});
+rowsEl.addEventListener('click', (e) => {
+  const sw = e.target.closest('.swatches button');
+  if (sw){
+    const tr = sw.closest('tr');
+    const i = +tr.dataset.i;
+    state.tasks[i].pri = sw.dataset.p;
+    tr.querySelectorAll('.swatches button').forEach(b => b.setAttribute('aria-pressed', b === sw));
+    tr.querySelector('.mk i').style.background = priColor(sw.dataset.p);
+    renderCalendar();
+    persist();
+    return;
+  }
+  if (e.target.closest('.x')){
+    const i = +e.target.closest('tr').dataset.i;
+    state.tasks.splice(i, 1);
+    renderTasks(); renderCalendar(); persist();
+  }
+});
+
+/* 드래그 정렬 */
+let dragFrom = null;
+rowsEl.addEventListener('dragstart', (e) => {
+  const tr = e.target.closest('tr');
+  if (!tr || !tr.dataset.i) return;
+  dragFrom = +tr.dataset.i;
+  tr.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  try { e.dataTransfer.setData('text/plain', String(dragFrom)); } catch(err){}
+});
+rowsEl.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  const tr = e.target.closest('tr');
+  if (!tr) return;
+  rowsEl.querySelectorAll('tr.over').forEach(r => r.classList.remove('over'));
+  tr.classList.add('over');
+});
+rowsEl.addEventListener('dragleave', (e) => {
+  const tr = e.target.closest('tr');
+  if (tr) tr.classList.remove('over');
+});
+rowsEl.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const tr = e.target.closest('tr');
+  rowsEl.querySelectorAll('tr.over,tr.dragging').forEach(r => r.classList.remove('over', 'dragging'));
+  if (!tr || dragFrom === null) return;
+  const to = +tr.dataset.i;
+  if (to === dragFrom) return;
+  const [moved] = state.tasks.splice(dragFrom, 1);
+  state.tasks.splice(to, 0, moved);
+  dragFrom = null;
+  renderTasks(); persist();
+});
+rowsEl.addEventListener('dragend', () => {
+  rowsEl.querySelectorAll('tr.over,tr.dragging').forEach(r => r.classList.remove('over', 'dragging'));
+  dragFrom = null;
+});
+
+document.getElementById('add').addEventListener('click', () => {
+  state.tasks.push({ task:'', who:'', due:'', st:'todo', pri:'none' });
+  renderTasks(); persist();
+  const last = rowsEl.querySelector('tr:last-child .cell');
+  if (last) last.focus();
+});
+document.getElementById('reset').addEventListener('click', () => {
+  if (!confirm('입력한 내용을 모두 지우고 기본 목록으로 되돌립니다.\n공유 중인 모든 사람에게 적용됩니다. 계속할까요?')) return;
+  state = clone(DEFAULT_STATE);
+  renderAll(); persist();
+});
+
+function renderAll(){ renderPhases(); renderCalendar(); renderTasks(); }
+
+/* ───────── 탭 · 네비 · 영상 ───────── */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const tabPlan = document.getElementById('tab-plan');
+const tabProg = document.getElementById('tab-prog');
+const panPlan = document.getElementById('panel-plan');
+const panProg = document.getElementById('panel-prog');
+const sidenav = document.getElementById('sidenav');
+const heroShell = document.getElementById('heroShell');
+
+function showTab(which){
+  const plan = which === 'plan';
+  tabPlan.setAttribute('aria-selected', plan);
+  tabProg.setAttribute('aria-selected', !plan);
+  panPlan.hidden = !plan;
+  panProg.hidden = plan;
+  sidenav.style.display = plan ? '' : 'none';
+  heroShell.classList.toggle('wide', !plan);
+  try { history.replaceState(null, '', plan ? '#plan' : '#progress'); } catch(e){}
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+}
+tabPlan.addEventListener('click', () => showTab('plan'));
+tabProg.addEventListener('click', () => showTab('prog'));
+
+const steps = [...document.querySelectorAll('.step')];
+const links = {};
+document.querySelectorAll('.sidenav a').forEach(a => { links[a.dataset.t] = a; });
+function mark(id){
+  for (const k in links) links[k].classList.toggle('on', k === id);
+  steps.forEach(el => el.classList.toggle('on', el.id === id));
+}
+const spy = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) mark(e.target.id); });
+}, { rootMargin: '-45% 0px -50% 0px' });
+steps.forEach(s => spy.observe(s));
+mark('s1');
+
+const bar = document.getElementById('progress');
+function tick(){
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+}
+window.addEventListener('scroll', tick, { passive: true });
+window.addEventListener('resize', tick);
+tick();
+
+if (!reduce){
+  steps.forEach(el => el.classList.add('reveal'));
+  const show = new IntersectionObserver((es, obs) => {
+    es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  steps.forEach(el => show.observe(el));
+}
+
+document.querySelectorAll('.thumb[data-id]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.classList.contains('playing')) return;
+    if (location.protocol === 'file:'){
+      window.open('https://www.youtube.com/watch?v=' + btn.dataset.id, '_blank', 'noopener');
+      return;
+    }
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.id + '?autoplay=1&rel=0&playsinline=1';
+    f.title = btn.getAttribute('aria-label') || 'YouTube';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.allowFullscreen = true;
+    btn.classList.add('playing');
+    btn.appendChild(f);
+  });
+});
+
+/* ───────── 시작 ───────── */
+await initFirebase();
+renderAll();
+if (location.hash === '#progress') showTab('prog');
 </script>
 </body>
 </html>
