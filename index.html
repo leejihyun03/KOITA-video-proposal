@@ -318,6 +318,14 @@ tr.full .prog .pct{color:#1B7F5A;}
 .kbtn:hover{border-color:var(--peri);color:var(--blue);}
 .kbtn.on{background:var(--navy);border-color:var(--navy);color:#fff;}
 .total{font-size:12.5px;font-weight:800;color:var(--blue);font-feature-settings:"tnum";}
+.vtitle{
+  flex:1;min-width:200px;max-width:520px;
+  border:0;border-bottom:1.5px dashed var(--line);background:transparent;
+  font:inherit;font-size:17px;font-weight:700;color:var(--blue);
+  letter-spacing:-0.03em;padding:2px 4px 5px;outline:none;
+}
+.vtitle::placeholder{color:#C8CEDD;font-weight:600;font-size:15px;}
+.vtitle:focus{border-color:var(--peri);background:var(--tint);border-radius:5px 5px 0 0;}
 
 .shots{display:flex;flex-direction:column;gap:12px;}
 .shot{
@@ -331,7 +339,9 @@ tr.full .prog .pct{color:#1B7F5A;}
 .shot > div:last-child{border-right:0;}
 
 .sc-tc{background:var(--tint);gap:6px;align-items:stretch;}
-.sc-tc .hdl{cursor:grab;color:#C8CEDD;font-size:14px;line-height:1;user-select:none;align-self:center;margin-bottom:2px;}
+.sc-tc .hdl{cursor:grab;color:#C8CEDD;font-size:15px;line-height:1;user-select:none;align-self:center;margin-bottom:2px;padding:2px 8px;border-radius:4px;}
+.sc-tc .hdl:hover{color:var(--peri);background:#fff;}
+.sc-tc .hdl:active{cursor:grabbing;}
 .sc-tc .no{font-size:10.5px;font-weight:800;color:var(--peri);text-align:center;letter-spacing:.04em;}
 .sc-tc input{
   width:100%;border:1px solid var(--line);border-radius:6px;background:var(--card);
@@ -679,7 +689,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <section class="blk">
       <div class="hd">
         <h2>컷 구성표</h2>
-        <p class="kicker">타임코드·참고영상·이미지·연출 메모를 컷 단위로 정리합니다</p>
+        <input class="vtitle" id="vtitle" placeholder="영상 제목을 입력하세요" maxlength="60">
         <div class="right">
           <span class="total" id="plotTotal">—</span>
           <span class="sync" id="sync3"><i></i><span>연결 중…</span></span>
@@ -777,8 +787,8 @@ const DEFAULT_STATE = {
 
 let state = clone(DEFAULT_STATE);
 let notes = [];
-let remoteSave = null, remoteNotes = null, remoteShots = null;
-let shots = [], kind = 'cf';
+let remoteSave = null, remoteNotes = null, remoteShots = null, remoteTitles = null;
+let shots = [], kind = 'cf', titles = {};
 let editing = false, selected = null, editKey = null, openCol = null;
 const myId = getMyId();
 
@@ -868,8 +878,16 @@ async function initFirebase(){
     const node = ref(db, DB_PATH);
     const noteRef = ref(db, DB_PATH + '/notes');
     const shotRef = ref(db, DB_PATH + '/shots');
+    const titleRef = ref(db, DB_PATH + '/titles');
 
     remoteSave = (s) => update(node, { phases: s.phases, tasks: s.tasks, at: Date.now() });
+    remoteTitles = { set: (v) => update(titleRef, v) };
+    onValue(titleRef, (snap) => {
+      titles = snap.val() || {};
+      const el = document.getElementById('vtitle');
+      if (el && document.activeElement !== el) el.value = titles[kind] || '';
+    });
+
     remoteShots = {
       add:  (v) => push(shotRef, v),
       set:  (k, v) => update(ref(db, DB_PATH + '/shots/' + k), v),
@@ -1100,7 +1118,7 @@ function renderTasks(){
     return;
   }
   rowsEl.innerHTML = state.tasks.map((r, i) => `
-    <tr class="${r.prog === 5 ? 'full' : ''}" data-i="${i}" draggable="true">
+    <tr class="${r.prog === 5 ? 'full' : ''}" data-i="${i}">
       <td class="grip"><span class="handle" title="끌어서 순서 변경">⠿</span></td>
       <td class="col"><div class="colpick">
         <button type="button" class="swatch" style="background:${barColor(r.col)}" title="막대 색 선택"></button>
@@ -1196,6 +1214,14 @@ window.addEventListener('scroll', () => { if (openCol !== null) closeColMenu(); 
 window.addEventListener('resize', () => { if (openCol !== null) closeColMenu(); });
 
 let dragFrom = null;
+rowsEl.addEventListener('mousedown', (e) => {
+  const tr = e.target.closest('tr');
+  if (!tr) return;
+  tr.draggable = !!e.target.closest('.handle');
+});
+rowsEl.addEventListener('mouseup', () => {
+  rowsEl.querySelectorAll('tr').forEach(x => { x.draggable = false; });
+});
 rowsEl.addEventListener('dragstart', (e) => {
   const tr = e.target.closest('tr');
   if (!tr || !tr.dataset.i) return;
@@ -1226,7 +1252,10 @@ rowsEl.addEventListener('drop', (e) => {
   dragFrom = null;
 });
 rowsEl.addEventListener('dragend', () => {
-  rowsEl.querySelectorAll('tr.over,tr.dragging').forEach(r => r.classList.remove('over', 'dragging'));
+  rowsEl.querySelectorAll('tr').forEach(r => {
+    r.classList.remove('over', 'dragging');
+    r.draggable = false;
+  });
   dragFrom = null;
 });
 
@@ -1411,6 +1440,9 @@ function renderShots(){
   const list = shots.filter(x => (x.kind || 'cf') === kind);
   document.querySelectorAll('#kinds .kbtn').forEach(b => b.classList.toggle('on', b.dataset.k === kind));
 
+  const vt = document.getElementById('vtitle');
+  if (vt && document.activeElement !== vt) vt.value = titles[kind] || '';
+
   let total = 0;
   list.forEach(x => {
     const a = tcSec(x.ts), b = tcSec(x.te);
@@ -1426,7 +1458,7 @@ function renderShots(){
     const a = tcSec(x.ts), b = tcSec(x.te);
     const dur = (a != null && b != null && b > a) ? secTc(b - a) : '';
     const vid = ytId(x.ref);
-    return `<div class="shot" data-k="${esc(x._k)}" draggable="true">
+    return `<div class="shot" data-k="${esc(x._k)}">
       <div class="sc-tc">
         <span class="hdl" title="끌어서 순서 변경">⠿</span>
         <span class="no">CUT ${String(i + 1).padStart(2, '0')}</span>
@@ -1613,8 +1645,16 @@ shotsEl.addEventListener('drop', (e) => {
   }
 });
 
-/* 컷 순서 */
+/* 컷 순서 — 손잡이를 잡았을 때만 드래그 */
 let shotFrom = null;
+shotsEl.addEventListener('mousedown', (e) => {
+  const sh = e.target.closest('.shot');
+  if (!sh) return;
+  sh.draggable = !!e.target.closest('.hdl');
+});
+shotsEl.addEventListener('mouseup', () => {
+  shotsEl.querySelectorAll('.shot').forEach(x => { x.draggable = false; });
+});
 shotsEl.addEventListener('dragstart', (e) => {
   const sh = e.target.closest('.shot');
   if (!sh) return;
@@ -1645,7 +1685,10 @@ shotsEl.addEventListener('drop', (e) => {
   renderShots();
 });
 shotsEl.addEventListener('dragend', () => {
-  shotsEl.querySelectorAll('.shot.over,.shot.dragging').forEach(x => x.classList.remove('over', 'dragging'));
+  shotsEl.querySelectorAll('.shot').forEach(x => {
+    x.classList.remove('over', 'dragging');
+    x.draggable = false;
+  });
   shotFrom = null;
 });
 
@@ -1666,6 +1709,15 @@ document.getElementById('shotAdd').addEventListener('click', () => {
     renderShots();
   }
 });
+const vtitleEl = document.getElementById('vtitle');
+vtitleEl.addEventListener('input', () => {
+  titles[kind] = vtitleEl.value;
+  clearTimeout(vtitleEl._t);
+  vtitleEl._t = setTimeout(() => {
+    if (remoteTitles) remoteTitles.set({ [kind]: vtitleEl.value }).catch(() => {});
+  }, 450);
+});
+
 document.getElementById('kinds').addEventListener('click', (e) => {
   const b = e.target.closest('.kbtn');
   if (!b) return;
