@@ -23,7 +23,7 @@ body{
 .shell.wide{max-width:1480px;}
 
 /* ─────────── 헤더 ─────────── */
-.hero{background:var(--navy);color:#fff;padding:26px 0 0;position:relative;overflow:hidden;}
+.hero{background:var(--navy);color:#fff;padding:26px 0 8px;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;right:-90px;top:-130px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(171,210,250,.16);}
 .hero .shell{position:relative;z-index:1;}
 .hrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 24px;}
@@ -43,7 +43,18 @@ body{
 .memoBtn:hover{background:var(--sky);transform:translateY(-1px);}
 .memoBtn .cnt{min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:#C0392B;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 
-.tabs{margin:20px 0 0;display:flex;gap:4px;}
+.tabbar{
+  position:sticky;top:0;z-index:70;background:var(--navy);
+  box-shadow:0 2px 14px rgba(9,21,64,.22);
+}
+.tabbar .shell{display:flex;align-items:flex-end;gap:14px;}
+.tabbar .mini{
+  margin-left:auto;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.45);
+  white-space:nowrap;padding-bottom:13px;opacity:0;transition:opacity .25s ease;
+}
+.tabbar.stuck .mini{opacity:1;}
+.tabbar .memoBtn{margin-bottom:9px;}
+.tabs{margin:12px 0 0;display:flex;gap:4px;}
 .tabs button{appearance:none;border:0;cursor:pointer;font:inherit;padding:11px 22px;border-radius:9px 9px 0 0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:14px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;transition:background .2s ease,color .2s ease;}
 .tabs button .n{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 .tabs button:hover{background:rgba(255,255,255,.18);color:#fff;}
@@ -429,7 +440,7 @@ tr.full .prog .pct{color:#1B7F5A;}
 .sidenav a.on .dot{background:var(--blue);border-color:var(--blue);color:#fff;}
 .sidenav a.on .label{opacity:1;transform:none;color:var(--navy);}
 
-.progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--blue);z-index:60;}
+.progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--blue);z-index:95;}
 .toTop{
   position:fixed;right:26px;bottom:26px;z-index:80;
   appearance:none;border:0;cursor:pointer;font:inherit;
@@ -460,7 +471,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .views,.formats,.refs{grid-template-columns:1fr;}
   .phases{grid-template-columns:1fr 1fr;}
   .cals{grid-template-columns:1fr;}
-  .tabs button{flex:1;justify-content:center;padding:11px 8px;font-size:13.5px;}
+  .tabs button{flex:1;justify-content:center;padding:11px 8px;font-size:13px;}
+  .tabbar .mini{display:none;}
+  .tabbar .shell{gap:8px;}
+  .tabs{flex:1;}
   .hero .spacer{margin-left:0;width:100%;}
 }
 @media (max-width:560px){ .phases{grid-template-columns:1fr;} }
@@ -471,6 +485,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 }
 @media print{
   @page{size:A4;margin:12mm 10mm;}
+  .tabbar{position:static;display:none;}
   html,body{background:#fff;font-size:10.5pt;}
   *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
   .sidenav,.progress,.thumb .play,.tabs,.tools,.boardbar,.tasks td.del,.tasks td.grip,.banner,.memoBtn,.memo,.scrim,.daypanel .close{display:none !important;}
@@ -499,18 +514,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <div class="hrow">
       <h1>프로젝트 석·박사 양성사업<br>홍보영상 제작 현황</h1>
       <div class="period"><span>제작 기간</span><b>09.28 ~ 12.24</b></div>
-      <div class="spacer"></div>
-      <button class="memoBtn" id="memoOpen" type="button">
-        <span>🔔 알림</span><span class="cnt" id="memoCnt" hidden>0</span>
-      </button>
     </div>
+  </div>
+</header>
+
+<div class="tabbar" id="tabbar">
+  <div class="shell" id="tabShell">
     <div class="tabs" role="tablist" aria-label="문서 탭">
       <button role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true"><span class="n">1</span>추진계획안</button>
       <button role="tab" id="tab-prog" aria-controls="panel-prog" aria-selected="false"><span class="n">2</span>진행상황</button>
       <button role="tab" id="tab-plot" aria-controls="panel-plot" aria-selected="false"><span class="n">3</span>영상 기획</button>
     </div>
+    <span class="mini" id="miniTitle">홍보영상 제작 현황</span>
+    <button class="memoBtn" id="memoOpen" type="button">
+      <span>🔔 알림</span><span class="cnt" id="memoCnt" hidden>0</span>
+    </button>
   </div>
-</header>
+</div>
 
 <!-- ═══════════ 탭 1 ═══════════ -->
 <main class="flow" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
@@ -1668,6 +1688,8 @@ const TABS = [
 ];
 const sidenav = document.getElementById('sidenav');
 const heroShell = document.getElementById('heroShell');
+const tabShell = document.getElementById('tabShell');
+const tabbar = document.getElementById('tabbar');
 
 function showTab(id){
   const cur = TABS.find(t => t.b === id) || TABS[0];
@@ -1679,6 +1701,7 @@ function showTab(id){
   const plan = cur.b === 'tab-plan';
   sidenav.style.display = plan ? '' : 'none';
   heroShell.classList.toggle('wide', !plan);
+  tabShell.classList.toggle('wide', !plan);
   try { history.replaceState(null, '', cur.h); } catch(e){}
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
 }
@@ -1703,6 +1726,7 @@ function tick(){
   bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
   const t = document.getElementById('toTop');
   if (t) t.classList.toggle('show', window.scrollY > 320);
+  tabbar.classList.toggle('stuck', tabbar.getBoundingClientRect().top <= 0);
 }
 const toTop = document.getElementById('toTop');
 toTop.hidden = false;
