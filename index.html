@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>프로젝트 석·박사 양성사업 홍보영상 제작 현황</title>
-<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23091540%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%2238%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%23ABD2FA%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2228.5%22%20width%3D%2227%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%237692FF%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2240%22%20width%3D%2216%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%231B2CC1%22%20opacity%3D%22.75%22%2F%3E%3C%2Fsvg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23091540%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2217%22%20width%3D%2238%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%23ABD2FA%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2228.5%22%20width%3D%2227%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%237692FF%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%2240%22%20width%3D%2216%22%20height%3D%227%22%20rx%3D%223.5%22%20fill%3D%22%231B2CC1%22%20opacity%3D%22.75%22%2F%3E%3C%2Fsvg%3E">
-<meta name="theme-color" content="#091540">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
@@ -24,10 +21,9 @@ body{
 }
 .shell{max-width:1000px;margin:0 auto;padding:0 28px;}
 .shell.wide{max-width:1480px;}
-.shell.xwide{max-width:min(1860px,97vw);}
 
 /* ─────────── 헤더 ─────────── */
-.hero{background:var(--navy);color:#fff;padding:26px 0 8px;position:relative;overflow:hidden;}
+.hero{background:var(--navy);color:#fff;padding:26px 0 0;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;right:-90px;top:-130px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(171,210,250,.16);}
 .hero .shell{position:relative;z-index:1;}
 .hrow{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 24px;}
@@ -47,18 +43,7 @@ body{
 .memoBtn:hover{background:var(--sky);transform:translateY(-1px);}
 .memoBtn .cnt{min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:#C0392B;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 
-.tabbar{
-  position:sticky;top:0;z-index:70;background:var(--navy);
-  box-shadow:0 2px 14px rgba(9,21,64,.22);
-}
-.tabbar .shell{display:flex;align-items:flex-end;gap:14px;}
-.tabbar .mini{
-  margin-left:auto;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.45);
-  white-space:nowrap;padding-bottom:13px;opacity:0;transition:opacity .25s ease;
-}
-.tabbar.stuck .mini{opacity:1;}
-.tabbar .memoBtn{margin-bottom:9px;}
-.tabs{margin:12px 0 0;display:flex;gap:4px;}
+.tabs{margin:20px 0 0;display:flex;gap:4px;}
 .tabs button{appearance:none;border:0;cursor:pointer;font:inherit;padding:11px 22px;border-radius:9px 9px 0 0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:14px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;transition:background .2s ease,color .2s ease;}
 .tabs button .n{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 .tabs button:hover{background:rgba(255,255,255,.18);color:#fff;}
@@ -210,7 +195,6 @@ table.grid li:last-child{margin-bottom:0;}
 .daypanel .stars{color:var(--gold);font-size:12px;margin-left:6px;}
 
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 12px;}
-.plans + .tools{margin-top:14px;}
 .btn{appearance:none;font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--navy);padding:8px 15px;border-radius:7px;font-size:13px;font-weight:700;transition:border-color .18s ease,background .18s ease,color .18s ease;}
 .btn:hover{border-color:var(--peri);color:var(--blue);}
 .btn.pri{background:var(--blue);border-color:var(--blue);color:#fff;}
@@ -322,35 +306,12 @@ tr.full .prog .pct{color:#1B7F5A;}
 .kbtn em{font-style:normal;font-size:11.5px;opacity:.8;}
 .kbtn:hover{border-color:var(--peri);color:var(--blue);}
 .kbtn.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.plans{
-  display:flex;gap:4px;align-items:flex-end;
-  margin:18px 0 0;border-bottom:2px solid var(--line);
-}
-.pbtn{margin-bottom:-2px;}
-.pbtn{
-  appearance:none;border:0;border-bottom:2px solid transparent;background:transparent;
-  cursor:pointer;font:inherit;min-width:56px;padding:9px 14px;
-  font-size:13.5px;font-weight:800;color:var(--soft);
-  transition:color .18s ease,border-color .18s ease;
-}
-.pbtn:hover{color:var(--blue);}
-.pbtn.on{color:var(--navy);border-bottom-color:var(--blue);}
-.pbtn.addp{font-weight:700;color:#C8CEDD;min-width:0;padding:9px 11px;}
-.pbtn.addp:hover{color:var(--blue);}
 .total{font-size:12.5px;font-weight:800;color:var(--blue);font-feature-settings:"tnum";}
-.vtitle{
-  flex:1;min-width:200px;max-width:520px;
-  border:0;border-bottom:1.5px dashed var(--line);background:transparent;
-  font:inherit;font-size:17px;font-weight:700;color:var(--blue);
-  letter-spacing:-0.03em;padding:2px 4px 5px;outline:none;
-}
-.vtitle::placeholder{color:#C8CEDD;font-weight:600;font-size:15px;}
-.vtitle:focus{border-color:var(--peri);background:var(--tint);border-radius:5px 5px 0 0;}
 
 .shots{display:flex;flex-direction:column;gap:12px;}
 .shot{
   background:var(--card);border:1px solid var(--line);border-radius:12px;
-  display:grid;grid-template-columns:110px 330px minmax(0,1fr) 360px 38px;gap:0;align-items:stretch;
+  display:grid;grid-template-columns:104px 260px 1fr 300px 36px;gap:0;align-items:stretch;
   overflow:hidden;
 }
 .shot.dragging{opacity:.4;}
@@ -359,9 +320,7 @@ tr.full .prog .pct{color:#1B7F5A;}
 .shot > div:last-child{border-right:0;}
 
 .sc-tc{background:var(--tint);gap:6px;align-items:stretch;}
-.sc-tc .hdl{cursor:grab;color:#C8CEDD;font-size:15px;line-height:1;user-select:none;align-self:center;margin-bottom:2px;padding:2px 8px;border-radius:4px;}
-.sc-tc .hdl:hover{color:var(--peri);background:#fff;}
-.sc-tc .hdl:active{cursor:grabbing;}
+.sc-tc .hdl{cursor:grab;color:#C8CEDD;font-size:14px;line-height:1;user-select:none;align-self:center;margin-bottom:2px;}
 .sc-tc .no{font-size:10.5px;font-weight:800;color:var(--peri);text-align:center;letter-spacing:.04em;}
 .sc-tc input{
   width:100%;border:1px solid var(--line);border-radius:6px;background:var(--card);
@@ -374,72 +333,20 @@ tr.full .prog .pct{color:#1B7F5A;}
 
 .sc-img{padding:0 !important;border-right:1px solid var(--line);}
 .drop{
-  position:relative;width:100%;height:100%;min-height:172px;
-  background:var(--paper);cursor:pointer;
-  display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;align-content:start;
+  position:relative;width:100%;height:100%;min-height:150px;
+  background:var(--paper);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;text-align:center;
 }
-.drop.empty{display:flex;align-items:center;justify-content:center;text-align:center;padding:0;}
-.drop.n1 .im{grid-column:span 2;}
-.drop.n3 .im:first-child{grid-column:span 2;}
 .drop.on{background:var(--tint);box-shadow:inset 0 0 0 2px var(--peri);}
+.drop img{width:100%;height:100%;object-fit:cover;display:block;}
 .drop .ph{font-size:12px;color:var(--soft);font-weight:600;line-height:1.7;padding:12px;}
 .drop .ph b{display:block;font-size:20px;margin-bottom:2px;color:#C8CEDD;}
-
-.drop .im{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:5px;background:#E3E8F5;}
-.drop .im img{width:100%;height:100%;object-fit:cover;display:block;}
-.drop .im::after{
-  content:"";position:absolute;inset:0;background:rgba(9,21,64,0);transition:background .15s ease;
-}
-.drop .im:hover::after{background:rgba(9,21,64,.22);}
-.drop .im .zoom{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
-  color:#fff;font-size:15px;opacity:0;transition:opacity .15s ease;pointer-events:none;
-}
-.drop .im:hover .zoom{opacity:1;}
 .drop .rm{
-  position:absolute;top:4px;right:4px;z-index:3;appearance:none;border:0;cursor:pointer;
-  background:rgba(9,21,64,.75);color:#fff;border-radius:4px;font-size:13px;
-  width:20px;height:20px;line-height:1;padding:0;
-  display:flex;align-items:center;justify-content:center;
+  position:absolute;top:6px;right:6px;appearance:none;border:0;cursor:pointer;
+  background:rgba(9,21,64,.72);color:#fff;border-radius:5px;font-size:12px;
+  padding:3px 7px;line-height:1.3;
 }
 .drop .rm:hover{background:#C0392B;}
-.drop .addim{
-  appearance:none;border:1.5px dashed var(--line);background:var(--card);cursor:pointer;
-  aspect-ratio:16/9;border-radius:5px;color:#C8CEDD;font-size:19px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;transition:all .15s ease;
-}
-.drop .addim:hover{border-color:var(--peri);color:var(--blue);background:var(--tint);}
-.drop .cnt{
-  position:absolute;right:5px;bottom:4px;z-index:3;
-  font-size:10px;font-weight:800;color:var(--soft);
-  background:rgba(255,255,255,.88);border-radius:4px;padding:1px 5px;
-}
-
-/* 이미지 크게 보기 */
-.lightbox{
-  position:fixed;inset:0;z-index:300;background:rgba(9,21,64,.88);
-  display:flex;align-items:center;justify-content:center;padding:40px;
-}
-.lightbox[hidden]{display:none;}
-.lightbox img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 10px 50px rgba(0,0,0,.5);}
-.lightbox .nav{
-  position:absolute;top:50%;transform:translateY(-50%);
-  appearance:none;border:0;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;
-  width:44px;height:44px;border-radius:50%;font-size:20px;
-  display:flex;align-items:center;justify-content:center;
-}
-.lightbox .nav:hover{background:rgba(255,255,255,.28);}
-.lightbox .prev{left:20px;}
-.lightbox .next{right:20px;}
-.lightbox .shut{
-  position:absolute;top:18px;right:20px;appearance:none;border:0;cursor:pointer;
-  background:transparent;color:rgba(255,255,255,.7);font-size:30px;line-height:1;padding:4px 10px;
-}
-.lightbox .shut:hover{color:#fff;}
-.lightbox .pg{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  color:rgba(255,255,255,.75);font-size:13px;font-weight:700;font-feature-settings:"tnum";
-}
 
 .sc-txt{gap:8px;}
 .sc-txt label{font-size:10.5px;font-weight:800;color:var(--peri);letter-spacing:.03em;}
@@ -449,35 +356,12 @@ tr.full .prog .pct{color:#1B7F5A;}
   padding:2px 0 7px;outline:none;
 }
 .sc-txt input.ttl:focus{border-color:var(--peri);}
-.sc-txt .desc{
+.sc-txt textarea{
   flex:1;min-height:76px;width:100%;border:1px solid var(--line);border-radius:7px;
   font:inherit;font-size:13.5px;line-height:1.65;color:var(--ink);padding:9px 10px;
-  outline:none;background:var(--card);font-family:inherit;
-  overflow-wrap:anywhere;white-space:pre-wrap;
+  outline:none;resize:vertical;background:var(--card);font-family:inherit;
 }
-.sc-txt .desc:focus{border-color:var(--peri);}
-.sc-txt .desc:empty::before{content:attr(data-ph);color:#C8CEDD;pointer-events:none;}
-.sc-txt .desc b,.sc-txt .desc strong{font-weight:800;}
-
-/* 서식 도구 */
-.fmtbar{
-  position:fixed;z-index:210;background:var(--navy);border-radius:10px;
-  padding:6px 7px;display:flex;gap:4px;align-items:center;
-  box-shadow:0 6px 22px rgba(9,21,64,.35);
-}
-.fmtbar[hidden]{display:none;}
-.fmtbar button{
-  appearance:none;border:0;background:transparent;cursor:pointer;color:#fff;
-  border-radius:6px;padding:0;width:26px;height:26px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:800;line-height:1;transition:background .15s ease;
-}
-.fmtbar button:hover{background:rgba(255,255,255,.18);}
-.fmtbar .sw{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);}
-.fmtbar .sw:hover{border-color:#fff;background:transparent;transform:scale(1.12);}
-.fmtbar .hl{width:22px;height:20px;border-radius:5px;border:0;font-size:11px;font-weight:800;color:#091540;}
-.fmtbar .sep{width:1px;height:18px;background:rgba(255,255,255,.22);margin:0 2px;flex:0 0 auto;}
-.fmtbar .clr{font-size:11px;letter-spacing:-0.04em;}
+.sc-txt textarea:focus{border-color:var(--peri);}
 
 .sc-ref{gap:7px;}
 .sc-ref .row{display:flex;gap:5px;}
@@ -506,7 +390,7 @@ tr.full .prog .pct{color:#1B7F5A;}
 }
 .sc-del{padding:10px 4px !important;align-items:center;justify-content:flex-start;}
 
-@media (max-width:1400px){
+@media (max-width:1240px){
   .shot{grid-template-columns:92px 1fr 36px;}
   .shot .sc-img{grid-column:1/-1;border-right:0;border-top:1px solid var(--line);}
   .shot .sc-ref{grid-column:1/-1;border-right:0;border-top:1px solid var(--line);}
@@ -523,12 +407,12 @@ tr.full .prog .pct{color:#1B7F5A;}
   .kbtn{flex:1;justify-content:center;}
 }
 @media print{
-  .kinds,.sc-del,.drop .rm,.drop .addim,.drop .cnt,.fmtbar,.lightbox{display:none !important;}
+  .kinds,.sc-del,.drop .rm{display:none !important;}
   .shot{break-inside:avoid;}
 }
 
 /* 마무리 */
-.end{background:var(--navy);color:#fff;margin-top:56px;padding:28px 0;}
+.end{background:var(--navy);color:#fff;margin-top:56px;padding:36px 0;}
 .end .info{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 30px;align-items:baseline;}
 .end .meta{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:12.5px;color:rgba(255,255,255,.55);margin-bottom:16px;}
 .end .meta b{color:#fff;font-weight:600;}
@@ -545,7 +429,7 @@ tr.full .prog .pct{color:#1B7F5A;}
 .sidenav a.on .dot{background:var(--blue);border-color:var(--blue);color:#fff;}
 .sidenav a.on .label{opacity:1;transform:none;color:var(--navy);}
 
-.progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--blue);z-index:95;}
+.progress{position:fixed;left:0;top:0;height:3px;width:0;background:var(--blue);z-index:60;}
 .toTop{
   position:fixed;right:26px;bottom:26px;z-index:80;
   appearance:none;border:0;cursor:pointer;font:inherit;
@@ -576,10 +460,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .views,.formats,.refs{grid-template-columns:1fr;}
   .phases{grid-template-columns:1fr 1fr;}
   .cals{grid-template-columns:1fr;}
-  .tabs button{flex:1;justify-content:center;padding:11px 8px;font-size:13px;}
-  .tabbar .mini{display:none;}
-  .tabbar .shell{gap:8px;}
-  .tabs{flex:1;}
+  .tabs button{flex:1;justify-content:center;padding:11px 8px;font-size:13.5px;}
   .hero .spacer{margin-left:0;width:100%;}
 }
 @media (max-width:560px){ .phases{grid-template-columns:1fr;} }
@@ -590,7 +471,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 }
 @media print{
   @page{size:A4;margin:12mm 10mm;}
-  .tabbar{position:static;display:none;}
   html,body{background:#fff;font-size:10.5pt;}
   *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
   .sidenav,.progress,.thumb .play,.tabs,.tools,.boardbar,.tasks td.del,.tasks td.grip,.banner,.memoBtn,.memo,.scrim,.daypanel .close{display:none !important;}
@@ -598,6 +478,34 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .step,.ref,.fmt,.budget,.concept,.cal{break-inside:avoid;}
   .tasks{min-width:0;font-size:9.5pt;}
   .tasks td.col,.tasks td.star{width:auto;}
+}
+
+/* ── 컷 구성표 인쇄 레이아웃 ── */
+.print-desc{display:none;}
+@media print{
+  .shots{gap:8px;}
+  .shot{grid-template-columns:62px 58mm 1fr !important;border-radius:6px;break-inside:avoid;page-break-inside:avoid;}
+  .shot > div{padding:8px 10px;}
+  .shot .sc-del,.sc-tc .hdl{display:none !important;}
+  .shot .sc-tc{grid-column:1;grid-row:1;flex-direction:column !important;align-items:stretch !important;gap:3px;border-top:0 !important;}
+  .sc-tc .no{text-align:center !important;}
+  .sc-tc input{padding:3px 2px;font-size:9.5pt;border:0;background:transparent;}
+  .shot .sc-img{grid-column:2 !important;grid-row:1;border-right:1px solid var(--line) !important;border-top:0 !important;padding:0 !important;}
+  .sc-img .drop{min-height:0 !important;height:auto;display:grid;grid-template-columns:1fr;gap:3px;background:#fff;}
+  .sc-img img{width:100%;height:auto !important;aspect-ratio:16/9;object-fit:cover;}
+  .sc-img .drop .ph{visibility:hidden;padding:0;}
+  .sc-img .drop:not(:has(img)){background:var(--paper);min-height:26mm !important;}
+  .shot .sc-txt{grid-column:3;grid-row:1;border-right:0 !important;border-top:0 !important;gap:4px;}
+  .sc-txt input.ttl{font-size:11pt;padding:0 0 4px;}
+  .sc-txt label{display:none;}
+  .sc-txt textarea{display:none !important;}
+  .print-desc{display:block;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font-size:9.5pt;line-height:1.6;color:var(--ink);}
+  .shot .sc-ref{grid-column:1/-1;grid-row:2;border-right:0 !important;border-top:1px solid var(--line) !important;flex-direction:row;align-items:center;gap:8px;padding:5px 10px;}
+  .shot .sc-ref:has(.none){display:none !important;}
+  .sc-ref .row{flex:1;}
+  .sc-ref input{border:0;padding:0;font-size:8.5pt;}
+  .sc-ref .play{width:38mm;flex:none;}
+  .sc-ref .play::after{display:none;}
 }
 </style>
 </head>
@@ -609,7 +517,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <a href="#s1" data-t="s1"><span class="label">사업의 이해</span><span class="dot">1</span></a>
   <a href="#s2" data-t="s2"><span class="label">영상 구성</span><span class="dot">2</span></a>
   <a href="#s3" data-t="s3"><span class="label">커뮤니케이션 콘셉트</span><span class="dot">3</span></a>
-  <a href="#s4" data-t="s4"><span class="label">제작 레퍼런스</span><span class="dot">4</span></a>
+  <a href="#s4" data-t="s4"><span class="label">제작 일정</span><span class="dot">4</span></a>
+  <a href="#s5" data-t="s5"><span class="label">소요 예산</span><span class="dot">5</span></a>
+  <a href="#s6" data-t="s6"><span class="label">제작 레퍼런스</span><span class="dot">6</span></a>
 </nav>
 
 <header class="hero">
@@ -617,23 +527,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <div class="hrow">
       <h1>프로젝트 석·박사 양성사업<br>홍보영상 제작 현황</h1>
       <div class="period"><span>제작 기간</span><b>09.28 ~ 12.24</b></div>
+      <div class="spacer"></div>
+      <button class="memoBtn" id="memoOpen" type="button">
+        <span>🔔 알림</span><span class="cnt" id="memoCnt" hidden>0</span>
+      </button>
     </div>
-  </div>
-</header>
-
-<div class="tabbar" id="tabbar">
-  <div class="shell" id="tabShell">
     <div class="tabs" role="tablist" aria-label="문서 탭">
       <button role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true"><span class="n">1</span>추진계획안</button>
       <button role="tab" id="tab-prog" aria-controls="panel-prog" aria-selected="false"><span class="n">2</span>진행상황</button>
       <button role="tab" id="tab-plot" aria-controls="panel-plot" aria-selected="false"><span class="n">3</span>영상 기획</button>
     </div>
-    <span class="mini" id="miniTitle">홍보영상 제작 현황</span>
-    <button class="memoBtn" id="memoOpen" type="button">
-      <span>🔔 알림</span><span class="cnt" id="memoCnt" hidden>0</span>
-    </button>
   </div>
-</div>
+</header>
 
 <!-- ═══════════ 탭 1 ═══════════ -->
 <main class="flow" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
@@ -685,10 +590,59 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <p>기업에서 수행하던 연구가 <strong>기업 R&amp;D → 대학·출연연 공동연구 → 석·박사 과정 → 고급 연구인력 → 다시 기업 R&amp;D</strong>로 순환하며 확장되는 구조를 보여줍니다.</p>
     </section>
 
-
-
     <section class="step" id="s4">
       <div class="node">4</div>
+      <h2>제작 일정</h2>
+      <p class="kicker">2026. 09. 23. ~ 12. 24.</p>
+      <div class="tblwrap">
+      <table class="grid">
+        <thead><tr><th>기간</th><th>단계</th><th>수행 내용</th><th>협의 및 확인사항</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="term">09.28–10.16</td>
+            <td class="stage">사전 기획 및 답사,<br>구성안 및 스토리보드 작성</td>
+            <td><ul>
+              <li>사업 자료 분석 및 메시지 방향 확정, 출연 대상 기업·연구자 후보 검토, 촬영 장소 확보, 출연자 사전 인터뷰(3인)</li>
+              <li>최종 구성안 및 촬영 콘티, 인터뷰 질문지 확정</li>
+            </ul></td>
+            <td>산기협 협의 및 기획 방향 확정<br>기업 연구실 및 대학 방문 일정 조율</td>
+          </tr>
+          <tr>
+            <td class="term">10.19–10.30</td>
+            <td class="stage">인터뷰 및 현장 촬영</td>
+            <td><ul><li>기업 연구자 일상, 공동연구 및 수업 현장, 인터뷰 취재 및 촬영</li></ul></td>
+            <td>촬영 장소·출연자 최종 확인<br>조명·소품 등 촬영 세팅</td>
+          </tr>
+          <tr>
+            <td class="term">11.02–11.27</td>
+            <td class="stage">1차 편집 및 시사본 제작</td>
+            <td><ul><li>1차 편집본 제작, 자막·모션그래픽·음원 적용</li></ul></td>
+            <td>산기협 1차 검토 후 수정 의견 취합</td>
+          </tr>
+          <tr>
+            <td class="term">11.23–12.24</td>
+            <td class="stage">수정 반영 및 최종본 납품</td>
+            <td><ul><li>수정사항 반영, 색보정·사운드 마스터링, 최종 검수</li></ul></td>
+            <td>최종본 확인 및 납품<br>완료보고서 제출</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section class="step" id="s5">
+      <div class="node">5</div>
+      <h2>소요 예산</h2>
+      <p class="kicker">부가가치세 포함</p>
+      <div class="budget">
+        <span class="fig">18,920,000원</span>
+        <span class="lab">총 소요 예산 (VAT 포함)</span>
+        <span class="sub">세부 견적 별도 제출</span>
+      </div>
+    </section>
+
+    <section class="step" id="s6">
+      <div class="node">6</div>
       <h2>제작 레퍼런스</h2>
       <p class="kicker">공공·기관 사업 홍보 영상 레퍼런스 · 썸네일을 클릭하면 문서 안에서 재생됩니다</p>
       <div class="refs">
@@ -771,29 +725,25 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 
 <!-- ═══════════ 탭 3 · 영상 기획 ═══════════ -->
 <main class="board" id="panel-plot" role="tabpanel" aria-labelledby="tab-plot" hidden>
-  <div class="shell xwide">
+  <div class="shell wide">
 
     <div class="boardbar">
       <div class="kinds" id="kinds">
         <button class="kbtn on" data-k="cf" type="button">사업 홍보영상 <em>30초</em></button>
         <button class="kbtn" data-k="iv" type="button">인터뷰 &amp; INFO <em>5분</em></button>
       </div>
-      <button class="btn" id="plotUndo" disabled>↩ 되돌리기</button>
-      <button class="btn" id="plotRedo" disabled>↪ 다시 실행</button>
       <button class="btn" id="plotPrint">🖨 인쇄</button>
     </div>
 
     <section class="blk">
       <div class="hd">
         <h2>컷 구성표</h2>
-        <input class="vtitle" id="vtitle" placeholder="영상 제목을 입력하세요" maxlength="60">
+        <p class="kicker">타임코드·참고영상·이미지·연출 메모를 컷 단위로 정리합니다</p>
         <div class="right">
           <span class="total" id="plotTotal">—</span>
           <span class="sync" id="sync3"><i></i><span>연결 중…</span></span>
         </div>
       </div>
-
-      <div class="plans" id="plans"></div>
 
       <div class="tools">
         <button class="btn pri" id="shotAdd">+ 컷 추가</button>
@@ -807,6 +757,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 
 <footer class="end">
   <div class="shell">
+    <div class="meta">
+      <div>제출처 <b>(사) 한국산업기술진흥협회</b></div>
+      <div>제안 <b>(주) 갑우문화사 콘텐츠사업부</b></div>
+      <div>제작 기간 <b>2026. 09. 23. ~ 12. 24.</b></div>
+    </div>
     <div class="info">
       <div class="who">(주)갑우문화사 콘텐츠사업부 이지현 PM <a href="tel:0222758111">02-2275-8111</a></div>
       <div class="date">최종 수정 <span id="lastAt">—</span></div>
@@ -815,29 +770,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 </footer>
 
 <!-- ═══════════ 알림 ═══════════ -->
-<div class="lightbox" id="lightbox" hidden>
-  <button class="shut" type="button" aria-label="닫기">×</button>
-  <button class="nav prev" type="button" aria-label="이전">‹</button>
-  <img id="lbImg" alt="참고 이미지">
-  <button class="nav next" type="button" aria-label="다음">›</button>
-  <span class="pg" id="lbPg"></span>
-</div>
-
-<div class="fmtbar" id="fmtbar" hidden>
-  <button type="button" data-cmd="bold" title="굵게 (Ctrl+B)">B</button>
-  <span class="sep"></span>
-  <button type="button" class="sw" data-color="#091540" style="background:#091540" title="기본"></button>
-  <button type="button" class="sw" data-color="#1B2CC1" style="background:#1B2CC1" title="파랑"></button>
-  <button type="button" class="sw" data-color="#C0392B" style="background:#C0392B" title="빨강"></button>
-  <button type="button" class="sw" data-color="#1B7F5A" style="background:#1B7F5A" title="초록"></button>
-  <button type="button" class="sw" data-color="#B4650F" style="background:#B4650F" title="주황"></button>
-  <span class="sep"></span>
-  <button type="button" class="hl" data-hl="#FFF07C" style="background:#FFF07C" title="노랑 형광">H</button>
-  <button type="button" class="hl" data-hl="#ABD2FA" style="background:#ABD2FA" title="하늘 형광">H</button>
-  <span class="sep"></span>
-  <button type="button" class="clr" data-cmd="removeFormat" title="서식 지우기">지움</button>
-</div>
-
 <button class="toTop" id="toTop" type="button" aria-label="맨 위로" hidden>
   <span>↑</span>맨 위로
 </button>
@@ -909,8 +841,8 @@ const DEFAULT_STATE = {
 
 let state = clone(DEFAULT_STATE);
 let notes = [];
-let remoteSave = null, remoteNotes = null, remoteShots = null, remoteTitles = null;
-let shots = [], kind = 'cf', plan = 'A', titles = {}, plans = ['A', 'B'];
+let remoteSave = null, remoteNotes = null, remoteShots = null;
+let shots = [], kind = 'cf';
 let editing = false, selected = null, editKey = null, openCol = null;
 const myId = getMyId();
 
@@ -978,7 +910,7 @@ async function initFirebase(){
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
     const { getAuth, signInAnonymously } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
-    const { getDatabase, ref, onValue, update, set, push, remove } =
+    const { getDatabase, ref, onValue, update, push, remove } =
       await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js');
 
     const app = initializeApp(FIREBASE_CONFIG);
@@ -1000,32 +932,18 @@ async function initFirebase(){
     const node = ref(db, DB_PATH);
     const noteRef = ref(db, DB_PATH + '/notes');
     const shotRef = ref(db, DB_PATH + '/shots');
-    const titleRef = ref(db, DB_PATH + '/titles');
 
     remoteSave = (s) => update(node, { phases: s.phases, tasks: s.tasks, at: Date.now() });
-    remoteTitles = { set: (v) => update(titleRef, v) };
-    onValue(titleRef, (snap) => {
-      titles = snap.val() || {};
-      if (Array.isArray(titles.plans) && titles.plans.length) plans = titles.plans;
-      if (!plans.includes(plan)) plan = plans[0];
-      renderPlans();
-      const el = document.getElementById('vtitle');
-      if (el && document.activeElement !== el) el.value = titles[kind] || '';
-    });
-
     remoteShots = {
       add:  (v) => push(shotRef, v),
       set:  (k, v) => update(ref(db, DB_PATH + '/shots/' + k), v),
-      del:  (k) => remove(ref(db, DB_PATH + '/shots/' + k)),
-      all:  (map) => set(shotRef, map)
+      del:  (k) => remove(ref(db, DB_PATH + '/shots/' + k))
     };
     onValue(shotRef, (snap) => {
       const v = snap.val() || {};
-      const mine = document.activeElement;
-      const typing = mine && mine.closest && mine.closest('#shots');
       shots = Object.keys(v).map(k => Object.assign({ _k: k }, v[k]))
                    .sort((a, b) => (a.ord || 0) - (b.ord || 0));
-      if (!typing) renderShots(); else updateTotal();
+      if (!editing) renderShots();
     });
 
     remoteNotes = {
@@ -1244,7 +1162,7 @@ function renderTasks(){
     return;
   }
   rowsEl.innerHTML = state.tasks.map((r, i) => `
-    <tr class="${r.prog === 5 ? 'full' : ''}" data-i="${i}">
+    <tr class="${r.prog === 5 ? 'full' : ''}" data-i="${i}" draggable="true">
       <td class="grip"><span class="handle" title="끌어서 순서 변경">⠿</span></td>
       <td class="col"><div class="colpick">
         <button type="button" class="swatch" style="background:${barColor(r.col)}" title="막대 색 선택"></button>
@@ -1340,14 +1258,6 @@ window.addEventListener('scroll', () => { if (openCol !== null) closeColMenu(); 
 window.addEventListener('resize', () => { if (openCol !== null) closeColMenu(); });
 
 let dragFrom = null;
-rowsEl.addEventListener('mousedown', (e) => {
-  const tr = e.target.closest('tr');
-  if (!tr) return;
-  tr.draggable = !!e.target.closest('.handle');
-});
-rowsEl.addEventListener('mouseup', () => {
-  rowsEl.querySelectorAll('tr').forEach(x => { x.draggable = false; });
-});
 rowsEl.addEventListener('dragstart', (e) => {
   const tr = e.target.closest('tr');
   if (!tr || !tr.dataset.i) return;
@@ -1378,10 +1288,7 @@ rowsEl.addEventListener('drop', (e) => {
   dragFrom = null;
 });
 rowsEl.addEventListener('dragend', () => {
-  rowsEl.querySelectorAll('tr').forEach(r => {
-    r.classList.remove('over', 'dragging');
-    r.draggable = false;
-  });
+  rowsEl.querySelectorAll('tr.over,tr.dragging').forEach(r => r.classList.remove('over', 'dragging'));
   dragFrom = null;
 });
 
@@ -1429,15 +1336,8 @@ document.getElementById('redo').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   if (!(e.ctrlKey || e.metaKey)) return;
   const k = e.key.toLowerCase();
-  if (k !== 'z' && k !== 'y') return;
-  const t = e.target;
-  if (t && t.matches && t.matches('input, textarea, [contenteditable="true"]')) return;  // 글자 편집은 브라우저에 맡김
-  const plot = !document.getElementById('panel-plot').hidden;
-  const id = (k === 'y' || e.shiftKey)
-    ? (plot ? 'plotRedo' : 'redo')
-    : (plot ? 'plotUndo' : 'undo');
-  const b = document.getElementById(id);
-  if (b && !b.disabled){ e.preventDefault(); b.click(); }
+  if (k === 'z' && !e.shiftKey){ e.preventDefault(); document.getElementById('undo').click(); }
+  else if (k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); document.getElementById('redo').click(); }
 });
 document.getElementById('print').addEventListener('click', () => window.print());
 
@@ -1570,12 +1470,8 @@ function ytId(url){
 }
 
 function renderShots(){
-  const list = shots.filter(x => (x.kind || 'cf') === kind && (x.plan || 'A') === plan);
+  const list = shots.filter(x => (x.kind || 'cf') === kind);
   document.querySelectorAll('#kinds .kbtn').forEach(b => b.classList.toggle('on', b.dataset.k === kind));
-  renderPlans();
-
-  const vt = document.getElementById('vtitle');
-  if (vt && document.activeElement !== vt) vt.value = titles[kind] || '';
 
   let total = 0;
   list.forEach(x => {
@@ -1585,14 +1481,14 @@ function renderShots(){
   document.getElementById('plotTotal').textContent = total ? '총 ' + secTc(total) : '—';
 
   if (!list.length){
-    shotsEl.innerHTML = `<p class="empty-row" style="text-align:center;color:var(--soft);padding:34px 0;font-size:13.5px;">${plan}안에 등록된 컷이 없습니다. ‘컷 추가’를 눌러 시작하세요.</p>`;
+    shotsEl.innerHTML = '<p class="empty-row" style="text-align:center;color:var(--soft);padding:34px 0;font-size:13.5px;">등록된 컷이 없습니다. ‘컷 추가’를 눌러 시작하세요.</p>';
     return;
   }
   shotsEl.innerHTML = list.map((x, i) => {
     const a = tcSec(x.ts), b = tcSec(x.te);
     const dur = (a != null && b != null && b > a) ? secTc(b - a) : '';
     const vid = ytId(x.ref);
-    return `<div class="shot" data-k="${esc(x._k)}">
+    return `<div class="shot" data-k="${esc(x._k)}" draggable="true">
       <div class="sc-tc">
         <span class="hdl" title="끌어서 순서 변경">⠿</span>
         <span class="no">CUT ${String(i + 1).padStart(2, '0')}</span>
@@ -1602,12 +1498,18 @@ function renderShots(){
         ${dur ? `<span class="dur">${dur}</span>` : ''}
       </div>
 
-      <div class="sc-img">${imgCell(x)}</div>
+      <div class="sc-img">
+        <div class="drop" data-k="${esc(x._k)}">
+          ${x.img
+            ? `<img src="${x.img}" alt="참고 이미지"><button class="rm" type="button" title="이미지 삭제">삭제</button>`
+            : '<div class="ph"><b>＋</b>이미지 끌어놓기<br>또는 클릭해서 올리기</div>'}
+        </div>
+      </div>
 
       <div class="sc-txt">
         <input class="ttl" data-f="title" value="${esc(x.title)}" placeholder="장면 제목">
-        <div class="desc" data-f="desc" contenteditable="true" role="textbox" aria-multiline="true"
-             data-ph="화면 구성, 카메라, 자막, 내레이션 등">${descHtml(x.desc)}</div>
+        <label>연출 · 내용</label>
+        <textarea data-f="desc" placeholder="화면 구성, 카메라, 자막, 내레이션 등">${esc(x.desc)}</textarea>
       </div>
 
       <div class="sc-ref">
@@ -1628,108 +1530,22 @@ function renderShots(){
   }).join('');
 }
 
-function renderPlans(){
-  const host = document.getElementById('plans');
-  if (!host) return;
-  host.innerHTML = plans.map(p =>
-    `<button class="pbtn${p === plan ? ' on' : ''}" data-p="${p}" type="button">${p}안</button>`).join('')
-    + (plans.length < 6 ? '<button class="pbtn addp" id="planAdd" type="button" title="안 추가">＋</button>' : '');
-}
-document.getElementById('plans').addEventListener('click', (e) => {
-  if (e.target.closest('#planAdd')){
-    const next = 'ABCDEF'[plans.length];
-    if (!next) return;
-    plans = plans.concat(next);
-    plan = next;
-    if (remoteTitles) remoteTitles.set({ plans }).catch(() => {});
-    renderShots();
-    return;
-  }
-  const b = e.target.closest('.pbtn');
-  if (!b || !b.dataset.p) return;
-  plan = b.dataset.p;
-  renderShots();
-});
-
 function shotSave(k, patch){
   const x = shots.find(v => v._k === k);
   if (x) Object.assign(x, patch);
   if (remoteShots) remoteShots.set(k, patch).catch(() => {});
 }
 
-let shotPending = null;
-shotsEl.addEventListener('focusin', (e) => {
-  editing = true;
-  shotPending = e.target.matches('input, .desc') ? shotMap(shots) : null;
-});
-function commitPending(){
-  if (!shotPending) return;
-  shotPast.push(shotPending);
-  if (shotPast.length > 30) shotPast.shift();
-  shotFuture.length = 0;
-  shotPending = null;
-  updShotBtns();
-}
-shotsEl.addEventListener('focusout', (e) => {
-  editing = false;
-  shotPending = null;
-  const d = e.target.closest ? e.target.closest('.desc') : null;
-  if (d) flushDesc(d);
-});
+shotsEl.addEventListener('focusin', () => { editing = true; });
+shotsEl.addEventListener('focusout', () => { editing = false; });
 shotsEl.addEventListener('input', (e) => {
   const f = e.target.dataset.f;
   if (!f) return;
-  commitPending();
-  if (f === 'desc') return;
-  const sh = e.target.closest('.shot');
-  const k = sh.dataset.k;
+  const k = e.target.closest('.shot').dataset.k;
   shotSave(k, { [f]: e.target.value });
-  const x = shots.find(v => v._k === k);
-  if (!x) return;
-
-  if (f === 'ts' || f === 'te'){ updateDur(sh, x); updateTotal(); }
-  if (f === 'ref' || f === 'at'){
-    clearTimeout(sh._rt);
-    sh._rt = setTimeout(() => updatePreview(sh, x), 600);
-  }
+  if (f === 'ts' || f === 'te') { clearTimeout(window._tcT); window._tcT = setTimeout(renderShots, 700); }
+  if (f === 'ref' || f === 'at'){ clearTimeout(window._rfT); window._rfT = setTimeout(renderShots, 700); }
 });
-
-/* 입력 칸은 건드리지 않고 주변 표시만 갱신 */
-function updateDur(sh, x){
-  const a = tcSec(x.ts), b = tcSec(x.te);
-  const txt = (a != null && b != null && b > a) ? secTc(b - a) : '';
-  let el = sh.querySelector('.dur');
-  if (txt){
-    if (!el){
-      el = document.createElement('span');
-      el.className = 'dur';
-      sh.querySelector('.sc-tc').appendChild(el);
-    }
-    el.textContent = txt;
-  } else if (el) el.remove();
-}
-function updateTotal(){
-  let total = 0;
-  shots.filter(v => (v.kind || 'cf') === kind && (v.plan || 'A') === plan).forEach(v => {
-    const a = tcSec(v.ts), b = tcSec(v.te);
-    if (a != null && b != null && b > a) total += b - a;
-  });
-  document.getElementById('plotTotal').textContent = total ? '총 ' + secTc(total) : '—';
-}
-function updatePreview(sh, x){
-  const box = sh.querySelector('.sc-ref');
-  const old = box.querySelector('.play, .none');
-  const vid = ytId(x.ref);
-  const html = vid
-    ? `<button class="play" type="button" data-v="${vid}" data-at="${tcSec(x.at) || 0}">
-         <img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="참고 영상 썸네일" loading="lazy">
-       </button>`
-    : '<div class="none">주소를 넣으면 미리보기가 나옵니다</div>';
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  if (old) old.replaceWith(tmp.firstElementChild);
-  else box.appendChild(tmp.firstElementChild);
-}
 shotsEl.addEventListener('click', (e) => {
   const shot = e.target.closest('.shot');
   if (!shot) return;
@@ -1737,26 +1553,17 @@ shotsEl.addEventListener('click', (e) => {
 
   if (e.target.closest('.sc-del .x')){
     if (!confirm('이 컷을 삭제할까요?')) return;
-    shotSnap();
     shots = shots.filter(v => v._k !== k);
     if (remoteShots) remoteShots.del(k).catch(() => {});
     renderShots();
     return;
   }
-  const rm = e.target.closest('.drop .rm');
-  if (rm){
+  if (e.target.closest('.drop .rm')){
     e.stopPropagation();
-    delImg(k, +rm.closest('.im').dataset.i);
+    shotSave(k, { img: '' });
+    renderShots();
     return;
   }
-  const im = e.target.closest('.drop .im');
-  if (im){
-    e.stopPropagation();
-    const x = shots.find(v => v._k === k);
-    if (x) openLb(imgsOf(x), +im.dataset.i);
-    return;
-  }
-  if (e.target.closest('.addim')){ pickImage(k); return; }
   const pl = e.target.closest('.play');
   if (pl && !pl.classList.contains('playing')){
     const f = document.createElement('iframe');
@@ -1772,129 +1579,39 @@ shotsEl.addEventListener('click', (e) => {
   if (dz) pickImage(k);
 });
 
-/* 이미지 — 컷당 최대 3장 */
-const MAX_IMG = 3;
-function imgsOf(x){
-  if (Array.isArray(x.imgs)) return x.imgs.filter(Boolean);
-  return x.img ? [x.img] : [];               // 예전 1장 형식 자동 인식
-}
-function imgCell(x){
-  const list = imgsOf(x);
-  if (!list.length){
-    return `<div class="drop empty" data-k="${esc(x._k)}">
-      <div class="ph"><b>＋</b>이미지 끌어놓기<br>또는 클릭해서 올리기<br><small>최대 ${MAX_IMG}장</small></div>
-    </div>`;
-  }
-  return `<div class="drop n${list.length}" data-k="${esc(x._k)}">
-    ${list.map((u, i) => `<div class="im" data-i="${i}">
-      <img src="${u}" alt="참고 이미지 ${i + 1}" loading="lazy">
-      <span class="zoom">⤢</span>
-      <button class="rm" type="button" title="이미지 삭제">×</button>
-    </div>`).join('')}
-    ${list.length < MAX_IMG ? '<button class="addim" type="button" title="이미지 추가">＋</button>' : ''}
-    ${list.length > 1 ? `<span class="cnt">${list.length}/${MAX_IMG}</span>` : ''}
-  </div>`;
-}
+/* 이미지 업로드 */
 function pickImage(k){
-  const x = shots.find(v => v._k === k);
-  if (!x) return;
-  if (imgsOf(x).length >= MAX_IMG){ alert(`이미지는 컷당 최대 ${MAX_IMG}장까지 넣을 수 있습니다.`); return; }
   const inp = document.createElement('input');
   inp.type = 'file';
   inp.accept = 'image/*';
-  inp.multiple = true;
-  inp.onchange = () => loadImages(k, inp.files);
+  inp.onchange = () => { if (inp.files[0]) loadImage(k, inp.files[0]); };
   inp.click();
 }
-function loadImages(k, files){
-  const x = shots.find(v => v._k === k);
-  if (!x) return;
-  const room = MAX_IMG - imgsOf(x).length;
-  const pick = Array.prototype.slice.call(files || [])
-    .filter(f => f.type.startsWith('image/'));
-  if (!pick.length) return;
-  if (pick.length > room) alert(`${room}장만 추가됩니다. 컷당 최대 ${MAX_IMG}장입니다.`);
-  pick.slice(0, room).reduce(
-    (chain, f) => chain.then(() => shrink(f)).then(d => { if (d) addImg(k, d); }),
-    Promise.resolve()
-  );
-}
-function shrink(file){
-  return new Promise(resolve => {
-    const fr = new FileReader();
-    fr.onload = () => {
-      const im = new Image();
-      im.onload = () => {
-        const max = 1000;
-        let w = im.width, h = im.height;
-        if (w > max || h > max){
-          const r = Math.min(max / w, max / h);
-          w = Math.round(w * r); h = Math.round(h * r);
-        }
-        const cv = document.createElement('canvas');
-        cv.width = w; cv.height = h;
-        cv.getContext('2d').drawImage(im, 0, 0, w, h);
-        let data = cv.toDataURL('image/jpeg', 0.72);
-        if (data.length > 600000) data = cv.toDataURL('image/jpeg', 0.5);
-        if (data.length > 900000){
-          alert('이미지 용량이 너무 큽니다. 더 작은 이미지를 사용해 주세요.');
-          return resolve(null);
-        }
-        resolve(data);
-      };
-      im.onerror = () => resolve(null);
-      im.src = fr.result;
+function loadImage(k, file){
+  if (!file.type.startsWith('image/')) return;
+  const fr = new FileReader();
+  fr.onload = () => {
+    const im = new Image();
+    im.onload = () => {
+      const max = 1000;
+      let { width: w, height: h } = im;
+      if (w > max || h > max){
+        const r = Math.min(max / w, max / h);
+        w = Math.round(w * r); h = Math.round(h * r);
+      }
+      const cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      cv.getContext('2d').drawImage(im, 0, 0, w, h);
+      let data = cv.toDataURL('image/jpeg', 0.72);
+      if (data.length > 700000) data = cv.toDataURL('image/jpeg', 0.5);
+      if (data.length > 900000){ alert('이미지 용량이 너무 큽니다. 더 작은 이미지를 사용해 주세요.'); return; }
+      shotSave(k, { img: data });
+      renderShots();
     };
-    fr.onerror = () => resolve(null);
-    fr.readAsDataURL(file);
-  });
+    im.src = fr.result;
+  };
+  fr.readAsDataURL(file);
 }
-function addImg(k, data){
-  const x = shots.find(v => v._k === k);
-  if (!x) return;
-  shotSnap();
-  const list = imgsOf(x).concat(data).slice(0, MAX_IMG);
-  x.imgs = list; x.img = '';
-  shotSave(k, { imgs: list, img: '' });
-  renderShots();
-}
-function delImg(k, i){
-  const x = shots.find(v => v._k === k);
-  if (!x) return;
-  shotSnap();
-  const list = imgsOf(x);
-  list.splice(i, 1);
-  x.imgs = list; x.img = '';
-  shotSave(k, { imgs: list, img: '' });
-  renderShots();
-}
-
-/* 크게 보기 */
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbPg = document.getElementById('lbPg');
-let lbList = [], lbAt = 0;
-function openLb(list, i){
-  lbList = list; lbAt = i;
-  lb.hidden = false;
-  showLb();
-}
-function showLb(){
-  lbImg.src = lbList[lbAt] || '';
-  lbPg.textContent = lbList.length > 1 ? (lbAt + 1) + ' / ' + lbList.length : '';
-  lb.querySelectorAll('.nav').forEach(b => { b.style.display = lbList.length > 1 ? '' : 'none'; });
-}
-lb.addEventListener('click', (e) => {
-  if (e.target.closest('.prev')){ lbAt = (lbAt - 1 + lbList.length) % lbList.length; showLb(); return; }
-  if (e.target.closest('.next')){ lbAt = (lbAt + 1) % lbList.length; showLb(); return; }
-  if (e.target.closest('.shut') || e.target === lb) lb.hidden = true;
-});
-document.addEventListener('keydown', (e) => {
-  if (lb.hidden) return;
-  if (e.key === 'Escape') lb.hidden = true;
-  else if (e.key === 'ArrowLeft'){ lbAt = (lbAt - 1 + lbList.length) % lbList.length; showLb(); }
-  else if (e.key === 'ArrowRight'){ lbAt = (lbAt + 1) % lbList.length; showLb(); }
-});
 shotsEl.addEventListener('dragover', (e) => {
   const dz = e.target.closest('.drop');
   if (!dz) return;
@@ -1907,23 +1624,15 @@ shotsEl.addEventListener('dragleave', (e) => {
 });
 shotsEl.addEventListener('drop', (e) => {
   const dz = e.target.closest('.drop');
-  if (dz && e.dataTransfer.files && e.dataTransfer.files.length){
+  if (dz && e.dataTransfer.files && e.dataTransfer.files[0]){
     e.preventDefault();
     dz.classList.remove('on');
-    loadImages(dz.dataset.k, e.dataTransfer.files);
+    loadImage(dz.dataset.k, e.dataTransfer.files[0]);
   }
 });
 
-/* 컷 순서 — 손잡이를 잡았을 때만 드래그 */
+/* 컷 순서 */
 let shotFrom = null;
-shotsEl.addEventListener('mousedown', (e) => {
-  const sh = e.target.closest('.shot');
-  if (!sh) return;
-  sh.draggable = !!e.target.closest('.hdl');
-});
-shotsEl.addEventListener('mouseup', () => {
-  shotsEl.querySelectorAll('.shot').forEach(x => { x.draggable = false; });
-});
 shotsEl.addEventListener('dragstart', (e) => {
   const sh = e.target.closest('.shot');
   if (!sh) return;
@@ -1942,11 +1651,10 @@ shotsEl.addEventListener('drop', (e) => {
   shotsEl.querySelectorAll('.shot.over,.shot.dragging').forEach(x => x.classList.remove('over', 'dragging'));
   if (!sh || !shotFrom || e.target.closest('.drop')) return;
   e.preventDefault();
-  const list = shots.filter(x => (x.kind || 'cf') === kind && (x.plan || 'A') === plan);
+  const list = shots.filter(x => (x.kind || 'cf') === kind);
   const from = list.findIndex(x => x._k === shotFrom);
   const to = list.findIndex(x => x._k === sh.dataset.k);
   if (from < 0 || to < 0 || from === to){ shotFrom = null; return; }
-  shotSnap();
   const [mv] = list.splice(from, 1);
   list.splice(to, 0, mv);
   list.forEach((x, i) => { x.ord = i; if (remoteShots) remoteShots.set(x._k, { ord: i }).catch(() => {}); });
@@ -1955,40 +1663,22 @@ shotsEl.addEventListener('drop', (e) => {
   renderShots();
 });
 shotsEl.addEventListener('dragend', () => {
-  shotsEl.querySelectorAll('.shot').forEach(x => {
-    x.classList.remove('over', 'dragging');
-    x.draggable = false;
-  });
+  shotsEl.querySelectorAll('.shot.over,.shot.dragging').forEach(x => x.classList.remove('over', 'dragging'));
   shotFrom = null;
 });
 
 document.getElementById('shotAdd').addEventListener('click', () => {
-  const list = shots.filter(x => (x.kind || 'cf') === kind && (x.plan || 'A') === plan);
+  const list = shots.filter(x => (x.kind || 'cf') === kind);
   const last = list[list.length - 1];
   const start = last ? (tcSec(last.te) != null ? secTc(tcSec(last.te)) : '') : '00:00';
-  shotSnap();
-  const item = { kind, plan, ts: start, te: '', title: '', desc: '', ref: '', at: '', imgs: [], ord: shots.length };
+  const item = { kind, ts: start, te: '', title: '', desc: '', ref: '', at: '', img: '', ord: shots.length };
   if (remoteShots){
-    remoteShots.add(item).then(() => {
-      setTimeout(() => {
-        const last = shotsEl.querySelector('.shot:last-child .sc-tc input');
-        if (last){ last.focus(); last.select(); }
-      }, 120);
-    }).catch(() => alert('저장에 실패했습니다.'));
+    remoteShots.add(item).catch(() => alert('저장에 실패했습니다.'));
   } else {
     shots.push(Object.assign({ _k: 'local' + Date.now() }, item));
     renderShots();
   }
 });
-const vtitleEl = document.getElementById('vtitle');
-vtitleEl.addEventListener('input', () => {
-  titles[kind] = vtitleEl.value;
-  clearTimeout(vtitleEl._t);
-  vtitleEl._t = setTimeout(() => {
-    if (remoteTitles) remoteTitles.set({ [kind]: vtitleEl.value }).catch(() => {});
-  }, 450);
-});
-
 document.getElementById('kinds').addEventListener('click', (e) => {
   const b = e.target.closest('.kbtn');
   if (!b) return;
@@ -1996,169 +1686,6 @@ document.getElementById('kinds').addEventListener('click', (e) => {
   renderShots();
 });
 document.getElementById('plotPrint').addEventListener('click', () => window.print());
-
-
-
-/* ───────── 컷 구성표 되돌리기 ───────── */
-const shotPast = [], shotFuture = [];
-function shotMap(list){
-  const m = {};
-  (list || []).forEach((x, i) => {
-    const o = Object.assign({}, x);
-    delete o._k;
-    o.ord = i;
-    m[x._k] = o;
-  });
-  return m;
-}
-function updShotBtns(){
-  const u = document.getElementById('plotUndo');
-  const r = document.getElementById('plotRedo');
-  if (u) u.disabled = !shotPast.length;
-  if (r) r.disabled = !shotFuture.length;
-}
-function shotSnap(){
-  shotPast.push(shotMap(shots));
-  if (shotPast.length > 30) shotPast.shift();
-  shotFuture.length = 0;
-  updShotBtns();
-}
-function applyShotMap(map){
-  shots = Object.keys(map || {}).map(k => Object.assign({ _k: k }, map[k]))
-               .sort((a, b) => (a.ord || 0) - (b.ord || 0));
-  if (remoteShots) remoteShots.all(map).catch(() => {});
-  renderShots();
-}
-document.getElementById('plotUndo').addEventListener('click', () => {
-  if (!shotPast.length) return;
-  shotFuture.push(shotMap(shots));
-  applyShotMap(shotPast.pop());
-  updShotBtns();
-});
-document.getElementById('plotRedo').addEventListener('click', () => {
-  if (!shotFuture.length) return;
-  shotPast.push(shotMap(shots));
-  applyShotMap(shotFuture.pop());
-  updShotBtns();
-});
-
-/* ───────── 컷 설명 서식 ───────── */
-const ALLOW = { B:1, STRONG:1, I:1, EM:1, U:1, SPAN:1, BR:1, DIV:1, P:1, FONT:1 };
-const KEEP = ['color','background-color','font-weight','font-style',
-              'text-decoration','text-decoration-line'];
-function clean(html){
-  const box = document.createElement('div');
-  box.innerHTML = String(html || '');
-  (function walk(node){
-    Array.prototype.slice.call(node.childNodes).forEach(c => {
-      if (c.nodeType === 3) return;
-      if (c.nodeType !== 1){ c.remove(); return; }
-      if (!ALLOW[c.tagName]){
-        while (c.firstChild) node.insertBefore(c.firstChild, c);
-        c.remove();
-        return;
-      }
-      // 남길 서식만 미리 챙겨둔다
-      const keep = {};
-      if (c.style) KEEP.forEach(p => {
-        const v = c.style.getPropertyValue(p);
-        if (v) keep[p] = v;
-      });
-      if (c.tagName === 'FONT' && c.getAttribute('color')) keep['color'] = c.getAttribute('color');
-
-      Array.prototype.slice.call(c.attributes).forEach(a => c.removeAttribute(a.name));
-      Object.keys(keep).forEach(p => c.style.setProperty(p, keep[p]));
-      walk(c);
-    });
-  })(box);
-  return box.innerHTML;
-}
-function descHtml(v){
-  v = String(v == null ? '' : v);
-  if (!/[<>]/.test(v)) return esc(v).replace(/\n/g, '<br>');
-  return clean(v);
-}
-
-const fmtbar = document.getElementById('fmtbar');
-let fmtTarget = null;
-
-function inDesc(node){
-  if (!node) return null;
-  const el = node.nodeType === 1 ? node : node.parentElement;
-  return el ? el.closest('.sc-txt .desc') : null;
-}
-function placeBar(){
-  const sel = window.getSelection();
-  if (!sel || sel.isCollapsed || !sel.rangeCount){ fmtbar.hidden = true; return; }
-  const host = inDesc(sel.anchorNode);
-  if (!host || host !== inDesc(sel.focusNode)){ fmtbar.hidden = true; return; }
-  const r = sel.getRangeAt(0).getBoundingClientRect();
-  if (!r.width && !r.height){ fmtbar.hidden = true; return; }
-  fmtTarget = host;
-  fmtbar.hidden = false;
-  const w = fmtbar.offsetWidth, h = fmtbar.offsetHeight;
-  let left = r.left + r.width / 2 - w / 2;
-  left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
-  let top = r.top - h - 8;
-  if (top < 8) top = r.bottom + 8;
-  fmtbar.style.left = left + 'px';
-  fmtbar.style.top = top + 'px';
-}
-document.addEventListener('selectionchange', () => {
-  clearTimeout(window._fmtT);
-  window._fmtT = setTimeout(placeBar, 60);
-});
-window.addEventListener('scroll', () => { fmtbar.hidden = true; }, true);
-
-fmtbar.addEventListener('mousedown', (e) => e.preventDefault());
-fmtbar.addEventListener('click', (e) => {
-  const b = e.target.closest('button');
-  if (!b || !fmtTarget) return;
-  try { document.execCommand('styleWithCSS', false, true); } catch(err){}
-  if (b.dataset.cmd)        document.execCommand(b.dataset.cmd, false, null);
-  else if (b.dataset.color) document.execCommand('foreColor', false, b.dataset.color);
-  else if (b.dataset.hl)    document.execCommand('hiliteColor', false, b.dataset.hl);
-  saveDesc(fmtTarget);
-});
-
-function saveDesc(el){
-  const sh = el.closest('.shot');
-  if (!sh) return;
-  const k = sh.dataset.k;
-  const html = clean(el.innerHTML);
-
-  // 화면에 보이는 내용을 즉시 기억해 둔다 (다시 그려도 사라지지 않도록)
-  const x = shots.find(v => v._k === k);
-  if (x) x.desc = html;
-
-  clearTimeout(el._t);
-  el._t = setTimeout(() => {
-    if (remoteShots) remoteShots.set(k, { desc: html }).catch(() => {});
-  }, 500);
-}
-/* 칸을 떠날 때 남은 저장을 즉시 끝낸다 */
-function flushDesc(el){
-  if (!el || !el._t) return;
-  clearTimeout(el._t);
-  el._t = null;
-  const sh = el.closest('.shot');
-  if (!sh) return;
-  const html = clean(el.innerHTML);
-  const x = shots.find(v => v._k === sh.dataset.k);
-  if (x) x.desc = html;
-  if (remoteShots) remoteShots.set(sh.dataset.k, { desc: html }).catch(() => {});
-}
-shotsEl.addEventListener('input', (e) => {
-  const el = e.target.closest('.desc');
-  if (el) saveDesc(el);
-});
-shotsEl.addEventListener('paste', (e) => {
-  const el = e.target.closest('.desc');
-  if (!el) return;
-  e.preventDefault();
-  const txt = (e.clipboardData || window.clipboardData).getData('text/plain');
-  document.execCommand('insertText', false, txt);
-});
 
 /* ───────── 탭 · 네비 · 영상 ───────── */
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2169,8 +1696,6 @@ const TABS = [
 ];
 const sidenav = document.getElementById('sidenav');
 const heroShell = document.getElementById('heroShell');
-const tabShell = document.getElementById('tabShell');
-const tabbar = document.getElementById('tabbar');
 
 function showTab(id){
   const cur = TABS.find(t => t.b === id) || TABS[0];
@@ -2182,10 +1707,6 @@ function showTab(id){
   const plan = cur.b === 'tab-plan';
   sidenav.style.display = plan ? '' : 'none';
   heroShell.classList.toggle('wide', !plan);
-  const plot = cur.b === 'tab-plot';
-  tabShell.classList.toggle('wide', !plan && !plot);
-  tabShell.classList.toggle('xwide', plot);
-  heroShell.classList.toggle('xwide', plot);
   try { history.replaceState(null, '', cur.h); } catch(e){}
   window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
 }
@@ -2210,7 +1731,6 @@ function tick(){
   bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
   const t = document.getElementById('toTop');
   if (t) t.classList.toggle('show', window.scrollY > 320);
-  tabbar.classList.toggle('stuck', tabbar.getBoundingClientRect().top <= 0);
 }
 const toTop = document.getElementById('toTop');
 toTop.hidden = false;
@@ -2249,6 +1769,22 @@ renderNotes();
 renderShots();
 const hit = TABS.find(t => t.h === location.hash);
 if (hit) showTab(hit.b);
+</script>
+<script>
+/* 인쇄할 때 입력칸 내용을 모두 펼쳐 보이게 */
+(function(){
+  function fill(){
+    document.querySelectorAll('.sc-txt textarea').forEach(function(t){
+      var d=t.nextElementSibling;
+      if(!d||!d.classList.contains('print-desc')){d=document.createElement('div');d.className='print-desc';t.after(d);}
+      d.textContent=t.value;
+    });
+  }
+  function clear(){document.querySelectorAll('.print-desc').forEach(function(d){d.remove();});}
+  window.addEventListener('beforeprint',fill);
+  window.addEventListener('afterprint',clear);
+  if(window.matchMedia){var m=matchMedia('print');(m.addEventListener?m.addEventListener('change',function(e){e.matches?fill():clear();}):m.addListener(function(e){e.matches?fill():clear();}));}
+})();
 </script>
 </body>
 </html>
