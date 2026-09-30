@@ -397,12 +397,35 @@ tr.full .prog .pct{color:#1B7F5A;}
   padding:2px 0 7px;outline:none;
 }
 .sc-txt input.ttl:focus{border-color:var(--peri);}
-.sc-txt textarea{
+.sc-txt .desc{
   flex:1;min-height:76px;width:100%;border:1px solid var(--line);border-radius:7px;
   font:inherit;font-size:13.5px;line-height:1.65;color:var(--ink);padding:9px 10px;
-  outline:none;resize:vertical;background:var(--card);font-family:inherit;
+  outline:none;background:var(--card);font-family:inherit;
+  overflow-wrap:anywhere;white-space:pre-wrap;
 }
-.sc-txt textarea:focus{border-color:var(--peri);}
+.sc-txt .desc:focus{border-color:var(--peri);}
+.sc-txt .desc:empty::before{content:attr(data-ph);color:#C8CEDD;pointer-events:none;}
+.sc-txt .desc b,.sc-txt .desc strong{font-weight:800;}
+
+/* 서식 도구 */
+.fmtbar{
+  position:fixed;z-index:210;background:var(--navy);border-radius:10px;
+  padding:6px 7px;display:flex;gap:4px;align-items:center;
+  box-shadow:0 6px 22px rgba(9,21,64,.35);
+}
+.fmtbar[hidden]{display:none;}
+.fmtbar button{
+  appearance:none;border:0;background:transparent;cursor:pointer;color:#fff;
+  border-radius:6px;padding:0;width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;line-height:1;transition:background .15s ease;
+}
+.fmtbar button:hover{background:rgba(255,255,255,.18);}
+.fmtbar .sw{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);}
+.fmtbar .sw:hover{border-color:#fff;background:transparent;transform:scale(1.12);}
+.fmtbar .hl{width:22px;height:20px;border-radius:5px;border:0;font-size:11px;font-weight:800;color:#091540;}
+.fmtbar .sep{width:1px;height:18px;background:rgba(255,255,255,.22);margin:0 2px;flex:0 0 auto;}
+.fmtbar .clr{font-size:11px;letter-spacing:-0.04em;}
 
 .sc-ref{gap:7px;}
 .sc-ref .row{display:flex;gap:5px;}
@@ -448,7 +471,7 @@ tr.full .prog .pct{color:#1B7F5A;}
   .kbtn{flex:1;justify-content:center;}
 }
 @media print{
-  .kinds,.sc-del,.drop .rm{display:none !important;}
+  .kinds,.sc-del,.drop .rm,.fmtbar{display:none !important;}
   .shot{break-inside:avoid;}
 }
 
@@ -738,6 +761,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 </footer>
 
 <!-- ═══════════ 알림 ═══════════ -->
+<div class="fmtbar" id="fmtbar" hidden>
+  <button type="button" data-cmd="bold" title="굵게 (Ctrl+B)">B</button>
+  <span class="sep"></span>
+  <button type="button" class="sw" data-color="#091540" style="background:#091540" title="기본"></button>
+  <button type="button" class="sw" data-color="#1B2CC1" style="background:#1B2CC1" title="파랑"></button>
+  <button type="button" class="sw" data-color="#C0392B" style="background:#C0392B" title="빨강"></button>
+  <button type="button" class="sw" data-color="#1B7F5A" style="background:#1B7F5A" title="초록"></button>
+  <button type="button" class="sw" data-color="#B4650F" style="background:#B4650F" title="주황"></button>
+  <span class="sep"></span>
+  <button type="button" class="hl" data-hl="#FFF07C" style="background:#FFF07C" title="노랑 형광">H</button>
+  <button type="button" class="hl" data-hl="#ABD2FA" style="background:#ABD2FA" title="하늘 형광">H</button>
+  <span class="sep"></span>
+  <button type="button" class="clr" data-cmd="removeFormat" title="서식 지우기">지움</button>
+</div>
+
 <button class="toTop" id="toTop" type="button" aria-label="맨 위로" hidden>
   <span>↑</span>맨 위로
 </button>
@@ -1504,7 +1542,8 @@ function renderShots(){
 
       <div class="sc-txt">
         <input class="ttl" data-f="title" value="${esc(x.title)}" placeholder="장면 제목">
-        <textarea data-f="desc" placeholder="화면 구성, 카메라, 자막, 내레이션 등">${esc(x.desc)}</textarea>
+        <div class="desc" data-f="desc" contenteditable="true" role="textbox" aria-multiline="true"
+             data-ph="화면 구성, 카메라, 자막, 내레이션 등">${descHtml(x.desc)}</div>
       </div>
 
       <div class="sc-ref">
@@ -1558,7 +1597,7 @@ shotsEl.addEventListener('focusin', () => { editing = true; });
 shotsEl.addEventListener('focusout', () => { editing = false; });
 shotsEl.addEventListener('input', (e) => {
   const f = e.target.dataset.f;
-  if (!f) return;
+  if (!f || f === 'desc') return;
   const sh = e.target.closest('.shot');
   const k = sh.dataset.k;
   shotSave(k, { [f]: e.target.value });
@@ -1773,6 +1812,97 @@ document.getElementById('kinds').addEventListener('click', (e) => {
   renderShots();
 });
 document.getElementById('plotPrint').addEventListener('click', () => window.print());
+
+
+/* ───────── 컷 설명 서식 ───────── */
+const ALLOW = { B:1, STRONG:1, I:1, EM:1, U:1, SPAN:1, BR:1, DIV:1, P:1, FONT:1 };
+function clean(html){
+  const box = document.createElement('div');
+  box.innerHTML = String(html || '');
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(c => {
+      if (c.nodeType === 3) return;
+      if (c.nodeType !== 1){ c.remove(); return; }
+      if (!ALLOW[c.tagName]){
+        while (c.firstChild) node.insertBefore(c.firstChild, c);
+        c.remove();
+        return;
+      }
+      const col = c.style ? c.style.color : '';
+      const bg  = c.style ? c.style.backgroundColor : '';
+      Array.prototype.slice.call(c.attributes).forEach(a => c.removeAttribute(a.name));
+      if (col) c.style.color = col;
+      if (bg)  c.style.backgroundColor = bg;
+      walk(c);
+    });
+  })(box);
+  return box.innerHTML;
+}
+function descHtml(v){
+  v = String(v == null ? '' : v);
+  if (!/[<>]/.test(v)) return esc(v).replace(/\n/g, '<br>');
+  return clean(v);
+}
+
+const fmtbar = document.getElementById('fmtbar');
+let fmtTarget = null;
+
+function inDesc(node){
+  if (!node) return null;
+  const el = node.nodeType === 1 ? node : node.parentElement;
+  return el ? el.closest('.sc-txt .desc') : null;
+}
+function placeBar(){
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount){ fmtbar.hidden = true; return; }
+  const host = inDesc(sel.anchorNode);
+  if (!host || host !== inDesc(sel.focusNode)){ fmtbar.hidden = true; return; }
+  const r = sel.getRangeAt(0).getBoundingClientRect();
+  if (!r.width && !r.height){ fmtbar.hidden = true; return; }
+  fmtTarget = host;
+  fmtbar.hidden = false;
+  const w = fmtbar.offsetWidth, h = fmtbar.offsetHeight;
+  let left = r.left + r.width / 2 - w / 2;
+  left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+  let top = r.top - h - 8;
+  if (top < 8) top = r.bottom + 8;
+  fmtbar.style.left = left + 'px';
+  fmtbar.style.top = top + 'px';
+}
+document.addEventListener('selectionchange', () => {
+  clearTimeout(window._fmtT);
+  window._fmtT = setTimeout(placeBar, 60);
+});
+window.addEventListener('scroll', () => { fmtbar.hidden = true; }, true);
+
+fmtbar.addEventListener('mousedown', (e) => e.preventDefault());
+fmtbar.addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b || !fmtTarget) return;
+  try { document.execCommand('styleWithCSS', false, true); } catch(err){}
+  if (b.dataset.cmd)        document.execCommand(b.dataset.cmd, false, null);
+  else if (b.dataset.color) document.execCommand('foreColor', false, b.dataset.color);
+  else if (b.dataset.hl)    document.execCommand('hiliteColor', false, b.dataset.hl);
+  saveDesc(fmtTarget);
+});
+
+function saveDesc(el){
+  const sh = el.closest('.shot');
+  if (!sh) return;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => shotSave(sh.dataset.k, { desc: clean(el.innerHTML) }), 400);
+}
+shotsEl.addEventListener('input', (e) => {
+  const el = e.target.closest('.desc');
+  if (el) saveDesc(el);
+});
+shotsEl.addEventListener('paste', (e) => {
+  const el = e.target.closest('.desc');
+  if (!el) return;
+  e.preventDefault();
+  const txt = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, txt);
+});
 
 /* ───────── 탭 · 네비 · 영상 ───────── */
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
