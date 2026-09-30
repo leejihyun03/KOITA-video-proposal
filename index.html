@@ -210,7 +210,22 @@ table.grid li:last-child{margin-bottom:0;}
 .daypanel .stars{color:var(--gold);font-size:12px;margin-left:6px;}
 
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 12px;}
-.plans + .tools{margin-top:14px;}
+.pconcept{
+  display:flex;gap:13px;align-items:flex-start;
+  background:var(--tint);border:1px solid var(--line);border-radius:9px;
+  padding:12px 15px;margin:14px 0 0;
+}
+.pconcept .lb{
+  flex:0 0 auto;font-size:11px;font-weight:800;color:var(--peri);
+  letter-spacing:.03em;padding-top:4px;
+}
+.pconcept textarea{
+  flex:1;min-width:0;border:0;background:transparent;font:inherit;
+  font-size:13.5px;line-height:1.65;color:var(--ink);
+  outline:none;resize:vertical;min-height:38px;font-family:inherit;
+}
+.pconcept textarea::placeholder{color:#C8CEDD;}
+.pconcept + .tools{margin-top:14px;}
 .btn{appearance:none;font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--navy);padding:8px 15px;border-radius:7px;font-size:13px;font-weight:700;transition:border-color .18s ease,background .18s ease,color .18s ease;}
 .btn:hover{border-color:var(--peri);color:var(--blue);}
 .btn.pri{background:var(--blue);border-color:var(--blue);color:#fff;}
@@ -535,7 +550,13 @@ tr.full .prog .pct{color:#1B7F5A;}
     color:#091540 !important;font-size:12pt !important;
   }
   .kbtn.on em{color:#5C6486 !important;}
-  .plans{border:0 !important;margin:4px 0 8px !important;}
+  .plans{border:0 !important;margin:4px 0 6px !important;}
+  .pconcept{
+    background:transparent !important;border:0 !important;border-left:3px solid #7692FF !important;
+    border-radius:0 !important;padding:2px 0 2px 10px !important;margin:0 0 6mm !important;
+  }
+  .pconcept textarea{font-size:10pt !important;min-height:0 !important;}
+  .pconcept:has(textarea:placeholder-shown){display:none !important;}
   .pbtn.on::after{content:" 구성";}
 
   /* 컷 카드 — 종이용 세로 배치 */
@@ -889,6 +910,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 
       <div class="plans" id="plans"></div>
 
+      <div class="pconcept">
+        <span class="lb">콘셉트</span>
+        <textarea id="planDesc" rows="2" maxlength="500"
+          placeholder="이 안의 방향을 한두 줄로 적어주세요"></textarea>
+      </div>
+
       <div class="tools">
         <button class="btn pri" id="shotAdd">+ 컷 추가</button>
       </div>
@@ -1105,6 +1132,7 @@ async function initFirebase(){
       renderPlans();
       const el = document.getElementById('vtitle');
       if (el && document.activeElement !== el) el.value = titles[kind] || '';
+      syncPlanDesc();
     });
 
     remoteShots = {
@@ -1670,6 +1698,7 @@ function renderShots(){
 
   const vt = document.getElementById('vtitle');
   if (vt && document.activeElement !== vt) vt.value = titles[kind] || '';
+  syncPlanDesc();
 
   let total = 0;
   list.forEach(x => {
@@ -2074,6 +2103,21 @@ document.getElementById('shotAdd').addEventListener('click', () => {
     renderShots();
   }
 });
+/* 안별 콘셉트 설명 */
+const pdescEl = document.getElementById('planDesc');
+function ckey(){ return 'cc_' + kind + '_' + plan; }
+function syncPlanDesc(){
+  if (document.activeElement !== pdescEl) pdescEl.value = titles[ckey()] || '';
+}
+pdescEl.addEventListener('input', () => {
+  const k = ckey();
+  titles[k] = pdescEl.value;
+  clearTimeout(pdescEl._t);
+  pdescEl._t = setTimeout(() => {
+    if (remoteTitles) remoteTitles.set({ [k]: pdescEl.value }).catch(() => {});
+  }, 450);
+});
+
 const vtitleEl = document.getElementById('vtitle');
 vtitleEl.addEventListener('input', () => {
   titles[kind] = vtitleEl.value;
