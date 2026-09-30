@@ -1670,7 +1670,12 @@ function commitPending(){
   shotPending = null;
   updShotBtns();
 }
-shotsEl.addEventListener('focusout', () => { editing = false; shotPending = null; });
+shotsEl.addEventListener('focusout', (e) => {
+  editing = false;
+  shotPending = null;
+  const d = e.target.closest ? e.target.closest('.desc') : null;
+  if (d) flushDesc(d);
+});
 shotsEl.addEventListener('input', (e) => {
   const f = e.target.dataset.f;
   if (!f) return;
@@ -2039,6 +2044,8 @@ document.getElementById('plotRedo').addEventListener('click', () => {
 
 /* ───────── 컷 설명 서식 ───────── */
 const ALLOW = { B:1, STRONG:1, I:1, EM:1, U:1, SPAN:1, BR:1, DIV:1, P:1, FONT:1 };
+const KEEP = ['color','background-color','font-weight','font-style',
+              'text-decoration','text-decoration-line'];
 function clean(html){
   const box = document.createElement('div');
   box.innerHTML = String(html || '');
@@ -2051,11 +2058,16 @@ function clean(html){
         c.remove();
         return;
       }
-      const col = c.style ? c.style.color : '';
-      const bg  = c.style ? c.style.backgroundColor : '';
+      // 남길 서식만 미리 챙겨둔다
+      const keep = {};
+      if (c.style) KEEP.forEach(p => {
+        const v = c.style.getPropertyValue(p);
+        if (v) keep[p] = v;
+      });
+      if (c.tagName === 'FONT' && c.getAttribute('color')) keep['color'] = c.getAttribute('color');
+
       Array.prototype.slice.call(c.attributes).forEach(a => c.removeAttribute(a.name));
-      if (col) c.style.color = col;
-      if (bg)  c.style.backgroundColor = bg;
+      Object.keys(keep).forEach(p => c.style.setProperty(p, keep[p]));
       walk(c);
     });
   })(box);
@@ -2112,8 +2124,29 @@ fmtbar.addEventListener('click', (e) => {
 function saveDesc(el){
   const sh = el.closest('.shot');
   if (!sh) return;
+  const k = sh.dataset.k;
+  const html = clean(el.innerHTML);
+
+  // 화면에 보이는 내용을 즉시 기억해 둔다 (다시 그려도 사라지지 않도록)
+  const x = shots.find(v => v._k === k);
+  if (x) x.desc = html;
+
   clearTimeout(el._t);
-  el._t = setTimeout(() => shotSave(sh.dataset.k, { desc: clean(el.innerHTML) }), 400);
+  el._t = setTimeout(() => {
+    if (remoteShots) remoteShots.set(k, { desc: html }).catch(() => {});
+  }, 500);
+}
+/* 칸을 떠날 때 남은 저장을 즉시 끝낸다 */
+function flushDesc(el){
+  if (!el || !el._t) return;
+  clearTimeout(el._t);
+  el._t = null;
+  const sh = el.closest('.shot');
+  if (!sh) return;
+  const html = clean(el.innerHTML);
+  const x = shots.find(v => v._k === sh.dataset.k);
+  if (x) x.desc = html;
+  if (remoteShots) remoteShots.set(sh.dataset.k, { desc: html }).catch(() => {});
 }
 shotsEl.addEventListener('input', (e) => {
   const el = e.target.closest('.desc');
