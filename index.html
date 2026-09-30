@@ -778,6 +778,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <button class="kbtn on" data-k="cf" type="button">사업 홍보영상 <em>30초</em></button>
         <button class="kbtn" data-k="iv" type="button">인터뷰 &amp; INFO <em>5분</em></button>
       </div>
+      <button class="btn" id="plotUndo" disabled>↩ 되돌리기</button>
+      <button class="btn" id="plotRedo" disabled>↪ 다시 실행</button>
       <button class="btn" id="plotPrint">🖨 인쇄</button>
     </div>
 
@@ -976,7 +978,7 @@ async function initFirebase(){
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
     const { getAuth, signInAnonymously } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
-    const { getDatabase, ref, onValue, update, push, remove } =
+    const { getDatabase, ref, onValue, update, set, push, remove } =
       await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js');
 
     const app = initializeApp(FIREBASE_CONFIG);
@@ -1014,7 +1016,8 @@ async function initFirebase(){
     remoteShots = {
       add:  (v) => push(shotRef, v),
       set:  (k, v) => update(ref(db, DB_PATH + '/shots/' + k), v),
-      del:  (k) => remove(ref(db, DB_PATH + '/shots/' + k))
+      del:  (k) => remove(ref(db, DB_PATH + '/shots/' + k)),
+      all:  (map) => set(shotRef, map)
     };
     onValue(shotRef, (snap) => {
       const v = snap.val() || {};
@@ -1426,8 +1429,15 @@ document.getElementById('redo').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   if (!(e.ctrlKey || e.metaKey)) return;
   const k = e.key.toLowerCase();
-  if (k === 'z' && !e.shiftKey){ e.preventDefault(); document.getElementById('undo').click(); }
-  else if (k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); document.getElementById('redo').click(); }
+  if (k !== 'z' && k !== 'y') return;
+  const t = e.target;
+  if (t && t.matches && t.matches('input, textarea, [contenteditable="true"]')) return;  // 글자 편집은 브라우저에 맡김
+  const plot = !document.getElementById('panel-plot').hidden;
+  const id = (k === 'y' || e.shiftKey)
+    ? (plot ? 'plotRedo' : 'redo')
+    : (plot ? 'plotUndo' : 'undo');
+  const b = document.getElementById(id);
+  if (b && !b.disabled){ e.preventDefault(); b.click(); }
 });
 document.getElementById('print').addEventListener('click', () => window.print());
 
@@ -1647,11 +1657,25 @@ function shotSave(k, patch){
   if (remoteShots) remoteShots.set(k, patch).catch(() => {});
 }
 
-shotsEl.addEventListener('focusin', () => { editing = true; });
-shotsEl.addEventListener('focusout', () => { editing = false; });
+let shotPending = null;
+shotsEl.addEventListener('focusin', (e) => {
+  editing = true;
+  shotPending = e.target.matches('input, .desc') ? shotMap(shots) : null;
+});
+function commitPending(){
+  if (!shotPending) return;
+  shotPast.push(shotPending);
+  if (shotPast.length > 30) shotPast.shift();
+  shotFuture.length = 0;
+  shotPending = null;
+  updShotBtns();
+}
+shotsEl.addEventListener('focusout', () => { editing = false; shotPending = null; });
 shotsEl.addEventListener('input', (e) => {
   const f = e.target.dataset.f;
-  if (!f || f === 'desc') return;
+  if (!f) return;
+  commitPending();
+  if (f === 'desc') return;
   const sh = e.target.closest('.shot');
   const k = sh.dataset.k;
   shotSave(k, { [f]: e.target.value });
@@ -1708,6 +1732,7 @@ shotsEl.addEventListener('click', (e) => {
 
   if (e.target.closest('.sc-del .x')){
     if (!confirm('이 컷을 삭제할까요?')) return;
+    shotSnap();
     shots = shots.filter(v => v._k !== k);
     if (remoteShots) remoteShots.del(k).catch(() => {});
     renderShots();
@@ -1822,6 +1847,7 @@ function shrink(file){
 function addImg(k, data){
   const x = shots.find(v => v._k === k);
   if (!x) return;
+  shotSnap();
   const list = imgsOf(x).concat(data).slice(0, MAX_IMG);
   x.imgs = list; x.img = '';
   shotSave(k, { imgs: list, img: '' });
@@ -1830,6 +1856,7 @@ function addImg(k, data){
 function delImg(k, i){
   const x = shots.find(v => v._k === k);
   if (!x) return;
+  shotSnap();
   const list = imgsOf(x);
   list.splice(i, 1);
   x.imgs = list; x.img = '';
@@ -1914,6 +1941,7 @@ shotsEl.addEventListener('drop', (e) => {
   const from = list.findIndex(x => x._k === shotFrom);
   const to = list.findIndex(x => x._k === sh.dataset.k);
   if (from < 0 || to < 0 || from === to){ shotFrom = null; return; }
+  shotSnap();
   const [mv] = list.splice(from, 1);
   list.splice(to, 0, mv);
   list.forEach((x, i) => { x.ord = i; if (remoteShots) remoteShots.set(x._k, { ord: i }).catch(() => {}); });
@@ -1933,6 +1961,7 @@ document.getElementById('shotAdd').addEventListener('click', () => {
   const list = shots.filter(x => (x.kind || 'cf') === kind && (x.plan || 'A') === plan);
   const last = list[list.length - 1];
   const start = last ? (tcSec(last.te) != null ? secTc(tcSec(last.te)) : '') : '00:00';
+  shotSnap();
   const item = { kind, plan, ts: start, te: '', title: '', desc: '', ref: '', at: '', imgs: [], ord: shots.length };
   if (remoteShots){
     remoteShots.add(item).then(() => {
@@ -1963,6 +1992,50 @@ document.getElementById('kinds').addEventListener('click', (e) => {
 });
 document.getElementById('plotPrint').addEventListener('click', () => window.print());
 
+
+
+/* ───────── 컷 구성표 되돌리기 ───────── */
+const shotPast = [], shotFuture = [];
+function shotMap(list){
+  const m = {};
+  (list || []).forEach((x, i) => {
+    const o = Object.assign({}, x);
+    delete o._k;
+    o.ord = i;
+    m[x._k] = o;
+  });
+  return m;
+}
+function updShotBtns(){
+  const u = document.getElementById('plotUndo');
+  const r = document.getElementById('plotRedo');
+  if (u) u.disabled = !shotPast.length;
+  if (r) r.disabled = !shotFuture.length;
+}
+function shotSnap(){
+  shotPast.push(shotMap(shots));
+  if (shotPast.length > 30) shotPast.shift();
+  shotFuture.length = 0;
+  updShotBtns();
+}
+function applyShotMap(map){
+  shots = Object.keys(map || {}).map(k => Object.assign({ _k: k }, map[k]))
+               .sort((a, b) => (a.ord || 0) - (b.ord || 0));
+  if (remoteShots) remoteShots.all(map).catch(() => {});
+  renderShots();
+}
+document.getElementById('plotUndo').addEventListener('click', () => {
+  if (!shotPast.length) return;
+  shotFuture.push(shotMap(shots));
+  applyShotMap(shotPast.pop());
+  updShotBtns();
+});
+document.getElementById('plotRedo').addEventListener('click', () => {
+  if (!shotFuture.length) return;
+  shotPast.push(shotMap(shots));
+  applyShotMap(shotFuture.pop());
+  updShotBtns();
+});
 
 /* ───────── 컷 설명 서식 ───────── */
 const ALLOW = { B:1, STRONG:1, I:1, EM:1, U:1, SPAN:1, BR:1, DIV:1, P:1, FONT:1 };
