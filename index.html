@@ -287,6 +287,68 @@ table.grid li:last-child{margin-bottom:0;}
 tr.full .cell[data-f="task"]{color:var(--soft);text-decoration:line-through;}
 tr.full .prog .pct{color:#1B7F5A;}
 
+
+/* ═════════ 톤앤매너 무드보드 ═════════ */
+.mcount{font-size:12.5px;font-weight:800;color:var(--blue);font-feature-settings:"tnum";}
+.mood{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  min-height:120px;border-radius:12px;padding:2px;
+}
+.mood.on{background:var(--tint);box-shadow:0 0 0 2px var(--peri);}
+.mood .none{
+  grid-column:1/-1;display:flex;align-items:center;justify-content:center;
+  border:1.5px dashed var(--line);border-radius:12px;background:var(--card);
+  padding:44px 20px;text-align:center;font-size:13.5px;color:var(--soft);line-height:1.8;
+}
+.mood .none b{display:block;font-size:22px;color:#C8CEDD;margin-bottom:4px;}
+
+.mcard{
+  background:var(--card);border:1px solid var(--line);border-radius:11px;
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.mcard.dragging{opacity:.4;}
+.mcard.over{box-shadow:0 0 0 2px var(--blue);}
+.mood{--ar:4/3;}
+.mcard .pic{position:relative;aspect-ratio:var(--ar);background:var(--paper);cursor:pointer;}
+.mcard .pic img{width:100%;height:100%;object-fit:cover;display:block;}
+img.loading{opacity:0;}
+img{transition:opacity .2s ease;}
+.mcard .pic::after{content:"";position:absolute;inset:0;background:rgba(9,21,64,0);transition:background .15s ease;}
+.mcard .pic:hover::after{background:rgba(9,21,64,.2);}
+.mcard .pic .zoom{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  color:#fff;font-size:17px;opacity:0;transition:opacity .15s ease;pointer-events:none;
+}
+.mcard .pic:hover .zoom{opacity:1;}
+.mcard .rm{
+  position:absolute;top:5px;right:5px;z-index:3;appearance:none;border:0;cursor:pointer;
+  background:rgba(9,21,64,.75);color:#fff;border-radius:4px;font-size:14px;
+  width:22px;height:22px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;
+}
+.mcard .rm:hover{background:#C0392B;}
+.mcard .hdl{
+  position:absolute;top:5px;left:5px;z-index:3;cursor:grab;user-select:none;
+  background:rgba(9,21,64,.6);color:#fff;border-radius:4px;
+  font-size:12px;padding:2px 6px;opacity:0;transition:opacity .15s ease;
+}
+.mcard:hover .hdl{opacity:1;}
+.mcard .hdl:active{cursor:grabbing;}
+.mcard .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;}
+.mcard .lab{
+  width:100%;border:0;background:transparent;font:inherit;outline:none;
+  font-size:14px;font-weight:800;color:var(--navy);letter-spacing:-0.025em;padding:0;
+}
+.mcard .mnote{
+  width:100%;border:0;background:transparent;font:inherit;outline:none;
+  font-size:12.5px;color:var(--soft);line-height:1.55;padding:0;
+}
+.mcard .lab:focus,.mcard .mnote:focus{background:var(--tint);border-radius:4px;}
+.mcard .lab::placeholder,.mcard .mnote::placeholder{color:#C8CEDD;font-weight:500;}
+
+@media (max-width:1240px){ .mood{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:900px){ .mood{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .mood{grid-template-columns:1fr;} }
+
 /* ═════════ 알림 ═════════ */
 .scrim{position:fixed;inset:0;background:rgba(9,21,64,.35);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .scrim.open{opacity:1;pointer-events:auto;}
@@ -557,6 +619,18 @@ tr.full .prog .pct{color:#1B7F5A;}
   }
   .pconcept textarea{font-size:10pt !important;min-height:0 !important;}
   .pconcept:has(textarea:placeholder-shown){display:none !important;}
+
+  /* 톤앤매너 */
+  .mood{grid-template-columns:repeat(3,1fr) !important;gap:5mm !important;
+        min-height:0 !important;box-shadow:none !important;background:transparent !important;}
+  .mood .none{display:none !important;}
+  .mcard{break-inside:avoid;border-radius:5px;}
+  .mcard .rm,.mcard .hdl,.mcard .zoom{display:none !important;}
+  .mcard .pic::after{display:none !important;}
+  .mcard .bd{padding:7px 9px 9px !important;}
+  .mcard .lab{font-size:10pt !important;}
+  .mcard .mnote{font-size:8.5pt !important;}
+  .mcard input::placeholder{color:transparent !important;}
   .pbtn.on::after{content:" 구성";}
 
   /* 컷 카드 — 종이용 세로 배치 */
@@ -923,6 +997,27 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <div class="shots" id="shots"></div>
     </section>
 
+    <section class="blk">
+      <div class="hd">
+        <h2>디자인 레퍼런스</h2>
+        <p class="kicker">이미지를 끌어다 놓으면 바로 올라갑니다</p>
+        <div class="right"><span class="mcount" id="moodCount"></span></div>
+      </div>
+
+      <div class="plans" id="moodCats"></div>
+
+      <div class="pconcept">
+        <span class="lb">방향</span>
+        <textarea id="moodDesc" rows="2" maxlength="500" placeholder=""></textarea>
+      </div>
+
+      <div class="tools">
+        <button class="btn pri" id="moodAdd">+ 레퍼런스 추가</button>
+      </div>
+
+      <div class="mood" id="mood"></div>
+    </section>
+
   </div>
 </main>
 
@@ -1030,8 +1125,9 @@ const DEFAULT_STATE = {
 
 let state = clone(DEFAULT_STATE);
 let notes = [];
-let remoteSave = null, remoteNotes = null, remoteShots = null, remoteTitles = null;
-let shots = [], kind = 'cf', plan = 'A', titles = {}, plans = ['A', 'B'];
+let remoteSave = null, remoteNotes = null, remoteShots = null, remoteTitles = null, remoteMood = null, remoteBlobs = null;
+let fbDb = null, fbRef = null, fbGet = null;
+let shots = [], mood = [], kind = 'cf', plan = 'A', titles = {}, plans = ['A', 'B'];
 let editing = false, selected = null, editKey = null, openCol = null;
 const myId = getMyId();
 
@@ -1099,7 +1195,7 @@ async function initFirebase(){
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
     const { getAuth, signInAnonymously } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
-    const { getDatabase, ref, onValue, update, set, push, remove } =
+    const { getDatabase, ref, onValue, get, update, set, push, remove } =
       await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js');
 
     const app = initializeApp(FIREBASE_CONFIG);
@@ -1118,13 +1214,30 @@ async function initFirebase(){
     }
 
     const db = getDatabase(app);
+    fbDb = db; fbRef = ref; fbGet = get;
     const node = ref(db, DB_PATH);
     const noteRef = ref(db, DB_PATH + '/notes');
     const shotRef = ref(db, DB_PATH + '/shots');
     const titleRef = ref(db, DB_PATH + '/titles');
+    const moodRef  = ref(db, DB_PATH + '/mood');
+    remoteBlobs = { put: (id, v) => set(ref(db, DB_PATH + '/blobs/' + id), v) };
 
     remoteSave = (s) => update(node, { phases: s.phases, tasks: s.tasks, at: Date.now() });
     remoteTitles = { set: (v) => update(titleRef, v) };
+    remoteMood = {
+      add: (v) => push(moodRef, v),
+      set: (k, v) => update(ref(db, DB_PATH + '/mood/' + k), v),
+      del: (k) => remove(ref(db, DB_PATH + '/mood/' + k)),
+      all: (map) => set(moodRef, map)
+    };
+    onValue(moodRef, (snap) => {
+      const v = snap.val() || {};
+      const busy = document.activeElement && document.activeElement.closest &&
+                   document.activeElement.closest('#mood');
+      mood = Object.keys(v).map(k => Object.assign({ _k: k }, v[k]))
+                  .sort((a, b) => (a.ord || 0) - (b.ord || 0));
+      if (!busy) renderMood();
+    });
     onValue(titleRef, (snap) => {
       titles = snap.val() || {};
       if (Array.isArray(titles.plans) && titles.plans.length) plans = titles.plans;
@@ -1133,6 +1246,7 @@ async function initFirebase(){
       const el = document.getElementById('vtitle');
       if (el && document.activeElement !== el) el.value = titles[kind] || '';
       syncPlanDesc();
+      syncMoodDesc();
     });
 
     remoteShots = {
@@ -1749,6 +1863,7 @@ function renderShots(){
       <div class="sc-del"><button class="x" type="button" title="컷 삭제">×</button></div>
     </div>`;
   }).join('');
+  fillBlobs();
 }
 
 function renderPlans(){
@@ -1780,22 +1895,22 @@ function shotSave(k, patch){
   if (remoteShots) remoteShots.set(k, patch).catch(() => {});
 }
 
-let shotPending = null;
+let histPending = null;
 shotsEl.addEventListener('focusin', (e) => {
   editing = true;
-  shotPending = e.target.matches('input, .desc') ? shotMap(shots) : null;
+  histPending = e.target.matches('input, .desc') ? snapObj() : null;
 });
 function commitPending(){
-  if (!shotPending) return;
-  shotPast.push(shotPending);
+  if (!histPending) return;
+  shotPast.push(histPending);
   if (shotPast.length > 30) shotPast.shift();
   shotFuture.length = 0;
-  shotPending = null;
+  histPending = null;
   updShotBtns();
 }
 shotsEl.addEventListener('focusout', (e) => {
   editing = false;
-  shotPending = null;
+  histPending = null;
   const d = e.target.closest ? e.target.closest('.desc') : null;
   if (d) flushDesc(d);
 });
@@ -1860,7 +1975,7 @@ shotsEl.addEventListener('click', (e) => {
 
   if (e.target.closest('.sc-del .x')){
     if (!confirm('이 컷을 삭제할까요?')) return;
-    shotSnap();
+    histSnap();
     shots = shots.filter(v => v._k !== k);
     if (remoteShots) remoteShots.del(k).catch(() => {});
     renderShots();
@@ -1910,7 +2025,7 @@ function imgCell(x){
   }
   return `<div class="drop n${list.length}" data-k="${esc(x._k)}">
     ${list.map((u, i) => `<div class="im" data-i="${i}">
-      <img src="${u}" alt="참고 이미지 ${i + 1}" loading="lazy">
+      <img data-blob="${esc(u)}" alt="참고 이미지 ${i + 1}">
       <span class="zoom">⤢</span>
       <button class="rm" type="button" title="이미지 삭제">×</button>
     </div>`).join('')}
@@ -1975,16 +2090,20 @@ function shrink(file){
 function addImg(k, data){
   const x = shots.find(v => v._k === k);
   if (!x) return;
-  shotSnap();
-  const list = imgsOf(x).concat(data).slice(0, MAX_IMG);
-  x.imgs = list; x.img = '';
-  shotSave(k, { imgs: list, img: '' });
-  renderShots();
+  histSnap();
+  putBlob(data).then(id => {
+    const y = shots.find(v => v._k === k);
+    if (!y) return;
+    const list = imgsOf(y).concat(id).slice(0, MAX_IMG);
+    y.imgs = list; y.img = '';
+    shotSave(k, { imgs: list, img: '' });
+    renderShots();
+  });
 }
 function delImg(k, i){
   const x = shots.find(v => v._k === k);
   if (!x) return;
-  shotSnap();
+  histSnap();
   const list = imgsOf(x);
   list.splice(i, 1);
   x.imgs = list; x.img = '';
@@ -2003,7 +2122,9 @@ function openLb(list, i){
   showLb();
 }
 function showLb(){
-  lbImg.src = lbList[lbAt] || '';
+  const cur = lbList[lbAt] || '';
+  lbImg.removeAttribute('src');
+  getBlob(cur).then(src => { if (lbList[lbAt] === cur) lbImg.src = src; });
   lbPg.textContent = lbList.length > 1 ? (lbAt + 1) + ' / ' + lbList.length : '';
   lb.querySelectorAll('.nav').forEach(b => { b.style.display = lbList.length > 1 ? '' : 'none'; });
 }
@@ -2069,7 +2190,7 @@ shotsEl.addEventListener('drop', (e) => {
   const from = list.findIndex(x => x._k === shotFrom);
   const to = list.findIndex(x => x._k === sh.dataset.k);
   if (from < 0 || to < 0 || from === to){ shotFrom = null; return; }
-  shotSnap();
+  histSnap();
   const [mv] = list.splice(from, 1);
   list.splice(to, 0, mv);
   list.forEach((x, i) => { x.ord = i; if (remoteShots) remoteShots.set(x._k, { ord: i }).catch(() => {}); });
@@ -2089,7 +2210,7 @@ document.getElementById('shotAdd').addEventListener('click', () => {
   const list = shots.filter(x => (x.kind || 'cf') === kind && (x.plan || 'A') === plan);
   const last = list[list.length - 1];
   const start = last ? (tcSec(last.te) != null ? secTc(tcSec(last.te)) : '') : '00:00';
-  shotSnap();
+  histSnap();
   const item = { kind, plan, ts: start, te: '', title: '', desc: '', ref: '', at: '', imgs: [], ord: shots.length };
   if (remoteShots){
     remoteShots.add(item).then(() => {
@@ -2137,9 +2258,233 @@ document.getElementById('plotPrint').addEventListener('click', () => window.prin
 
 
 
-/* ───────── 컷 구성표 되돌리기 ───────── */
+
+
+/* ───────── 이미지 저장소 (본문과 분리) ───────── */
+const blobCache = new Map();
+const blobBusy  = new Map();
+
+function isData(v){ return typeof v === 'string' && v.slice(0, 5) === 'data:'; }
+
+function getBlob(id){
+  if (!id) return Promise.resolve('');
+  if (isData(id)) return Promise.resolve(id);          // 예전 방식 그대로 인식
+  if (blobCache.has(id)) return Promise.resolve(blobCache.get(id));
+  if (blobBusy.has(id)) return blobBusy.get(id);
+  if (!fbGet || !fbDb) return Promise.resolve('');
+  const p = fbGet(fbRef(fbDb, DB_PATH + '/blobs/' + id))
+    .then(sn => {
+      const v = sn.val() || '';
+      blobCache.set(id, v);
+      blobBusy.delete(id);
+      return v;
+    })
+    .catch(() => { blobBusy.delete(id); return ''; });
+  blobBusy.set(id, p);
+  return p;
+}
+
+function putBlob(data){
+  const id = 'b' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  blobCache.set(id, data);
+  if (!remoteBlobs) return Promise.resolve(id);
+  return remoteBlobs.put(id, data).then(() => id).catch(() => id);
+}
+
+/* 화면에 자리만 잡아둔 이미지를 뒤늦게 채운다 */
+function fillBlobs(){
+  document.querySelectorAll('img[data-blob]').forEach(img => {
+    const id = img.getAttribute('data-blob');
+    img.removeAttribute('data-blob');
+    if (!id) return;
+    if (isData(id)){ img.src = id; return; }
+    if (blobCache.has(id)){ img.src = blobCache.get(id); return; }
+    img.classList.add('loading');
+    getBlob(id).then(src => {
+      img.classList.remove('loading');
+      if (src) img.src = src;
+    });
+  });
+}
+
+/* ───────── 톤앤매너 무드보드 ───────── */
+const MCATS = [
+  { v:'tone',  t:'톤앤매너', ph:'색감, 촬영, 조명의 전반적인 방향을 적어주세요',      ar:'4/3'  },
+  { v:'thumb', t:'썸네일',   ph:'제목 배치, 서체, 인물 구도 등 썸네일 방향을 적어주세요', ar:'16/9' }
+];
+let moodCat = 'tone';
+const moodEl = document.getElementById('mood');
+const moodDescEl = document.getElementById('moodDesc');
+
+function renderMood(){
+  const cur = MCATS.find(c => c.v === moodCat) || MCATS[0];
+  document.getElementById('moodCats').innerHTML = MCATS.map(c =>
+    `<button class="pbtn${c.v === moodCat ? ' on' : ''}" data-c="${c.v}" type="button">${c.t}</button>`).join('');
+  moodDescEl.placeholder = cur.ph;
+  moodEl.style.setProperty('--ar', cur.ar);
+  syncMoodDesc();
+
+  const list = mood.filter(m => (m.cat || 'tone') === moodCat);
+  document.getElementById('moodCount').textContent = list.length ? list.length + '장' : '';
+  document.getElementById('moodAdd').textContent = '+ ' + cur.t + ' 추가';
+
+  if (!list.length){
+    moodEl.innerHTML = `<div class="none"><b>＋</b>이미지를 끌어다 놓거나<br>‘${cur.t} 추가’를 눌러 시작하세요</div>`;
+    return;
+  }
+  moodEl.innerHTML = list.map((m, i) => `<div class="mcard" data-k="${esc(m._k)}" data-i="${i}">
+    <div class="pic">
+      <img data-blob="${esc(m.img)}" alt="레퍼런스 ${i + 1}">
+      <span class="zoom">⤢</span>
+      <span class="hdl" title="끌어서 순서 변경">⠿</span>
+      <button class="rm" type="button" title="삭제">×</button>
+    </div>
+    <div class="bd">
+      <input class="lab"  data-f="label" value="${esc(m.label)}" placeholder="분류 · 제목">
+      <input class="mnote" data-f="memo" value="${esc(m.memo)}" placeholder="한 줄 메모">
+    </div>
+  </div>`).join('');
+  fillBlobs();
+}
+
+function moodPick(){
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*'; inp.multiple = true;
+  inp.onchange = () => moodLoad(inp.files);
+  inp.click();
+}
+function moodLoad(files){
+  const pick = Array.prototype.slice.call(files || []).filter(f => f.type.startsWith('image/'));
+  if (!pick.length) return;
+  if (mood.length + pick.length > 40){ alert('레퍼런스는 40장까지 넣을 수 있습니다.'); return; }
+  histSnap();
+  pick.reduce((chain, f) => chain
+    .then(() => shrink(f))
+    .then(d => d ? putBlob(d) : null)
+    .then(id => {
+      if (!id) return;
+      const item = { img: id, label: '', memo: '', cat: moodCat, ord: mood.length + 1 };
+      if (remoteMood) return remoteMood.add(item);
+      mood.push(Object.assign({ _k: 'm' + Date.now() + Math.random().toString(36).slice(2, 6) }, item));
+      renderMood();
+    }), Promise.resolve());
+}
+
+moodEl.addEventListener('input', (e) => {
+  const f = e.target.dataset.f;
+  if (!f) return;
+  commitPending();
+  const k = e.target.closest('.mcard').dataset.k;
+  const m = mood.find(v => v._k === k);
+  if (m) m[f] = e.target.value;
+  clearTimeout(e.target._t);
+  e.target._t = setTimeout(() => {
+    if (remoteMood) remoteMood.set(k, { [f]: e.target.value }).catch(() => {});
+  }, 450);
+});
+moodEl.addEventListener('focusin', (e) => {
+  if (e.target.matches('input')) histPending = snapObj();
+});
+moodEl.addEventListener('click', (e) => {
+  const card = e.target.closest('.mcard');
+  if (!card) return;
+  const k = card.dataset.k;
+  if (e.target.closest('.rm')){
+    if (!confirm('이 레퍼런스를 삭제할까요?')) return;
+    histSnap();
+    mood = mood.filter(v => v._k !== k);
+    if (remoteMood) remoteMood.del(k).catch(() => {});
+    renderMood();
+    return;
+  }
+  if (e.target.closest('.pic'))
+    openLb(mood.filter(v => (v.cat || 'tone') === moodCat).map(v => v.img), +card.dataset.i);
+});
+
+/* 끌어놓기 */
+moodEl.addEventListener('dragover', (e) => {
+  if (moodFrom){
+    const c = e.target.closest('.mcard');
+    if (!c) return;
+    e.preventDefault();
+    moodEl.querySelectorAll('.mcard.over').forEach(x => x.classList.remove('over'));
+    c.classList.add('over');
+    return;
+  }
+  e.preventDefault();
+  moodEl.classList.add('on');
+});
+moodEl.addEventListener('dragleave', (e) => {
+  if (!moodEl.contains(e.relatedTarget)) moodEl.classList.remove('on');
+});
+moodEl.addEventListener('drop', (e) => {
+  e.preventDefault();
+  moodEl.classList.remove('on');
+  moodEl.querySelectorAll('.mcard.over,.mcard.dragging').forEach(x => x.classList.remove('over', 'dragging'));
+  if (moodFrom){
+    const c = e.target.closest('.mcard');
+    if (c && c.dataset.k !== moodFrom){
+      histSnap();
+      const from = mood.findIndex(v => v._k === moodFrom);
+      const to = mood.findIndex(v => v._k === c.dataset.k);
+      const [mv] = mood.splice(from, 1);
+      mood.splice(to, 0, mv);
+      mood.forEach((v, i) => { v.ord = i; if (remoteMood) remoteMood.set(v._k, { ord: i }).catch(() => {}); });
+      renderMood();
+    }
+    moodFrom = null;
+    return;
+  }
+  if (e.dataTransfer.files && e.dataTransfer.files.length) moodLoad(e.dataTransfer.files);
+});
+let moodFrom = null;
+moodEl.addEventListener('mousedown', (e) => {
+  const c = e.target.closest('.mcard');
+  if (c) c.draggable = !!e.target.closest('.hdl');
+});
+moodEl.addEventListener('mouseup', () => {
+  moodEl.querySelectorAll('.mcard').forEach(c => { c.draggable = false; });
+});
+moodEl.addEventListener('dragstart', (e) => {
+  const c = e.target.closest('.mcard');
+  if (!c || !c.draggable) return;
+  moodFrom = c.dataset.k;
+  c.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+});
+moodEl.addEventListener('dragend', () => {
+  moodEl.querySelectorAll('.mcard').forEach(c => {
+    c.classList.remove('over', 'dragging'); c.draggable = false;
+  });
+  moodFrom = null;
+});
+
+document.getElementById('moodAdd').addEventListener('click', moodPick);
+document.getElementById('moodCats').addEventListener('click', (e) => {
+  const b = e.target.closest('.pbtn');
+  if (!b || !b.dataset.c) return;
+  moodCat = b.dataset.c;
+  renderMood();
+});
+
+/* 전체 방향 메모 */
+function mkey(){ return 'mood_' + moodCat; }
+moodDescEl.addEventListener('input', () => {
+  const k = mkey();
+  titles[k] = moodDescEl.value;
+  clearTimeout(moodDescEl._t);
+  moodDescEl._t = setTimeout(() => {
+    if (remoteTitles) remoteTitles.set({ [k]: moodDescEl.value }).catch(() => {});
+  }, 450);
+});
+function syncMoodDesc(){
+  if (document.activeElement !== moodDescEl)
+    moodDescEl.value = titles[mkey()] || titles.mood || '';
+}
+
+/* ───────── 영상 기획 되돌리기 (컷 + 레퍼런스) ───────── */
 const shotPast = [], shotFuture = [];
-function shotMap(list){
+function toMap(list){
   const m = {};
   (list || []).forEach((x, i) => {
     const o = Object.assign({}, x);
@@ -2149,34 +2494,39 @@ function shotMap(list){
   });
   return m;
 }
+function snapObj(){ return { shots: toMap(shots), mood: toMap(mood) }; }
 function updShotBtns(){
   const u = document.getElementById('plotUndo');
   const r = document.getElementById('plotRedo');
   if (u) u.disabled = !shotPast.length;
   if (r) r.disabled = !shotFuture.length;
 }
-function shotSnap(){
-  shotPast.push(shotMap(shots));
+function histSnap(){
+  shotPast.push(snapObj());
   if (shotPast.length > 30) shotPast.shift();
   shotFuture.length = 0;
   updShotBtns();
 }
-function applyShotMap(map){
-  shots = Object.keys(map || {}).map(k => Object.assign({ _k: k }, map[k]))
-               .sort((a, b) => (a.ord || 0) - (b.ord || 0));
-  if (remoteShots) remoteShots.all(map).catch(() => {});
-  renderShots();
+function applySnap(o){
+  const fromMap = (map) => Object.keys(map || {})
+    .map(k => Object.assign({ _k: k }, map[k]))
+    .sort((a, b) => (a.ord || 0) - (b.ord || 0));
+  shots = fromMap(o.shots);
+  mood  = fromMap(o.mood);
+  if (remoteShots) remoteShots.all(o.shots || {}).catch(() => {});
+  if (remoteMood)  remoteMood.all(o.mood || {}).catch(() => {});
+  renderShots(); renderMood();
 }
 document.getElementById('plotUndo').addEventListener('click', () => {
   if (!shotPast.length) return;
-  shotFuture.push(shotMap(shots));
-  applyShotMap(shotPast.pop());
+  shotFuture.push(snapObj());
+  applySnap(shotPast.pop());
   updShotBtns();
 });
 document.getElementById('plotRedo').addEventListener('click', () => {
   if (!shotFuture.length) return;
-  shotPast.push(shotMap(shots));
-  applyShotMap(shotFuture.pop());
+  shotPast.push(snapObj());
+  applySnap(shotFuture.pop());
   updShotBtns();
 });
 
@@ -2385,6 +2735,8 @@ await initFirebase();
 renderAll();
 renderNotes();
 renderShots();
+renderMood();
+syncMoodDesc();
 const hit = TABS.find(t => t.h === location.hash);
 if (hit) showTab(hit.b);
 </script>
