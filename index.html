@@ -350,47 +350,65 @@ img{transition:opacity .2s ease;}
 @media (max-width:560px){ .mood{grid-template-columns:1fr;} }
 
 
-/* 컬러 팔레트 카드 */
-.mcard .pic.pal{display:flex;gap:0;background:var(--card);}
-.pal .sw{position:relative;flex:1 1 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px;}
-.pal .sw input[type=color]{
-  position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;
-  border:0;padding:0;background:transparent;
+/* 컬러·설명 카드 머리 */
+.mtop{
+  display:flex;align-items:center;gap:7px;
+  background:var(--tint);border-bottom:1px solid var(--line);
+  padding:6px 8px 6px 9px;
 }
-.pal .hex{
-  font-size:9.5px;font-weight:800;letter-spacing:.02em;
-  pointer-events:none;font-feature-settings:"tnum";opacity:.85;
+.mtop .hdl{
+  position:static;background:transparent;opacity:.55;color:var(--soft);
+  cursor:grab;user-select:none;font-size:12px;padding:0;border-radius:0;
 }
-.pal .swx{
-  position:absolute;top:4px;left:50%;transform:translateX(-50%);
-  appearance:none;border:0;background:transparent;cursor:pointer;
-  font-size:13px;line-height:1;padding:2px 5px;opacity:0;transition:opacity .15s ease;
+.mtop .hdl:active{cursor:grabbing;}
+.mcard:hover .mtop .hdl{opacity:1;color:var(--peri);}
+.mtop .tt{font-size:11px;font-weight:800;color:var(--peri);letter-spacing:.03em;}
+.mtop .rm{
+  position:static;margin-left:auto;background:transparent;color:#C8CEDD;
+  width:18px;height:18px;font-size:14px;border-radius:4px;
 }
-.pal .sw:hover .swx{opacity:.75;}
-.pal .swx:hover{opacity:1 !important;}
+.mtop .rm:hover{background:#FDF0EE;color:#C0392B;}
+
+/* 컬러 팔레트 — 한 줄에 하나 */
+.pal{padding:7px 8px 8px;display:flex;flex-direction:column;gap:3px;}
+.swrow{display:flex;align-items:center;gap:6px;}
+.swrow .cdot{
+  flex:0 0 auto;width:22px;height:22px;padding:0;border:1px solid var(--line);
+  border-radius:5px;background:transparent;cursor:pointer;
+}
+.swrow .cdot::-webkit-color-swatch-wrapper{padding:2px;}
+.swrow .cdot::-webkit-color-swatch{border:0;border-radius:3px;}
+.swrow .chex{
+  flex:1;min-width:0;border:1px solid transparent;border-radius:5px;background:transparent;
+  font:inherit;font-size:12px;font-weight:700;color:var(--navy);
+  letter-spacing:.02em;font-feature-settings:"tnum";padding:3px 6px;outline:none;
+}
+.swrow .chex:hover{border-color:var(--line);}
+.swrow .chex:focus{border-color:var(--peri);background:var(--card);}
+.swrow .chex.bad{border-color:#C0392B;color:#C0392B;}
+.swrow .swx{
+  flex:0 0 auto;appearance:none;border:0;background:transparent;cursor:pointer;
+  color:#D8DEEC;font-size:14px;line-height:1;padding:2px 5px;border-radius:4px;
+  opacity:0;transition:opacity .15s ease;
+}
+.swrow:hover .swx{opacity:1;}
+.swrow .swx:hover{color:#C0392B;background:#FDF0EE;}
 .pal .swadd{
-  flex:0 0 32px;appearance:none;border:0;border-left:1px solid var(--line);
-  background:var(--paper);cursor:pointer;color:#C8CEDD;font-size:16px;font-weight:700;
+  margin-top:2px;appearance:none;border:1px dashed var(--line);border-radius:5px;
+  background:transparent;cursor:pointer;color:var(--soft);
+  font:inherit;font-size:11.5px;font-weight:700;padding:5px;
 }
-.pal .swadd:hover{background:var(--tint);color:var(--blue);}
+.pal .swadd:hover{border-color:var(--peri);color:var(--blue);background:var(--tint);}
 
 /* 설명 카드 */
-.mcard .pic.nt{background:var(--card);cursor:default;padding:14px 15px;overflow:auto;}
-.mcard .pic.nt::after{display:none !important;}
+.ntbox{padding:12px 14px;min-height:118px;display:flex;}
 .mcard .ntext{
-  width:100%;min-height:100%;outline:none;font-size:13px;line-height:1.7;
+  width:100%;outline:none;font-size:13px;line-height:1.7;
   color:var(--ink);overflow-wrap:anywhere;white-space:pre-wrap;
 }
 .mcard .ntext:empty::before{content:attr(data-ph);color:#C8CEDD;}
-.mcard.t-note .bd{border-top:1px solid var(--line);}
+.mcard.t-note .bd,.mcard.t-color .bd{border-top:1px solid var(--line);}
 .mcard.t-note .lab{font-size:13px;}
-
-/* 이미지가 아닌 카드는 손잡이·삭제 버튼을 잘 보이게 */
-.mcard.t-color .hdl,.mcard.t-note .hdl,
-.mcard.t-color .rm,.mcard.t-note .rm{background:rgba(9,21,64,.5);}
-.mcard.t-note .hdl,.mcard.t-note .rm{opacity:0;}
-.mcard.t-note:hover .hdl,.mcard.t-note:hover .rm{opacity:1;}
-.mcard.t-color .rm,.mcard.t-color .hdl{z-index:4;}
 
 /* ═════════ 알림 ═════════ */
 .scrim{position:fixed;inset:0;background:rgba(9,21,64,.35);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease;}
@@ -674,9 +692,10 @@ img{transition:opacity .2s ease;}
   .mcard .lab{font-size:10pt !important;}
   .mcard .mnote{font-size:8.5pt !important;}
   .mcard input::placeholder{color:transparent !important;}
-  .pal .swadd,.pal .swx{display:none !important;}
-  .pal .hex{font-size:7.5pt !important;}
-  .mcard .pic.nt{overflow:visible !important;}
+  .pal .swadd,.swrow .swx{display:none !important;}
+  .swrow .chex{font-size:8pt !important;border-color:transparent !important;}
+  .mtop .hdl,.mtop .rm{display:none !important;}
+  .ntbox{min-height:0 !important;padding:8px 10px !important;}
   .mcard .ntext{font-size:9pt !important;}
   .pbtn.on::after{content:" 구성";}
 
@@ -2388,19 +2407,26 @@ function renderMood(){
 
     if (t === 'color'){
       const cols = Array.isArray(m.cols) && m.cols.length ? m.cols : ['#091540'];
-      body = `<div class="pic pal">${head}
-        ${cols.map((c, ci) => `<div class="sw" style="background:${esc(c)}">
-            <input type="color" value="${esc(c)}" data-ci="${ci}" title="색 바꾸기">
-            <span class="hex" style="color:${inkOn(c)}">${esc(c).toUpperCase()}</span>
-            <button class="swx" type="button" data-ci="${ci}" title="색 빼기" style="color:${inkOn(c)}">×</button>
+      body = `<div class="mtop"><span class="hdl" title="끌어서 순서 변경">⠿</span>
+          <span class="tt">컬러</span>
+          <button class="rm" type="button" title="삭제">×</button></div>
+        <div class="pal">
+          ${cols.map((c, ci) => `<div class="swrow">
+            <input type="color" class="cdot" value="${esc(c)}" data-ci="${ci}" title="색 고르기">
+            <input type="text" class="chex" value="${esc(c).toUpperCase()}" data-ci="${ci}"
+                   maxlength="7" spellcheck="false" placeholder="#000000">
+            <button class="swx" type="button" data-ci="${ci}" title="빼기">×</button>
           </div>`).join('')}
-        ${cols.length < 6 ? '<button class="swadd" type="button" title="색 추가">＋</button>' : ''}
-      </div>`;
+          ${cols.length < 8 ? '<button class="swadd" type="button">＋ 색 추가</button>' : ''}
+        </div>`;
     } else if (t === 'note'){
-      body = `<div class="pic nt">${head}
-        <div class="ntext" data-rt contenteditable="true" role="textbox" aria-multiline="true"
-             data-ph="설명을 입력하세요">${descHtml(m.text)}</div>
-      </div>`;
+      body = `<div class="mtop"><span class="hdl" title="끌어서 순서 변경">⠿</span>
+          <span class="tt">설명</span>
+          <button class="rm" type="button" title="삭제">×</button></div>
+        <div class="ntbox">
+          <div class="ntext" data-rt contenteditable="true" role="textbox" aria-multiline="true"
+               data-ph="설명을 입력하세요">${descHtml(m.text)}</div>
+        </div>`;
     } else {
       body = `<div class="pic">${head}
         <img data-blob="${esc(m.img)}" alt="레퍼런스 ${i + 1}">
@@ -2486,6 +2512,7 @@ moodEl.addEventListener('click', (e) => {
     const m = mood.find(v => v._k === k);
     if (!m) return;
     histSnap();
+    if ((m.cols || []).length >= 8) return;
     const cols = (m.cols || []).concat('#7692FF');
     m.cols = cols;
     if (remoteMood) remoteMood.set(k, { cols }).catch(() => {});
@@ -2608,18 +2635,52 @@ document.getElementById('addNote').addEventListener('click', () => {
   moodNew({ type:'note', text:'' });
 });
 
-/* 색 바꾸기 · 빼기 · 더하기 */
-moodEl.addEventListener('change', (e) => {
-  const inp = e.target.closest('input[type=color]');
-  if (!inp) return;
-  const k = inp.closest('.mcard').dataset.k;
+/* 색상값 정리 (#fff, 1B2CC1 등도 인식) */
+function normHex(v){
+  let h = String(v == null ? '' : v).trim().replace(/^#/, '').toUpperCase();
+  if (/^[0-9A-F]{3}$/.test(h)) h = h.split('').map(c => c + c).join('');
+  return /^[0-9A-F]{6}$/.test(h) ? '#' + h : null;
+}
+function setCol(card, ci, hex){
+  const k = card.dataset.k;
   const m = mood.find(v => v._k === k);
   if (!m) return;
   const cols = (m.cols || []).slice();
-  cols[+inp.dataset.ci] = inp.value;
+  cols[ci] = hex;
   m.cols = cols;
-  if (remoteMood) remoteMood.set(k, { cols }).catch(() => {});
-  renderMood();
+  clearTimeout(card._ct);
+  card._ct = setTimeout(() => {
+    if (remoteMood) remoteMood.set(k, { cols: m.cols }).catch(() => {});
+  }, 400);
+}
+
+/* 색 고르개로 바꿀 때 */
+moodEl.addEventListener('input', (e) => {
+  const dot = e.target.closest('input.cdot');
+  if (dot){
+    const row = dot.closest('.swrow');
+    const hex = dot.value.toUpperCase();
+    row.querySelector('.chex').value = hex;
+    setCol(dot.closest('.mcard'), +dot.dataset.ci, hex);
+    return;
+  }
+  const hx = e.target.closest('input.chex');
+  if (hx){
+    const ok = normHex(hx.value);
+    hx.classList.toggle('bad', !ok && hx.value.trim() !== '');
+    if (!ok) return;
+    hx.closest('.swrow').querySelector('.cdot').value = ok;
+    setCol(hx.closest('.mcard'), +hx.dataset.ci, ok);
+  }
+});
+/* 칸을 떠나면 #RRGGBB 형태로 정리 */
+moodEl.addEventListener('focusout', (e) => {
+  const hx = e.target.closest ? e.target.closest('input.chex') : null;
+  if (!hx) return;
+  const ok = normHex(hx.value);
+  const m = mood.find(v => v._k === hx.closest('.mcard').dataset.k);
+  hx.value = ok || ((m && m.cols && m.cols[+hx.dataset.ci]) || '#000000').toUpperCase();
+  hx.classList.remove('bad');
 });
 
 /* 설명 카드 글자 저장 */
