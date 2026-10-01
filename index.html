@@ -410,6 +410,67 @@ img{transition:opacity .2s ease;}
 .mcard.t-note .bd,.mcard.t-color .bd{border-top:1px solid var(--line);}
 .mcard.t-note .lab{font-size:13px;}
 
+
+/* ═════════ 기록 · 백업 ═════════ */
+.logBtn{
+  appearance:none;border:1px solid rgba(171,210,250,.4);cursor:pointer;font:inherit;
+  background:rgba(255,255,255,.08);color:#fff;margin-bottom:9px;
+  padding:9px 14px;border-radius:8px;font-size:13px;font-weight:700;
+  transition:background .18s ease;
+}
+.logBtn:hover{background:rgba(255,255,255,.18);}
+.tabbar .shell{gap:8px;}
+
+.lgtabs{display:flex;gap:4px;padding:10px 16px 0;background:var(--card);border-bottom:1px solid var(--line);flex:0 0 auto;}
+.lgt{
+  appearance:none;border:0;border-bottom:2px solid transparent;background:transparent;cursor:pointer;
+  font:inherit;font-size:13px;font-weight:800;color:var(--soft);padding:8px 10px;margin-bottom:-1px;
+}
+.lgt.on{color:var(--navy);border-bottom-color:var(--blue);}
+
+.lg{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);}
+.lg:last-child{border-bottom:0;}
+.lg .t{flex:0 0 74px;font-size:11.5px;color:var(--soft);font-feature-settings:"tnum";padding-top:1px;}
+.lg .w{flex:0 0 auto;max-width:96px;font-size:12.5px;font-weight:800;color:var(--navy);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lg .d{flex:1;font-size:12.5px;color:var(--ink);line-height:1.5;overflow-wrap:anywhere;}
+.lg.del .d{color:#C0392B;}
+.lg.sys .d{color:var(--blue);font-weight:700;}
+.lgday{font-size:11px;font-weight:800;color:var(--peri);margin:14px 0 2px;letter-spacing:.03em;}
+.lgday:first-child{margin-top:0;}
+.logp .list{background:var(--card);}
+
+.bk{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
+.bk .i{flex:1;min-width:0;}
+.bk .n{font-size:13.5px;font-weight:800;color:var(--navy);font-feature-settings:"tnum";}
+.bk .m{font-size:11.5px;color:var(--soft);margin-top:1px;}
+.bk .tag{font-size:10.5px;font-weight:800;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px;}
+.bk .tag.auto{background:var(--tint);color:var(--blue);}
+.bk .tag.hand{background:#E7F5EE;color:#1B7F5A;}
+.bk .tag.pre{background:#FBF0E1;color:#B4650F;}
+.bk .btn{padding:6px 12px;font-size:12px;}
+.lgfoot{flex:0 0 auto;border-top:1px solid var(--line);padding:12px 18px 14px;background:var(--card);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.lgfoot .tip{font-size:11px;color:var(--soft);line-height:1.5;flex:1;min-width:180px;}
+.warnbox{background:#FBF0E1;border:1px solid #EBD5B0;border-radius:8px;padding:11px 13px;
+  font-size:12.5px;color:#7A4708;line-height:1.6;}
+
+/* 작은 대화창 */
+.dlg{position:fixed;inset:0;z-index:260;background:rgba(9,21,64,.45);
+  display:flex;align-items:center;justify-content:center;padding:20px;}
+.dlg[hidden]{display:none;}
+.dbox{background:var(--card);border-radius:14px;padding:24px 24px 20px;width:min(380px,100%);
+  box-shadow:0 20px 60px rgba(9,21,64,.35);}
+.dbox h3{margin:0 0 6px;font-size:17px;font-weight:800;letter-spacing:-0.03em;color:var(--navy);}
+.dbox p{margin:0 0 14px;font-size:13px;color:var(--soft);line-height:1.6;}
+.dbox input{width:100%;border:1px solid var(--line);border-radius:8px;font:inherit;
+  font-size:14px;padding:10px 12px;outline:none;color:var(--ink);}
+.dbox input:focus{border-color:var(--peri);}
+.dbox .drow{display:flex;justify-content:flex-end;gap:8px;margin-top:14px;}
+.dbox .err{color:#C0392B;font-weight:700;}
+@media (max-width:900px){ .logBtn{padding:9px 10px;font-size:12px;} }
+@media print{ .logBtn,.logp,.dlg{display:none !important;} }
+
 /* ═════════ 알림 ═════════ */
 .scrim{position:fixed;inset:0;background:rgba(9,21,64,.35);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .scrim.open{opacity:1;pointer-events:auto;}
@@ -884,6 +945,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <button role="tab" id="tab-plot" aria-controls="panel-plot" aria-selected="false"><span class="n">3</span>영상 기획</button>
     </div>
     <span class="mini" id="miniTitle">홍보영상 제작 현황</span>
+    <button class="logBtn" id="logOpen" type="button" title="백업 · 복구">🗂 백업</button>
     <button class="memoBtn" id="memoOpen" type="button">
       <span>🔔 알림</span><span class="cnt" id="memoCnt" hidden>0</span>
     </button>
@@ -1008,7 +1070,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       </div>
       <div class="tools">
         <button class="btn pri" id="add">+ 업무 추가</button>
-        <button class="btn" id="reset">초기화</button>
       </div>
       <div class="tblwrap">
         <table class="tasks">
@@ -1126,6 +1187,34 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <span>↑</span>맨 위로
 </button>
 
+
+<!-- ═══════════ 기록 · 백업 ═══════════ -->
+<aside class="memo logp" id="logPanel" aria-label="기록">
+  <div class="mhd">
+    <h3>백업 · 복구</h3>
+    <button type="button" id="logClose" aria-label="닫기">×</button>
+  </div>
+  <div class="list" id="bakList"></div>
+  <div class="lgfoot" id="bakFoot">
+    <button class="btn" id="bakNow" type="button">지금 백업</button>
+    <span class="tip">3시간마다 자동 백업 · 백업은 누구도 지우거나 고칠 수 없습니다</span>
+  </div>
+</aside>
+
+
+<!-- 비밀번호 -->
+<div class="dlg" id="pwDlg" hidden>
+  <div class="dbox">
+    <h3>복구 비밀번호</h3>
+    <p id="pwMsg"></p>
+    <input id="pwIn" type="password" placeholder="비밀번호" autocomplete="off">
+    <div class="drow">
+      <button class="btn" id="pwCancel" type="button">취소</button>
+      <button class="btn pri" id="pwOk" type="button">복구</button>
+    </div>
+  </div>
+</div>
+
 <div id="colmenu" hidden></div>
 <div class="scrim" id="scrim"></div>
 <aside class="memo" id="memo" aria-label="알림">
@@ -1159,7 +1248,10 @@ const FIREBASE_CONFIG = {
   databaseURL: "https://gabwoo-contents-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId:   "gabwoo-contents"
 };
-const DB_PATH = "gabwoo-k7m9x2/koita2026";
+const DB_PATH  = "gabwoo-k7m9x2/koita2026";
+const BAK_PATH = "koita2026_backup";     // 백업 본문 (쓰기만 가능)
+const IDX_PATH = "koita2026_bindex";     // 백업 목록 (쓰기만 가능)
+const LOG_PATH = "koita2026_log";        // 수정 기록 (쓰기만 가능)
 /* ══════════════════════════════════════════════════════ */
 
 const PROG = ['#EBEFF8', '#ABD2FA', '#7692FF', '#3B4FD4', '#1B2CC1', '#091540'];  // 0~5단계
@@ -1195,6 +1287,8 @@ let state = clone(DEFAULT_STATE);
 let notes = [];
 let remoteSave = null, remoteNotes = null, remoteShots = null, remoteTitles = null, remoteMood = null, remoteBlobs = null;
 let fbDb = null, fbRef = null, fbGet = null;
+let remoteLog = null, remoteBackup = null;
+let logs = [], baks = [], bakOk = false;
 let shots = [], mood = [], kind = 'cf', plan = 'A', titles = {}, plans = ['A', 'B'];
 let editing = false, selected = null, editKey = null, openCol = null;
 const myId = getMyId();
@@ -1263,7 +1357,7 @@ async function initFirebase(){
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
     const { getAuth, signInAnonymously } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
-    const { getDatabase, ref, onValue, get, update, set, push, remove } =
+    const { getDatabase, ref, onValue, get, update, set, push, remove, query, limitToLast } =
       await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js');
 
     const app = initializeApp(FIREBASE_CONFIG);
@@ -1289,6 +1383,29 @@ async function initFirebase(){
     const titleRef = ref(db, DB_PATH + '/titles');
     const moodRef  = ref(db, DB_PATH + '/mood');
     remoteBlobs = { put: (id, v) => set(ref(db, DB_PATH + '/blobs/' + id), v) };
+
+    /* 백업 (쓰기만 가능, 수정·삭제 불가 구역) */
+
+    remoteBackup = {
+      put:   (slot, data, meta) => set(ref(db, BAK_PATH + '/' + slot), data)
+                                     .then(() => set(ref(db, IDX_PATH + '/' + slot), meta)),
+      get:   (slot) => get(ref(db, BAK_PATH + '/' + slot)).then(sn => sn.val()),
+      child: (name) => get(ref(db, DB_PATH + '/' + name)).then(sn => sn.val()),
+      restore: (d) => Promise.all([
+        update(ref(db, DB_PATH), { phases: d.phases || null, tasks: d.tasks || null, at: Date.now() }),
+        set(ref(db, DB_PATH + '/notes'),  d.notes  || null),
+        set(ref(db, DB_PATH + '/shots'),  d.shots  || null),
+        set(ref(db, DB_PATH + '/titles'), d.titles || null),
+        set(ref(db, DB_PATH + '/mood'),   d.mood   || null)
+      ])
+    };
+    onValue(query(ref(db, IDX_PATH), limitToLast(150)), (snap) => {
+      const v = snap.val() || {};
+      baks = Object.keys(v).map(k => Object.assign({ _k: k }, v[k]))
+                  .sort((a, b) => (b.at || 0) - (a.at || 0));
+      bakOk = true;
+      renderBaks();
+    }, () => { bakOk = false; baks = []; renderBaks(); });
 
     remoteSave = (s) => update(node, { phases: s.phases, tasks: s.tasks, at: Date.now() });
     remoteTitles = { set: (v) => update(titleRef, v) };
@@ -1345,25 +1462,44 @@ async function initFirebase(){
       renderNotes();
     });
 
+    const asArr = (v) => Array.isArray(v) ? v
+      : (v && typeof v === 'object') ? Object.keys(v).sort((a, b) => a - b).map(k => v[k]) : null;
+
+    onValue(ref(db, DB_PATH + '/at'), (snap) => {
+      const v = snap.val();
+      if (v) document.getElementById('lastAt').textContent = stamp(v);
+    });
+
     await new Promise((resolve) => {
-      let first = true;
-      onValue(node, (snap) => {
-        const d = snap.val();
-        if (d && Array.isArray(d.phases) && Array.isArray(d.tasks)){
-          state = { phases: d.phases, tasks: normalize(d.tasks) };
-          if (d.at) document.getElementById('lastAt').textContent = stamp(d.at);
-          if (!first && !editing) renderAll();
-        } else if (first){
-          remoteSave(state).catch(() => {});
-        }
-        setSync('on', '실시간 연결됨');
-        if (first){ first = false; resolve(); }
-      }, () => {
+      let gotP = false, gotT = false, done = false, hasP = false;
+      const fail = () => {
         setSync('err', '연결 실패');
         document.getElementById('banner').hidden = false;
         document.getElementById('bannerMsg').textContent = '파이어베이스에 연결하지 못했습니다.';
-        if (first){ first = false; resolve(); }
-      });
+        if (!done){ done = true; resolve(); }
+      };
+      const finish = () => {
+        if (done || !gotP || !gotT) return;
+        done = true;
+        if (!hasP) remoteSave(state).catch(() => {});    // 처음 쓰는 경우에만 기본값 저장
+        setSync('on', '실시간 연결됨');
+        resolve();
+      };
+      onValue(ref(db, DB_PATH + '/phases'), (snap) => {
+        const v = asArr(snap.val());
+        if (v && v.length){ state.phases = v; hasP = true; }
+        gotP = true;
+        if (done && !editing) renderAll();
+        finish();
+      }, fail);
+      onValue(ref(db, DB_PATH + '/tasks'), (snap) => {
+        const v = asArr(snap.val());
+        if (v) state.tasks = normalize(v);
+        else if (hasP) state.tasks = [];
+        gotT = true;
+        if (done && !editing) renderAll();
+        finish();
+      }, fail);
     });
   } catch(e){
     setSync('err', '연결 실패');
@@ -1588,6 +1724,7 @@ rowsEl.addEventListener('click', (e) => {
   if (e.target.closest('.stars button')){
     snapshot();
     state.tasks[i].star = state.tasks[i].star ? 0 : 1;
+    logAct(`할일 중요 ${state.tasks[i].star ? '표시' : '해제'}: ${short(state.tasks[i].task)}`);
     renderTasks(); renderDayPanel(); persist();
     return;
   }
@@ -1596,6 +1733,7 @@ rowsEl.addEventListener('click', (e) => {
     snapshot();
     const n = +pg.dataset.p;
     state.tasks[i].prog = (state.tasks[i].prog === n) ? n - 1 : n;
+    logAct(`할일 진행도 ${PCT[state.tasks[i].prog]}%: ${short(state.tasks[i].task)}`);
     renderTasks(); renderDayPanel(); persist();
     return;
   }
@@ -1607,6 +1745,7 @@ rowsEl.addEventListener('click', (e) => {
   }
   if (e.target.closest('.x')){
     snapshot();
+    logAct(`할일 삭제: ${short(state.tasks[i].task)}`, 'del');
     state.tasks.splice(i, 1);
     closeColMenu();
     renderTasks(); renderCalendar(); renderDayPanel(); persist();
@@ -1633,6 +1772,7 @@ colMenu.addEventListener('click', (e) => {
   if (!b || openCol === null) return;
   snapshot();
   state.tasks[openCol].col = +b.dataset.c;
+  logAct(`할일 색 변경: ${short(state.tasks[openCol].task)}`);
   const i = openCol;
   closeColMenu();
   renderTasks(); renderCalendar(); renderDayPanel(); persist();
@@ -1675,6 +1815,7 @@ rowsEl.addEventListener('drop', (e) => {
   const to = +tr.dataset.i;
   if (to !== dragFrom){
     snapshot();
+    logAct('할일 순서 변경');
     const [moved] = state.tasks.splice(dragFrom, 1);
     state.tasks.splice(to, 0, moved);
     renderTasks(); persist();
@@ -1691,16 +1832,11 @@ rowsEl.addEventListener('dragend', () => {
 
 document.getElementById('add').addEventListener('click', () => {
   snapshot();
+  logAct('할일 추가');
   state.tasks.push({ task:'', who:'', s:'', e:'', prog:0, star:0, col: state.tasks.length % BAR_COLORS.length });
   renderTasks(); persist();
   const last = rowsEl.querySelector('tr:last-child .cell');
   if (last) last.focus();
-});
-document.getElementById('reset').addEventListener('click', () => {
-  if (!confirm('입력한 내용을 모두 지우고 기본 목록으로 되돌립니다.\n공유 중인 모든 사람에게 적용됩니다. 계속할까요?')) return;
-  snapshot();
-  state = clone(DEFAULT_STATE);
-  renderAll(); persist();
 });
 
 const past = [], future = [];
@@ -1718,6 +1854,7 @@ document.getElementById('undo').addEventListener('click', () => {
   if (!past.length) return;
   future.push(clone(state));
   state = past.pop();
+  logAct('진행상황 되돌리기', 'sys');
   closeColMenu();
   renderAll(); persist();
   updateHistoryBtns();
@@ -1726,6 +1863,7 @@ document.getElementById('redo').addEventListener('click', () => {
   if (!future.length) return;
   past.push(clone(state));
   state = future.pop();
+  logAct('진행상황 다시 실행', 'sys');
   closeColMenu();
   renderAll(); persist();
   updateHistoryBtns();
@@ -1812,7 +1950,10 @@ function renderNotes(){
 document.getElementById('noteList').addEventListener('click', (e) => {
   const rm = e.target.closest('.rm');
   if (rm && remoteNotes){
-    if (confirm('이 메모를 삭제할까요?')) remoteNotes.del(rm.dataset.k).catch(() => {});
+    if (confirm('이 메모를 삭제할까요?')){
+      remoteNotes.del(rm.dataset.k).catch(() => {});
+      logAct('알림 삭제', 'del');
+    }
     return;
   }
   const ed = e.target.closest('.ed');
@@ -1837,13 +1978,16 @@ function sendNote(){
   if (!body) return;
   if (!remoteNotes){ alert('파이어베이스에 연결되지 않아 메모를 남길 수 없습니다.'); return; }
   try { localStorage.setItem('koita-who', who); } catch(e){}
+  if (who) meName = who;
   if (editKey){
     remoteNotes.edit(editKey, { body, ed: Date.now() }).catch(() => {});
+    logAct('알림 수정');
     editKey = null;
     editNote.hidden = true;
     document.getElementById('noteSend').textContent = '등록';
   } else {
     remoteNotes.add({ who: who || '익명', body, uid: myId, at: Date.now() }).catch(() => {});
+    logAct('알림 작성: ' + short(body, 24));
     try { localStorage.setItem('koita-seen', String(notes.length + 1)); } catch(e){}
   }
   noteBody.value = '';
@@ -1947,6 +2091,7 @@ document.getElementById('plans').addEventListener('click', (e) => {
     if (!next) return;
     plans = plans.concat(next);
     plan = next;
+    logAct(`${KIND_NM[kind]} ${next}안 추가`);
     if (remoteTitles) remoteTitles.set({ plans }).catch(() => {});
     renderShots();
     return;
@@ -2044,6 +2189,7 @@ shotsEl.addEventListener('click', (e) => {
   if (e.target.closest('.sc-del .x')){
     if (!confirm('이 컷을 삭제할까요?')) return;
     histSnap();
+    logAct(`${cutName(k)} 삭제`, 'del');
     shots = shots.filter(v => v._k !== k);
     if (remoteShots) remoteShots.del(k).catch(() => {});
     renderShots();
@@ -2159,6 +2305,7 @@ function addImg(k, data){
   const x = shots.find(v => v._k === k);
   if (!x) return;
   histSnap();
+  logAct(`${cutName(k)} 이미지 추가`);
   putBlob(data).then(id => {
     const y = shots.find(v => v._k === k);
     if (!y) return;
@@ -2172,6 +2319,7 @@ function delImg(k, i){
   const x = shots.find(v => v._k === k);
   if (!x) return;
   histSnap();
+  logAct(`${cutName(k)} 이미지 삭제`, 'del');
   const list = imgsOf(x);
   list.splice(i, 1);
   x.imgs = list; x.img = '';
@@ -2259,6 +2407,7 @@ shotsEl.addEventListener('drop', (e) => {
   const to = list.findIndex(x => x._k === sh.dataset.k);
   if (from < 0 || to < 0 || from === to){ shotFrom = null; return; }
   histSnap();
+  logAct(`${KIND_NM[kind]} ${plan}안 컷 순서 변경`);
   const [mv] = list.splice(from, 1);
   list.splice(to, 0, mv);
   list.forEach((x, i) => { x.ord = i; if (remoteShots) remoteShots.set(x._k, { ord: i }).catch(() => {}); });
@@ -2279,6 +2428,7 @@ document.getElementById('shotAdd').addEventListener('click', () => {
   const last = list[list.length - 1];
   const start = last ? (tcSec(last.te) != null ? secTc(tcSec(last.te)) : '') : '00:00';
   histSnap();
+  logAct(`${KIND_NM[kind]} ${plan}안 컷 추가`);
   const item = { kind, plan, ts: start, te: '', title: '', desc: '', ref: '', at: '', imgs: [], ord: shots.length };
   if (remoteShots){
     remoteShots.add(item).then(() => {
@@ -2457,6 +2607,7 @@ function moodLoad(files){
   if (!pick.length) return;
   if (mood.length + pick.length > 40){ alert('레퍼런스는 40장까지 넣을 수 있습니다.'); return; }
   histSnap();
+  logAct(`${catNm()} 이미지 ${pick.length}장 추가`);
   pick.reduce((chain, f) => chain
     .then(() => shrink(f))
     .then(d => d ? putBlob(d) : null)
@@ -2491,6 +2642,8 @@ moodEl.addEventListener('click', (e) => {
   if (e.target.closest('.rm')){
     if (!confirm('이 레퍼런스를 삭제할까요?')) return;
     histSnap();
+    { const m0 = mood.find(v => v._k === k);
+      logAct(`${catNm()} 레퍼런스 삭제${m0 && m0.label ? ': ' + short(m0.label) : ''}`, 'del'); }
     mood = mood.filter(v => v._k !== k);
     if (remoteMood) remoteMood.del(k).catch(() => {});
     renderMood();
@@ -2503,6 +2656,7 @@ moodEl.addEventListener('click', (e) => {
     histSnap();
     const cols = m.cols.slice();
     cols.splice(+sx.dataset.ci, 1);
+    logAct(`${catNm()} 컬러 빼기${m.label ? ': ' + short(m.label) : ''}`);
     m.cols = cols;
     if (remoteMood) remoteMood.set(k, { cols }).catch(() => {});
     renderMood();
@@ -2514,6 +2668,7 @@ moodEl.addEventListener('click', (e) => {
     histSnap();
     if ((m.cols || []).length >= 8) return;
     const cols = (m.cols || []).concat('#7692FF');
+    logAct(`${catNm()} 컬러 추가${m.label ? ': ' + short(m.label) : ''}`);
     m.cols = cols;
     if (remoteMood) remoteMood.set(k, { cols }).catch(() => {});
     renderMood();
@@ -2550,6 +2705,7 @@ moodEl.addEventListener('drop', (e) => {
     const c = e.target.closest('.mcard');
     if (c && c.dataset.k !== moodFrom){
       histSnap();
+      logAct(`${catNm()} 레퍼런스 순서 변경`);
       const from = mood.findIndex(v => v._k === moodFrom);
       const to = mood.findIndex(v => v._k === c.dataset.k);
       const [mv] = mood.splice(from, 1);
@@ -2617,6 +2773,7 @@ function inkOn(hex){
 
 function moodNew(item){
   histSnap();
+  logAct(`${catNm()} ${item.type === 'color' ? '컬러' : item.type === 'note' ? '설명' : '레퍼런스'} 추가`);
   const v = Object.assign({ label:'', memo:'', cat: moodCat, ord: mood.length + 1 }, item);
   if (remoteMood){
     remoteMood.add(v).then(() => setTimeout(() => {
@@ -2737,12 +2894,14 @@ document.getElementById('plotUndo').addEventListener('click', () => {
   if (!shotPast.length) return;
   shotFuture.push(snapObj());
   applySnap(shotPast.pop());
+  logAct('영상 기획 되돌리기', 'sys');
   updShotBtns();
 });
 document.getElementById('plotRedo').addEventListener('click', () => {
   if (!shotFuture.length) return;
   shotPast.push(snapObj());
   applySnap(shotFuture.pop());
+  logAct('영상 기획 다시 실행', 'sys');
   updShotBtns();
 });
 
@@ -2864,6 +3023,179 @@ document.addEventListener('paste', (e) => {
   document.execCommand('insertText', false, txt);
 });
 
+
+/* ═════════════════ 수정 기록 · 자동 백업 · 복구 ═════════════════ */
+const KIND_NM = { cf:'홍보영상', iv:'인터뷰' };
+const PW_HASH = '24ad89feb1094276c3d0ead30da304fba98751511bf5e48ece118259b53be95c';
+const SLOT_H  = 3;                       // 3시간마다 자동 백업
+const pad2 = (n) => String(n).padStart(2, '0');
+
+let meName = '';
+try { meName = localStorage.getItem('koita-who') || ''; } catch(e){}
+
+function short(t, n){
+  n = n || 18;
+  t = String(t || '').replace(/<[^>]*>/g, '').trim();
+  if (!t) return '(내용 없음)';
+  return t.length > n ? t.slice(0, n) + '…' : t;
+}
+function catNm(){ return (MCATS.find(c => c.v === moodCat) || MCATS[0]).t; }
+function cutName(k){
+  const x = shots.find(v => v._k === k);
+  if (!x) return '컷';
+  const list = shots.filter(v => (v.kind || 'cf') === (x.kind || 'cf') && (v.plan || 'A') === (x.plan || 'A'));
+  const n = list.findIndex(v => v._k === k) + 1;
+  return `${KIND_NM[x.kind || 'cf']} ${x.plan || 'A'}안 CUT ${pad2(n)}`;
+}
+
+/* 수정 기록은 쓰지 않음 (호출부 호환용) */
+function logAct(){}
+
+const RULES_HELP = `<div class="warnbox"><b>보안 규칙 설정이 필요합니다.</b><br>
+  파이어베이스 콘솔 → Realtime Database → 규칙 탭에<br>
+  <b>koita2026_backup · koita2026_bindex</b> 항목을 추가해 주세요.</div>`;
+
+/* ── 백업 ── */
+function slotKey(d){
+  d = d || new Date();
+  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}_${pad2(Math.floor(d.getHours() / SLOT_H) * SLOT_H)}`;
+}
+function hashStr(t){
+  let h = 5381;
+  for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
+}
+async function gatherAll(){
+  const names = ['phases', 'tasks', 'notes', 'shots', 'titles', 'mood'];
+  const vals = await Promise.all(names.map(n => remoteBackup.child(n)));
+  const o = {};
+  names.forEach((n, i) => { o[n] = vals[i] == null ? null : vals[i]; });
+  return o;
+}
+function countOf(v){ return !v ? 0 : Array.isArray(v) ? v.filter(Boolean).length : Object.keys(v).length; }
+async function makeBackup(tag){
+  if (!remoteBackup || !bakOk) throw new Error('rules');
+  const data = await gatherAll();
+  const js = JSON.stringify(data);
+  const h = hashStr(js);
+  let slot;
+  if (tag === 'auto'){
+    slot = slotKey();
+    if (baks.some(b => b._k === slot)) return 'exists';
+    if (baks[0] && baks[0].h === h) return 'same';          // 바뀐 게 없으면 건너뜀
+  } else {
+    slot = slotKey() + '_' + tag + Date.now().toString(36);
+  }
+  const meta = { at: Date.now(), kind: tag, h,
+                 cuts: countOf(data.shots), tasks: countOf(data.tasks), refs: countOf(data.mood) };
+  await remoteBackup.put(slot, data, meta);
+  return slot;
+}
+function startBackups(){
+  const tick = () => { if (remoteBackup && bakOk) makeBackup('auto').catch(() => {}); };
+  setTimeout(tick, 4000);
+  setInterval(tick, 10 * 60 * 1000);
+}
+
+const bakList = document.getElementById('bakList');
+function bakLabel(b){
+  const d = new Date(b.at || 0);
+  return `${d.getMonth() + 1}.${pad2(d.getDate())} (${DOW[d.getDay()]}) ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+}
+function renderBaks(){
+  if (!bakList) return;
+  if (!bakOk){ bakList.innerHTML = RULES_HELP; return; }
+  if (!baks.length){ bakList.innerHTML = '<p class="none">아직 백업이 없습니다.<br>잠시 후 자동으로 만들어집니다.</p>'; return; }
+  const TAG = { auto:['auto','자동'], hand:['hand','수동'], pre:['pre','복구 직전'] };
+  bakList.innerHTML = baks.map(b => {
+    const t = TAG[b.kind] || TAG.auto;
+    return `<div class="bk">
+      <div class="i">
+        <div class="n">${bakLabel(b)}<span class="tag ${t[0]}">${t[1]}</span></div>
+        <div class="m">컷 ${b.cuts || 0} · 할일 ${b.tasks || 0} · 레퍼런스 ${b.refs || 0}</div>
+      </div>
+      <button class="btn" type="button" data-slot="${esc(b._k)}">복구</button>
+    </div>`;
+  }).join('');
+}
+
+/* ── 비밀번호 ── */
+async function sha256(t){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+  return Array.prototype.map.call(new Uint8Array(buf), x => x.toString(16).padStart(2, '0')).join('');
+}
+function askPw(msg){
+  return new Promise(resolve => {
+    const dlg = document.getElementById('pwDlg');
+    const inp = document.getElementById('pwIn');
+    const m = document.getElementById('pwMsg');
+    m.textContent = msg;
+    inp.value = '';
+    dlg.hidden = false;
+    setTimeout(() => inp.focus(), 50);
+    const done = (v) => { dlg.hidden = true; ok.onclick = no.onclick = inp.onkeydown = null; resolve(v); };
+    const ok = document.getElementById('pwOk');
+    const no = document.getElementById('pwCancel');
+    const check = async () => {
+      if (await sha256(inp.value) === PW_HASH) done(true);
+      else { m.innerHTML = '<span class="err">비밀번호가 맞지 않습니다.</span>'; inp.select(); }
+    };
+    ok.onclick = check;
+    no.onclick = () => done(false);
+    inp.onkeydown = (e) => { if (e.key === 'Enter') check(); if (e.key === 'Escape') done(false); };
+  });
+}
+
+/* ── 복구 ── */
+async function restoreFrom(slot){
+  const b = baks.find(x => x._k === slot);
+  if (!b) return;
+  if (!await askPw(`${bakLabel(b)} 백업으로 되돌립니다.`)) return;
+  if (!confirm(`${bakLabel(b)} 시점으로 되돌립니다.\n\n진행상황·영상 기획·알림 전체가 그때 상태로 바뀌고, 모든 사람에게 적용됩니다.\n지금 상태는 '복구 직전' 백업으로 먼저 저장해 둡니다.`)) return;
+  setSync('off', '복구 중…');
+  try { await makeBackup('pre'); }
+  catch(e){ if (!confirm('지금 상태를 백업하지 못했습니다. 그래도 복구할까요?')) { setSync('on', '실시간 연결됨'); return; } }
+  try {
+    const d = await remoteBackup.get(slot);
+    if (!d) throw new Error('empty');
+    await remoteBackup.restore(d);
+    past.length = 0; future.length = 0; updateHistoryBtns();
+    shotPast.length = 0; shotFuture.length = 0; updShotBtns();
+    setSync('on', '복구 완료');
+    alert('복구했습니다.');
+  } catch(e){
+    setSync('err', '복구 실패');
+    alert('복구하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+  }
+}
+bakList.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-slot]');
+  if (b) restoreFrom(b.dataset.slot);
+});
+document.getElementById('bakNow').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  btn.disabled = true;
+  try {
+    await makeBackup('hand');
+    alert('지금 상태를 백업했습니다.');
+  } catch(err){
+    alert(bakOk ? '백업하지 못했습니다.' : '보안 규칙 설정이 먼저 필요합니다.');
+  }
+  btn.disabled = false;
+});
+
+/* ── 기록 창 열고 닫기 ── */
+const logPanel = document.getElementById('logPanel');
+function openLog(on){
+  logPanel.classList.toggle('open', on);
+  scrim.classList.toggle('open', on || memo.classList.contains('open'));
+  if (on) renderBaks();
+}
+document.getElementById('logOpen').addEventListener('click', () => openLog(true));
+document.getElementById('logClose').addEventListener('click', () => openLog(false));
+scrim.addEventListener('click', () => openLog(false));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && logPanel.classList.contains('open')) openLog(false); });
+
 /* ───────── 탭 · 네비 · 영상 ───────── */
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const TABS = [
@@ -2953,6 +3285,8 @@ renderNotes();
 renderShots();
 renderMood();
 syncMoodDesc();
+renderBaks();
+startBackups();
 const hit = TABS.find(t => t.h === location.hash);
 if (hit) showTab(hit.b);
 </script>
