@@ -1127,7 +1127,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <section class="blk">
       <div class="hd">
         <h2>디자인 레퍼런스</h2>
-        <p class="kicker">이미지를 끌어다 놓으면 바로 올라갑니다</p>
         <div class="right"><span class="mcount" id="moodCount"></span></div>
       </div>
 
@@ -1197,7 +1196,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <div class="list" id="bakList"></div>
   <div class="lgfoot" id="bakFoot">
     <button class="btn" id="bakNow" type="button">지금 백업</button>
-    <span class="tip">3시간마다 자동 백업 · 백업은 누구도 지우거나 고칠 수 없습니다</span>
+    <span class="tip">3시간마다 자동 백업</span>
   </div>
 </aside>
 
@@ -2469,6 +2468,7 @@ vtitleEl.addEventListener('input', () => {
 document.getElementById('kinds').addEventListener('click', (e) => {
   const b = e.target.closest('.kbtn');
   if (!b) return;
+  if (kind !== b.dataset.k) plan = plans[0] || 'A';   // 영상 종류를 바꾸면 A안부터
   kind = b.dataset.k;
   renderShots();
 });
